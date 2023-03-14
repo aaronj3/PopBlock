@@ -9,6 +9,9 @@ const userSchema = new Schema({
   hashedPassword: {
     type: String,
     required: true
+  },
+  color: {
+    type: String
   }
 }, {
   // tells mongoose to add and maintain `createdAt` and `updatedAt` fields with
