@@ -5,18 +5,17 @@ import { showSignupModal } from "../../store/ui";
 import * as sessionActions from "../../store/session";
 
 
-
 function LoginForm() {
 
     const dispatch = useDispatch();
-    const [email, setEmail] = useState("");
+    const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
     const [errors, setErrors] = useState([]);
 
     const handleSubmit = (e) => {
     e.preventDefault();
     setErrors([]);
-    return dispatch(sessionActions.login({ email, password }))
+    return dispatch(sessionActions.login({ username, password }))
         .catch(async (res) => {
         let data;
         try {
@@ -41,17 +40,17 @@ function LoginForm() {
             </ul>
             <div className="form-container">
                 <div className="form-body-container" >
-                    <h2 className="modal-CTA-header">Enter your email and password</h2>
+                    <h2 className="modal-CTA-header">Enter your username and password</h2>
                     <p className="modal-CTA-subtext">
                         Enter the login credentials associated with your PopBlock account.
                     </p>
 
                     <label>
                     <input className="form-field"
-                        placeholder='Email'
-                        type="email"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
+                        placeholder='Username'
+                        type="username"
+                        value={username}
+                        onChange={(e) => setUsername(e.target.value)}
                         required
                     />
                     </label>
