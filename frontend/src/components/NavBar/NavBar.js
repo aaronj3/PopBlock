@@ -5,6 +5,7 @@ import SignupFormModal from '../SessionForms/SignupFormModal';
 import './NavBar.css';
 import { logout } from '../../store/session';
 import { showSignupModal, showLoginModal } from '../../store/ui';
+import ProfileButton from './ProfileButton';
 import { Modal } from '../../context/Modal';
 
 
@@ -14,6 +15,7 @@ function NavBar () {
     const dispatch = useDispatch();
     const history = useHistory();
     const modal = useSelector(state => state.ui.modal)
+    const sessionUser = useSelector(state => state.session.user);
 
     const logoutUser = e => {
         e.preventDefault();
@@ -28,13 +30,7 @@ function NavBar () {
     const getLinks = () => {
         if (loggedIn) {
             return (
-                <div className="links-nav">
-                    {/* //CHANGE LINKS.. THIS IS TEMPORARY */}
-                    <Link to={'/posts'}>All Posts</Link>
-                    <Link to={'/profile'}>Profile</Link>
-                    <Link to={'/posts/new'}>Show your moves!</Link>
-                    <button onClick={logoutUser}>Logout</button>
-                </div>
+                <ProfileButton user={sessionUser}/>
             );
         } else {
             return (
