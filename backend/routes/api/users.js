@@ -34,8 +34,8 @@ router.post('/register', validateRegisterInput, async (req, res, next) => {
   // Check to make sure nobody has already registered with a duplicate username
   const user = await User.findOne({
     $or: [{ username: req.body.username }]
-  });
-
+  });    
+  
   if (user) {
     // Throw a 400 error if username already exists
     const err = new Error("Validation Error");
@@ -84,6 +84,5 @@ router.post('/login', validateLoginInput, async (req, res, next) => {
     return res.json(await loginUser(user));
   })(req, res, next);
 });
-
 
 module.exports = router;

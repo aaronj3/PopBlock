@@ -6,20 +6,8 @@ const postSchema = new Schema({
     type: Schema.Types.ObjectId,
     ref: 'User'
   },
-  body: {
+  text: {
     type: String,
-    required: true
-  },
-  url: {
-    type: String,
-    required: true
-  },
-  longitude: {
-    type: Number,
-    required: true
-  },
-  latitude: {
-    type: Number,
     required: true
   }
 }, {
