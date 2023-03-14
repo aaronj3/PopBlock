@@ -20,7 +20,6 @@ router.get('/', async (req, res) => {
   }
 })
 
-
 router.get('/user/:userId', async (req, res, next) => {
   let user;
   try {
