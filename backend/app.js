@@ -45,9 +45,11 @@ app.use(
 // app.get("/", (req, res) => res.send("Hello World!!"));
 
 // Attach Express routers
+const indexRouter = require('./routes/index')
 const postsRouter = require('./routes/api/posts');
 const usersRouter = require('./routes/api/users');
 const csrfRouter = require('./routes/api/csrf');
+app.use('/', indexRouter);
 app.use('/api/posts', postsRouter);
 app.use('/api/users', usersRouter);
 app.use('/api/csrf', csrfRouter);
