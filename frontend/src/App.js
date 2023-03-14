@@ -7,15 +7,20 @@ import SignupForm from './components/SessionForms/SignupForm';
 
 import { Route } from 'react-router-dom';
 
+import NavBar from './components/NavBar/NavBar';
+
 
 function App() {
   return (
-    <Switch>
-      <AuthRoute exact path="/" component={MainPage} />
-      {/* <Route exact path="/" component={MainPage} /> */}
-      <AuthRoute exact path="/login" component={LoginForm} />
-      <AuthRoute exact path="/signup" component={SignupForm} />
-    </Switch>
+    <>
+      <NavBar/>
+      <Switch>
+        <AuthRoute exact path="/" component={MainPage} />
+        {/* <Route exact path="/" component={MainPage} /> */}
+        {/* <AuthRoute exact path="/login" component={LoginForm} /> */}
+        {/* <AuthRoute exact path="/signup" component={SignupForm} /> */}
+      </Switch>
+    </>
   );
 }
 

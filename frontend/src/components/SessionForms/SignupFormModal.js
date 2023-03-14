@@ -10,7 +10,7 @@ function SignupFormModal() {
 
     return (
         <Modal onClose={() => dispatch(hideModal())}>
-            <SignupForm />
+            <SignupForm className="auth-form"/>
         </Modal>
     )
 }
