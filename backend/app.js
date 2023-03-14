@@ -6,7 +6,7 @@ const cors = require('cors');
 const csurf = require('csurf');
 /* --- Need to import these to load the models into mongoose --- */
 require('./models/User');
-require('./models/Posts');
+require('./models/Post');
 /* ------------------------------------------------------------- */
 require('./config/passport'); // Need to import to configure passport module
 const passport = require('passport');
