@@ -19,7 +19,7 @@ const { isProduction } = require('./config/keys');
 const app = express();
 
 app.use(logger('dev')); // log request components (URL/method) to terminal
-app.use(express.json()); // parse JSON request body
+app.use(express.json({limit: '100mb'})); // parse JSON request body
 app.use(express.urlencoded({ extended: false })); // parse urlencoded request body
 app.use(cookieParser()); // parse cookies as an object on req.cookies
 
