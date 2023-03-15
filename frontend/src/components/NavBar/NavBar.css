@@ -190,3 +190,15 @@
 	outline: inherit;
     color: #A93233
 }
+
+.logo-container {
+    border: none;
+    background-color: white;
+    width: 300px;
+    height: 90px;
+}
+
+.logo {
+    width: 300px;
+    height: 90px
+}

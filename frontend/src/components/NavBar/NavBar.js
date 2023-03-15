@@ -7,6 +7,7 @@ import { logout } from '../../store/session';
 import { showSignupModal, showLoginModal } from '../../store/ui';
 import ProfileButton from './ProfileButton';
 import { Modal } from '../../context/Modal';
+import logo from '../../assets/images/logo.png'
 
 
 
@@ -54,8 +55,8 @@ function NavBar () {
                 <div className="nav-container">
                     <li>
                         <div>
-                            <button className='logo' onClick={routeChange}>
-                                <img src="frontend/assets/images/PopBlockLogoWithText.png"/>
+                            <button className='logo-container' onClick={routeChange}>
+                                <img className='logo' src={logo}/>
                             </button>
                         </div>
 
