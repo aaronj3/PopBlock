@@ -55,7 +55,7 @@ function NavBar () {
                     <li>
                         <div>
                             <button className='logo' onClick={routeChange}>
-                                PopBlock
+                                <img src="frontend/assets/images/PopBlockLogoWithText.png"/>
                             </button>
                         </div>
 
