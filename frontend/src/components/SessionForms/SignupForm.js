@@ -3,6 +3,8 @@ import { useSelector, useDispatch } from "react-redux";
 import { Redirect } from "react-router-dom";
 import { showLoginModal } from "../../store/ui";
 import * as sessionActions from "../../store/session";
+import { Modal } from "../../context/Modal";
+import './SessionForms.css'
 
 
 //need to import sessionActions from store/session
@@ -11,9 +13,9 @@ import * as sessionActions from "../../store/session";
 function SignupForm() {
     const dispatch = useDispatch();
     const sessionUser = useSelector(state => state.session.user);
-    const [first_name, setFirstName] = useState('')
-    const [last_name, setLastName] = useState('')
-    const [email, setEmail] = useState('');
+    // const [first_name, setFirstName] = useState('')
+    // const [last_name, setLastName] = useState('')
+    const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [confirmPassword, setConfirmPassword] = useState("");
     const [errors, setErrors] = useState([]);
@@ -24,7 +26,7 @@ function SignupForm() {
         e.preventDefault();
         if (password === confirmPassword) {
         setErrors([]);
-        return dispatch(sessionActions.signup({ first_name, last_name, email, password }))
+        return dispatch(sessionActions.signup({ username, password }))
             .catch(async (res) => {
             let data;
             try {
@@ -40,10 +42,6 @@ function SignupForm() {
         return setErrors(['Confirm Password field must be the same as the Password field']);
     };
 
-    // const changeModal = (e) => {
-
-    // }
-
 
     return (
             <>
@@ -54,34 +52,14 @@ function SignupForm() {
 
             <h2 className="modal-CTA-header">Make an account</h2>
 
-            <label className>
-                <input className="form-field"
-                placeholder='First name'
-                type='text'
-                value={first_name}
-                onChange={(e) => setFirstName(e.target.value)}
-                required/>
-            </label>
-
             <br/>
 
             <label>
                 <input className="form-field"
-                placeholder='Last name'
-                type='text'
-                value={last_name}
-                onChange={(e) => setLastName(e.target.value)}
-                required/>
-            </label>
-
-            <br/>
-
-            <label>
-                <input className="form-field"
-                placeholder='Email'
-                type='email'
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                placeholder='username'
+                type='username'
+                value={username}
+                onChange={(e) => setUsername(e.target.value)}
                 required/>
             </label>
 

@@ -3,16 +3,17 @@ import { useDispatch } from "react-redux";
 import { login } from "../../store/session";
 
 
+
 function DemoLogin() {
     const dispatch = useDispatch();
 
     //we need to seed a demo account
-    const [email, useEmail] = useState("demo@gmail.com");
+    const [username, useUsername] = useState("demo");
     const [password, usePassword] = useState("password")
 
     const handleLogin = (e) => {
         e.preventDefault();
-        dispatch(login({ email, password }));
+        dispatch(login({ username, password }));
     }
 
     return (
