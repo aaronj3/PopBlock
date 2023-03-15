@@ -1,5 +1,4 @@
-import csrfFetch from './csrf';
-// import { RECEIVE_POSTS, RECEIVE_POST } from './posts';
+import jwtFetch from "./jwt";
 
 
 export const RECEIVE_REVIEWS = "comments/receive"
@@ -7,10 +6,10 @@ export const RECEIVE_REVIEW = "comment/receive"
 export const REMOVE_REVIEW = "comment/remove"
 // export const CLEAR_REVIEWS = "reviews/clear"
 
-const receiveComments = (payload) => (
+const receiveComments = (comments) => (
     {
         type: RECEIVE_COMMENTS,
-        payload
+        comments
     }
 );
 
@@ -30,7 +29,7 @@ const removeComment = (payload) => (
 
 // const clearComments = () => (
 //     {
-//         type: CLEAR_CommentS
+//         type: CLEAR_COMMENTS
 //     }
 // );
 
@@ -43,40 +42,53 @@ export const getComment = (commentId) => (state) => (
 )
 
 
-export const fetchComment = (comment_id) => async dispatch => {
-    const response = await csrfFetch(`/api/comments/${comment_id}`)
-    if (response.ok) {
-        const comment = await response.json()
-        dispatch(receiveComment(comment))
+export const fetchComments = id => async dispatch => {
+    try {
+        const res = await jwtFetch(`/api/${id}`);
+        const comments = await res.json();
+        dispatch(receiveComments(comments));
+    } catch (err) {
+        const resBody = await err.json();
+        if (resBody.statusCode === 400) {
+            dispatch(receiveErrors(resBody.errors))
+        }
     }
 }
 
-export const createComment = (comment) => async dispatch => {
-    const response = await csrfFetch(`/api/comments`, {
-        method: "POST",
-        headers: {"Content-Type" : "application/json"},
-        body: JSON.stringify(comment)
-    })
-    if (response.ok) {
-        const comment = await response.json()
-        dispatch(receiveComment(comment))
+export const createComment = (commentData) => async dispatch => {
+    try {
+        const res = await jwtFetch('/api/tweets/', {
+            method: 'POST',
+            body: JSON.stringify(commentData)
+        });
+        const comment = await res.json();
+        dispatch(receiveComment(comment));
+    } catch(err) {
+        const resBody = await err.json();
+        if (resBody.statusCode === 400) {
+            return dispatch(receiveErrors(resBody.errors));
+        }
     }
 }
 
-// export const updateComment = (comment) => async dispatch => {
-//     const response = await csrfFetch(`/api/comments/${comment.id}`, {
-//         method: "PATCH",
-//         headers: {"Content-Type" : "application/json"},
-//         body: JSON.stringify(comment)
-//     })
-//     if (response.ok) {
-//         const comment = await response.json()
-//         dispatch(receiveComment(comment))
-//     }
-// }
+export const updateComment = (commentData) => async dispatch => {
+    try {
+        const res = await jwtFetch('/api/tweets/', {
+            method: 'PATCH',
+            body: JSON.stringify(commentData)
+        });
+        const comment = await res.json();
+        dispatch(receiveComment(comment));
+    } catch(err) {
+        const resBody = await err.json();
+        if (resBody.statusCode === 400) {
+            return dispatch(receiveErrors(resBody.errors));
+        }
+    }
+}
 
 export const deleteComment = (commentId) => async dispatch => {
-    const response = await csrfFetch(`/api/comments/${commentId}`, {
+    const response = await jwtFetch(`/api/comments/${commentId}`, {
         method: "DELETE"
     });
     if (response.ok) {
@@ -84,7 +96,7 @@ export const deleteComment = (commentId) => async dispatch => {
     }
 }
 
-export default function commentReducer(oldState = {}, action) {
+export default function commentsReducer(oldState = {}, action) {
     switch (action.type) {
         case RECEIVE_POST:
             return action.comments

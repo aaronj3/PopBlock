@@ -15,12 +15,13 @@ router.get('/', async (req, res) => {
   }
 })
 
+
 router.post('/:id', requireUser, async (req, res, next) => {
   const newComment = new Comment({
     author: req.user._id,
     post: req.params.id,
     body: req.body.text,
-  })  
+  })
 
   let comments = await newComment.save()
   return res.json(comments);
@@ -28,7 +29,7 @@ router.post('/:id', requireUser, async (req, res, next) => {
 
 router.delete("/:id", requireUser, async (req, res, next) => {
   const comments = await Comment.findById(req.params.id);
-  
+
   if (comments && comments.author._id.toString() == req.user._id ) {
     comments.deleteOne();
   } else {
