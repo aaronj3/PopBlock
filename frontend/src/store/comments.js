@@ -1,11 +1,11 @@
 import jwtFetch from "./jwt";
 import { receiveErrors } from "./session";
 
-
-
-export const RECEIVE_COMMENTS = "comments/receive"
-export const RECEIVE_COMMENT = "comment/receive"
-export const REMOVE_COMMENT = "comment/remove"
+export const RECEIVE_COMMENTS = "COMMENTS/RECEIVE"
+export const RECEIVE_COMMENT = "COMMENT/RECEIVE"
+export const REMOVE_COMMENT = "COMMENT/REMOVE"
+export const RECEIVE_COMMENT_ERRORS = "COMMENTS/RECEIVE_COMMENT_ERRORS";
+export const CLEAR_COMMENT_ERRORS = "COMMENTS/CLEAR_COMMENT_ERRORS";
 
 
 const receiveComments = (comments) => (
@@ -29,11 +29,18 @@ const removeComment = (payload) => (
     }
 );
 
-// const clearComments = () => (
-//     {
-//         type: CLEAR_COMMENTS
-//     }
-// );
+const receiveErrors = (errors) => (
+    {
+        type: RECEIVE_COMMENT_ERRORS,
+        errors
+    }
+);
+
+const clearCommentErrors = () => (
+    {
+        type: CLEAR_COMMENT_ERRORS
+    }
+);
 
 export const getComments = (state) => (
     state.comments ? Object.values(state.comments) : []
@@ -110,5 +117,20 @@ export default function commentsReducer(oldState = {}, action) {
             return newState
         default:
             return oldState;
+    }
+}
+
+const nullErrors = null;
+
+
+export const commentErrorsReducer = (state = nullErrors, action) => {
+    switch(action.type) {
+        case RECEIVE_COMMENT_ERRORS:
+            return action.errors;
+        case RECEIVE_COMMENT:
+        case CLEAR_COMMENT_ERRORS:
+            return nullErrors;
+        default:
+            return state;
     }
 }
