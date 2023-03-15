@@ -22,7 +22,7 @@ const s3 = new AWS.S3()
 /* GET posts listing. */
 router.get('/', async (req, res) => {
   try {
-    const posts = await Post.find().populate("author", "_id username").sort({ like: -1 });
+    const posts = await Post.find().populate("author", "_id username").sort({ "likes.length": -1 });
     return res.json(posts);
   }
   catch(err) {
@@ -59,7 +59,7 @@ router.get('/user/:userId', requireUser, async (req, res, next) => {
   }
   try {
     const posts = await Post.find({ author: user._id })
-                              .sort({ like: -1 })
+                              .sort({ "likes.length": -1 })
                               .populate("author", "_id username");
     return res.json(posts);
   }
@@ -127,15 +127,15 @@ router.post('/', requireUser, validatePostInput, imageUploader.single('image'), 
   }
 });
 
-router.post('/:id/like', requireUser, async (req, res, next) => {
+router.post('/:id/likes', requireUser, async (req, res, next) => {
   try {
     const post = await Post.findById(req.params.id).populate("author", "_id username");
     const user_id = req.user._id;
 
-    if (post.like.includes(user_id)) {
-       post.like = post.like.filter(s => s != user_id)
+    if (post.likes.includes(user_id)) {
+       post.likes = post.likes.filter(s => s != user_id)
     } else {
-       post.like.push(user_id);
+       post.likes.push(user_id);
     }
     post.save()
     return res.json(post);
