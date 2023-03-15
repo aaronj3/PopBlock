@@ -5,7 +5,6 @@ import { createComment } from "../../store/comments";
 import { useParams } from "react-router-dom";
 
 
-
 function CreateCommentForm() {
     const dispatch = useDispatch();
     const sessionUser = useSelector(state => state.session.user);
