@@ -1,5 +1,4 @@
 import jwtFetch from "./jwt";
-import { receiveErrors } from "./session";
 
 export const RECEIVE_COMMENTS = "COMMENTS/RECEIVE"
 export const RECEIVE_COMMENT = "COMMENT/RECEIVE"
