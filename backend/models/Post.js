@@ -4,9 +4,10 @@ const Schema = mongoose.Schema;
 const postSchema = new Schema({
   author: {
     type: Schema.Types.ObjectId,
-    ref: 'User'
+    ref: 'User',
+    required: true
   },
-  body: {
+  content: {
     type: String,
     required: true
   }

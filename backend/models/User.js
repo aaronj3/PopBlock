@@ -11,7 +11,8 @@ const userSchema = new Schema({
     required: true
   },
   color: {
-    type: String
+    type: String,
+    required: true
   }
 }, {
   // tells mongoose to add and maintain `createdAt` and `updatedAt` fields with

@@ -63,8 +63,8 @@ router.get('/:id', async (req, res, next) => {
 router.post('/', requireUser, validatePostInput, async (req, res, next) => {
   try {
     const newPost = new Post({
-      text: req.body.text,
-      author: req.user._id
+      author: req.user._id,
+      body: req.body.body,
     });
 
     let post = await newPost.save();
