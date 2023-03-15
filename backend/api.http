@@ -21,7 +21,6 @@ Content-Type: application/json
 
 {
   "username": "DemoUser7",
-  "email": "demo7@user.io",
   "password": "password"
 }
 
@@ -33,7 +32,6 @@ Content-Type: application/json
 
 {
   "username": "demo5@user.io",
-  "email": "demo5@user.io",
   "password": "password"
 }
 
