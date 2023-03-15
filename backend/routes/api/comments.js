@@ -70,6 +70,7 @@ router.post('/:postId', requireUser, async (req, res, next) => {
     body: req.body.body,
   })  
 
+
   let comments = await newComment.save()
   return res.json(comments);
 });
@@ -109,6 +110,7 @@ router.put('/:id', requireUser, async (req, res, next) => {
       body: updatedComment.body,
       post: post._id
     });
+
   }
   catch(err) {
     next(err);
