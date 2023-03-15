@@ -25,7 +25,8 @@ router.get('/current', restoreUser, (req, res) => {
   if (!req.user) return res.json(null);
   res.json({
     _id: req.user._id,
-    username: req.user.username
+    username: req.user.username,
+    color: req.user.color
   });
 })
 
@@ -50,7 +51,8 @@ router.post('/register', validateRegisterInput, async (req, res, next) => {
 
   // Otherwise create a new user
   const newUser = new User({
-    username: req.body.username
+    username: req.body.username,
+    color: "1" // todo make ramdom
   });
 
   bcrypt.genSalt(10, (err, salt) => {

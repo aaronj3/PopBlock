@@ -81,6 +81,25 @@ router.get('/:id', async (req, res, next) => {
   }
 })
 
+router.get('/area/:areaId', async (req, res, next) => {
+  try {
+    const post = await Post.find({ area: req.params.areaId}).populate("author", "_id username");
+    return res.json(post);
+  }
+  catch(err) {
+    const error = new Error('Post not found');
+    error.statusCode = 404;
+    error.errors = { message: "No post found with that id" };
+    return next(error);
+  }
+})
+
+router.delete('/:id',async (req, res, next) => {
+  const result = await Post.findOneAndDelete({_id: req.params.id}) 
+  console.log(result);
+  return res.json({result:"ok"});
+})
+
 // Attach requireUser as a middleware before the route handler to gain access
 // to req.user. (requireUser will return an error response if there is no 
 // current user.) Also attach validatePostInput as a middleware before the 
@@ -89,10 +108,9 @@ router.post('/', requireUser, validatePostInput, imageUploader.single('image'), 
   try {
     const newPost = new Post({
       url: req.file.location,
-      longitude: req.body.longitude,
-      latitude: req.body.latitude,
+      area: req.body.area,
       author: req.user._id,
-      body: req.body.text,
+      content: req.body.content,
     });
 
     let post = await newPost.save();
