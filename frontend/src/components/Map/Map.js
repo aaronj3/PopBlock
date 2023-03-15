@@ -6,6 +6,7 @@
 //     style: 'mapbox://styles/mapbox/streets-v11'
 // });
 import React, { useRef, useEffect, useState } from 'react';
+import { useSelector } from 'react-redux';
 import mapboxgl from 'mapbox-gl';
 import './Map.css'
 
@@ -117,9 +118,9 @@ export default function Map(){
                 if(selectedN){
                     const { nhood } = selectedN.properties;
                     const { id } = selectedN.properties;
-                    const post = useSelector(getPostByArea(`${id}`))
-                    dispatch(fetchPostByArea(`${id}`));
-                    const name = post.user.name
+                    // const post = useSelector(getPostByArea(`${id}`))
+                    // dispatch(fetchPostByArea(`${id}`));
+                    // const name = post.user.name
                     // const name = topPosts.areaID(selectedN.id).name
                     const description = `<strong>Aaron</strong> is poppin in the <Link>${nhood} neighborhood</Link>`
                     new mapboxgl.Popup()
