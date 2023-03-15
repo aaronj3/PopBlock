@@ -4,13 +4,18 @@ const logger = require('morgan');
 const debug = require('debug');
 const cors = require('cors');
 const csurf = require('csurf');
+
+require('dotenv').config();
 /* --- Need to import these to load the models into mongoose --- */
 require('./models/User');
 require('./models/Post');
+require('./models/Comment');
+/* ------------------------------------------------------------- */
 require('./config/passport'); // Need to import to configure passport module
-
 const passport = require('passport');
+
 const { isProduction } = require('./config/keys');
+
 const app = express();
 
 app.use(logger('dev')); // log request components (URL/method) to terminal
@@ -25,23 +30,11 @@ if (!isProduction) {
   app.use(cors());
 }
 
-
-// app.get("/", (req, res) => res.send("Hello World!!"));
-
-// Attach Express routers
-// const indexRouter = require('./routes/index')
-const usersRouter = require('./routes/api/users');
-const postsRouter = require('./routes/api/posts');
-const csrfRouter = require('./routes/api/csrf');
-// app.use('/', indexRouter);
-app.use('/api/users', usersRouter);
-app.use('/api/posts', postsRouter);
-app.use('/api/csrf', csrfRouter);
-
 // Set the _csrf token and create req.csrfToken method to generate a hashed
 // CSRF token
 app.use(
   csurf({
+    csrf: isProduction,
     cookie: {
       secure: isProduction,
       sameSite: isProduction && "Lax",
@@ -50,28 +43,40 @@ app.use(
   })
 );
 
+// app.get("/", (req, res) => res.send("Hello World!!"));
+
+// Attach Express routers
+const postsRouter = require('./routes/api/posts');
+const usersRouter = require('./routes/api/users');
+const csrfRouter = require('./routes/api/csrf');
+const commentRouter = require('./routes/api/comments');
+app.use('/api/posts', postsRouter);
+app.use('/api/users', usersRouter);
+app.use('/api/csrf', csrfRouter);
+app.use('/api/comments', commentRouter);
+
 // Serve static React build files statically in production
-// if (isProduction) {
-//   const path = require('path');
-//   // Serve the frontend's index.html file at the root route
-//   app.get('/', (req, res) => {
-//     res.cookie('CSRF-TOKEN', req.csrfToken());
-//     res.sendFile(
-//       path.resolve(__dirname, '../frontend', 'build', 'index.html')
-//     );
-//   });
+if (isProduction) {
+  const path = require('path');
+  // Serve the frontend's index.html file at the root route
+  app.get('/', (req, res) => {
+    res.cookie('CSRF-TOKEN', req.csrfToken());
+    res.sendFile(
+      path.resolve(__dirname, '../frontend', 'build', 'index.html')
+    );
+  });
 
-//   // Serve the static assets in the frontend's build folder
-//   app.use(express.static(path.resolve("../frontend/build")));
+  // Serve the static assets in the frontend's build folder
+  app.use(express.static(path.resolve("../frontend/build")));
 
-//   // Serve the frontend's index.html file at all other routes NOT starting with /api
-//   app.get(/^(?!\/?api).*/, (req, res) => {
-//     res.cookie('CSRF-TOKEN', req.csrfToken());
-//     res.sendFile(
-//       path.resolve(__dirname, '../frontend', 'build', 'index.html')
-//     );
-//   });
-// }
+  // Serve the frontend's index.html file at all other routes NOT starting with /api
+  app.get(/^(?!\/?api).*/, (req, res) => {
+    res.cookie('CSRF-TOKEN', req.csrfToken());
+    res.sendFile(
+      path.resolve(__dirname, '../frontend', 'build', 'index.html')
+    );
+  });
+}
 
 // Express custom middleware for catching all unmatched requests and formatting
 // a 404 error to be sent as the response.

@@ -9,6 +9,7 @@ import Map from './components/Map/Map';
 import { Route } from 'react-router-dom';
 
 import NavBar from './components/NavBar/NavBar';
+import './index.css'
 
 
 function App() {

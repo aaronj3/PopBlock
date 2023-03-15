@@ -25,7 +25,8 @@ router.get('/current', restoreUser, (req, res) => {
   if (!req.user) return res.json(null);
   res.json({
     _id: req.user._id,
-    username: req.user.username
+    username: req.user.username,
+    color: req.user.color
   });
 })
 
@@ -50,7 +51,9 @@ router.post('/register', validateRegisterInput, async (req, res, next) => {
 
   // Otherwise create a new user
   const newUser = new User({
-    username: req.body.username
+    username: req.body.username,
+    color: "000000"
+    // colors[Math.floor(Math.random() * colors.length)]
   });
 
   bcrypt.genSalt(10, (err, salt) => {
@@ -72,8 +75,10 @@ router.post('/register', validateRegisterInput, async (req, res, next) => {
 
 // Attach validateLoginInput as a middleware before the route handler
 router.post('/login', validateLoginInput, async (req, res, next) => {
-  passport.authenticate('local', async function(err, user) {
+  passport.authenticate('local',
+      async function(err, user) {
     if (err) return next(err);
+        console.log("user", user)
     if (!user) {
       const err = new Error('Invalid credentials');
       err.statusCode = 400;
