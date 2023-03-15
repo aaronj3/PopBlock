@@ -1,10 +1,6 @@
-import NavBar from "../NavBar/NavBar";
-import FileUpload from "./FileUpload";
-
 function MainPage() {
 return (
     <>
-        <FileUpload area={3}/>
     <p>PopBlock - What's poppin in yo block bitch</p>
 
     <footer>
