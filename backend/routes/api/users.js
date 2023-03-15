@@ -52,7 +52,8 @@ router.post('/register', validateRegisterInput, async (req, res, next) => {
   // Otherwise create a new user
   const newUser = new User({
     username: req.body.username,
-    color: "1" // todo make ramdom
+    color: "000000"
+    // colors[Math.floor(Math.random() * colors.length)]
   });
 
   bcrypt.genSalt(10, (err, salt) => {
