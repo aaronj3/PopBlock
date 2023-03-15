@@ -22,7 +22,7 @@ const s3 = new AWS.S3()
 /* GET posts listing. */
 router.get('/', async (req, res) => {
   try {
-    const posts = await Post.find().populate("author", "_id username").sort({ like: -1 });
+    const posts = await Post.find().populate("author", "_id username").sort({ "like.length": -1 });
     return res.json(posts);
   }
   catch(err) {
@@ -59,7 +59,7 @@ router.get('/user/:userId', requireUser, async (req, res, next) => {
   }
   try {
     const posts = await Post.find({ author: user._id })
-                              .sort({ like: -1 })
+                              .sort({ "like.length": -1 })
                               .populate("author", "_id username");
     return res.json(posts);
   }
