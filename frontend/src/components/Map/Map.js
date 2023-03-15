@@ -126,9 +126,9 @@ export default function MapBox(){
     
     return (
     <div>
-    <div className="sidebar">
+    {/* <div className="sidebar">
     Longitude: {lng} | Latitude: {lat} | Zoom: {zoom}
-    </div>
+    </div> */}
     <div ref={mapContainer} className="map-container" />
     </div>
     );
