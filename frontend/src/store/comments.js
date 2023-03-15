@@ -1,10 +1,12 @@
 import jwtFetch from "./jwt";
+import { receiveErrors } from "./session";
 
 
-export const RECEIVE_REVIEWS = "comments/receive"
-export const RECEIVE_REVIEW = "comment/receive"
-export const REMOVE_REVIEW = "comment/remove"
-// export const CLEAR_REVIEWS = "reviews/clear"
+
+export const RECEIVE_COMMENTS = "comments/receive"
+export const RECEIVE_COMMENT = "comment/receive"
+export const REMOVE_COMMENT = "comment/remove"
+
 
 const receiveComments = (comments) => (
     {
@@ -15,14 +17,14 @@ const receiveComments = (comments) => (
 
 const receiveComment = (Comment) => (
     {
-        type: RECEIVE_Comment,
+        type: RECEIVE_COMMENT,
         Comment
     }
 );
 
 const removeComment = (payload) => (
     {
-        type: REMOVE_Comment,
+        type: REMOVE_COMMENT,
         payload
     }
 );
@@ -98,18 +100,14 @@ export const deleteComment = (commentId) => async dispatch => {
 
 export default function commentsReducer(oldState = {}, action) {
     switch (action.type) {
-        case RECEIVE_POST:
+        case RECEIVE_COMMENT:
             return action.comments
-        case RECEIVE_CURRENT_USER_REVIEWS:
-            return action.payload.comments
         case RECEIVE_COMMENT:
             return {...oldState, [action.comment.id] : action.comment}
         case REMOVE_COMMENT:
             let newState = {...oldState}
             delete newState[action.payload]
             return newState
-        // case CLEAR_COMMENTS:
-        //     return {};
         default:
             return oldState;
     }

@@ -53,7 +53,7 @@
     font-weight: 700;
 }
 
-.comment-body-container .review-score:not(:last-child):after {
+.comment-body-container .comment-score:not(:last-child):after {
     color: #2d333f;
     content: "\B7";
     padding: 0 4px;

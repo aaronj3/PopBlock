@@ -2,16 +2,16 @@ import "./Comments.css"
 import { useSelector } from "react-redux"
 import { Modal } from "../../context/Modal";
 import { useState } from "react";
-import DeleteReviewForm from "./DeleteReviewForm";
-import UpdateReviewForm from "./UpdateReviewForm";
+import UpdateCommentForm from "./UpdateCommentForm";
+import DeleteCommentForm from "./DeleteCommentForm";
 
 
-function UpdateDeleteButtons ({review}) {
+function UpdateDeleteButtons ({comment}) {
     const sessionUser = useSelector(state => state.session.user)
     const [deleteModalShow, setDeleteModalShow] = useState(false);
     const [updateModalShow, setUpdateShowModal] = useState(false);
     if (!sessionUser) return
-    if (review.authorId !== sessionUser.id) return
+    if (comment.authorId !== sessionUser.id) return
 
 
     return (
@@ -19,14 +19,14 @@ function UpdateDeleteButtons ({review}) {
             <button onClick={() => setDeleteModalShow(true)}>Delete</button>
             {deleteModalShow && (
                 <Modal onClose={() => setDeleteModalShow(false)}>
-                    <DeleteReviewForm review={review} setDeleteModalShow={setDeleteModalShow}/>
+                    <DeleteCommentForm comment={comment} setDeleteModalShow={setDeleteModalShow}/>
                 </Modal>
                 )}
 
             <button onClick={() => setUpdateShowModal(true)}>Update</button>
             {updateModalShow && (
                 <Modal onClose={() => setUpdateShowModal(false)}>
-                    <UpdateReviewForm review={review} setUpdateShowModal={setUpdateShowModal}/>
+                    <UpdateCommentForm comment={comment} setUpdateShowModal={setUpdateShowModal}/>
                 </Modal>
                 )}
         </div>
