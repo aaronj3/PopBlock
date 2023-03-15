@@ -4,7 +4,8 @@ const Schema = mongoose.Schema;
 const postSchema = new Schema({
   author: {
     type: Schema.Types.ObjectId,
-    ref: 'User'
+    ref: 'User',
+    required: true
   },
   url: {
     type: String,
@@ -13,15 +14,11 @@ const postSchema = new Schema({
   like: {
     type: [String]
   },
-  longitude: {
+  area: {
     type: Number,
-    required: true
+    required: true,
   },
-  latitude: {
-    type: Number,
-    required: true
-  },
-  body: {
+  content: {
     type: String
   }
 }, {

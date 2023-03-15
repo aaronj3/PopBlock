@@ -14,9 +14,9 @@ export const AuthRoute = ({ component: Component, path, exact }) => {
         )
         )} />
     );
-    };
+};
 
-    export const ProtectedRoute = ({ component: Component, ...rest }) => {
+export const ProtectedRoute = ({ component: Component, ...rest }) => {
     const loggedIn = useSelector(state => !!state.session.user);
 
     return (
@@ -31,4 +31,4 @@ export const AuthRoute = ({ component: Component, path, exact }) => {
         }
         />
     );
-    };
+};
