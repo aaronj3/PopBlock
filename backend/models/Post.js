@@ -7,9 +7,23 @@ const postSchema = new Schema({
     ref: 'User',
     required: true
   },
-  content: {
+  url: {
     type: String,
     required: true
+  },
+  like: {
+    type: [String]
+  },
+  longitude: {
+    type: Number,
+    required: true
+  },
+  latitude: {
+    type: Number,
+    required: true
+  },
+  body: {
+    type: String
   }
 }, {
   // tells mongoose to add and maintain `createdAt` and `updatedAt` fields with

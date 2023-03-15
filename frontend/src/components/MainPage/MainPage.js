@@ -1,7 +1,11 @@
+import NavBar from "../NavBar/NavBar";
+
 function MainPage() {
 return (
     <>
+
     <p>PopBlock - What's poppin in yo block bitch</p>
+
     <footer>
         Copyright &copy; 2023 PopBlock
     </footer>
