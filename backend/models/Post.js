@@ -11,8 +11,8 @@ const postSchema = new Schema({
     type: String,
     required: true
   },
-  like: {
-    type: [String]
+  likes: {
+    type: {String}
   },
   area: {
     type: Number,
