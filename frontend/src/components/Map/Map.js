@@ -6,16 +6,21 @@
 //     style: 'mapbox://styles/mapbox/streets-v11'
 // });
 import React, { useRef, useEffect, useState } from 'react';
-import mapboxgl from '!mapbox-gl';
+import mapboxgl from 'mapbox-gl';
 
-mapboxgl.accessToken = process.env.REACT_APP_MAPBOX_ACCESS_TOKEN;
 
-export default function MapBox(){
+
+
+// mapboxgl.accessToken = process.env.REACT_APP_MAPBOX_ACCESS_TOKEN;
+
+mapboxgl.accessToken = "pk.eyJ1IjoiZGFjYWJ1IiwiYSI6ImNsZjljZGYzMzE5ejMzcXBvbDFuMW5hMmEifQ.qFJCBw1xmv4j-rjefmAkoA";
+
+export default function Map(){
 
     const mapContainer = useRef(null);
     const map = useRef(null);
-    const [lng, setLng] = useState(-70.9);
-    const [lat, setLat] = useState(42.35);
+    const [lng, setLng] = useState(-122.4);
+    const [lat, setLat] = useState(37.78);
     const [zoom, setZoom] = useState(9);
     
     useEffect(() => {
@@ -24,19 +29,19 @@ export default function MapBox(){
         container: mapContainer.current,
         style: 'mapbox://styles/mapbox/streets-v12',
         center: [lng, lat],
-        zoom: zoom
+        zoom: zoom,
         });
 
-        map.on('load', () => {
-            map.setFog({});
+        map.current.on('load', () => {
+            map.current.setFog({});
 
-            map.addSource('sf-boundaries', {
+            map.current.addSource('sf-boundaries', {
                 type: 'geojson',
-                data: './sf-boundaries.geojson',
+                data: 'sf-boundaries.geojson',
                 promoteId: 'ncode'
             });
 
-            map.addLayer({
+            map.current.addLayer({
                 id: 'sf-boundaries-fill',
                 type: 'fill',
                 source: 'sf-boundaries',
@@ -47,23 +52,15 @@ export default function MapBox(){
                         0.65,
                         0.2
                     ],
-                    'fill-color': [
-                        'match',
+                    'fill-color': 
+                        ['match',
                         ['get', 'ncode'],
-                        1,'green', 2, 'green', 3, 'green', 4, 'green', 5, 'green', 6, 'green', 7, 'green', 8, 'green', 9, 'green', 10, 'green', 
-                        11,'green', 12, 'green', 13, 'green', 14, 'green', 15, 'green', 16, 'green', 17, 'green', 18, 'green', 19, 'green', 20, 'green',
-                        21,'red', 22, 'red', 23, 'red', 24, 'red', 25, 'red', 26, 'red', 27, 'red', 28, 'red', 29, 'red', 30, 'red', 
-                        31,'red', 32, 'red', 33, 'red', 34, 'red', 35, 'red', 36, 'red', 37, 'red', 38, 'red', 39, 'red', 40, 'red',
-                        41,'blue', 44, 'blue', 43, 'blue', 44, 'blue', 45, 'blue', 46, 'blue', 47, 'blue', 48, 'blue', 49, 'blue', 50, 'blue', 
-                        51,'blue', 52, 'blue', 55, 'blue', 54, 'blue', 55, 'blue', 56, 'blue', 57, 'blue', 58, 'blue', 59, 'blue', 60, 'blue',
-                        61,'yellow', 66, 'yellow', 63, 'yellow', 66, 'yellow', 65, 'yellow', 66, 'yellow', 67, 'yellow', 68, 'yellow', 69, 'yellow', 70, 'yellow', 
-                        71,'yellow', 72, 'yellow', 77, 'yellow', 74, 'yellow', 77, 'yellow', 76, 'yellow', 77, 'yellow', 78, 'yellow', 79, 'yellow', 80, 'yellow',
-                        81, 'yellow' 
+                        1,'green', 2, 'green', 3, 'green', 4, 'green', 5, 'green', 6, 'green', 7, 'green', 8, 'green', 9, 'green', 10, 'green', 11,'red', 12, 'red', 13, 'red', 14, 'red', 15, 'red', 16, 'red', 17, 'red', 18, 'red', 19, 'red', 20, 'red', 21,'blue', 22, 'blue', 23, 'blue', 24, 'blue', 25, 'blue', 26, 'blue', 27, 'blue', 28, 'blue', 29, 'blue', 30, 'blue', 31,'yellow', 32, 'yellow', 33, 'yellow', 34, 'yellow', 35, 'yellow', 36, 'yellow', 37, 'yellow', 38, 'yellow', 39, 'yellow', 40, 'yellow', "red" 
                         ]
                 }
             })
 
-            map.addLayer({
+            map.current.addLayer({
                 id: 'sf-boundaries-line',
                 type: 'line',
                 source: 'sf-boundaries',
@@ -76,25 +73,25 @@ export default function MapBox(){
 
             let hoveredStateId = null
 
-            map.on('mousemove', 'sf-boundaries-fill', (e) => {
+            map.current.on('mousemove', 'sf-boundaries-fill', (e) => {
                 if (e.features.length > 0) {
                     if (hoveredStateId !== null) {
-                        map.setFeatureState(
+                        map.current.setFeatureState(
                             { source: 'sf-boundaries', id: hoveredStateId },
                             { hover: false }
                         );
                     }
                 hoveredStateId = e.features[0].id;
-                    map.setFeatureState(
+                    map.current.setFeatureState(
                         { source: 'sf-boundaries', id: hoveredStateId },
                         { hover: true }
                     );
                 }
             });
 
-            map.on('mouseleave', 'sf-boundaries-fills', () => {
+            map.current.on('mouseleave', 'sf-boundaries-fill', () => {
                 if (hoveredStateId !== null) {
-                    map.setFeatureState(
+                    map.current.setFeatureState(
                         { source: 'sf-boundaries', id: hoveredStateId },
                         { hover: false }
                     );
@@ -102,8 +99,8 @@ export default function MapBox(){
                 hoveredStateId = null;
             });
 
-            map.on('click', (e)=> {
-                const [ selectedN ] = map.queryRenderedFeatures(e.point, {
+            map.current.on('click', (e)=> {
+                const [ selectedN ] = map.current.queryRenderedFeatures(e.point, {
                     layers: ['sf-boundaries-fill']
                 });
                 if(selectedN){
@@ -113,7 +110,7 @@ export default function MapBox(){
             })
 
         })
-    });
+    }, []);
     
     useEffect(() => {
     if (!map.current) return; // wait for map to initialize
@@ -122,14 +119,12 @@ export default function MapBox(){
     setLat(map.current.getCenter().lat.toFixed(4));
     setZoom(map.current.getZoom().toFixed(2));
     });
-    });
+    }, []);
     
     return (
     <div>
-    {/* <div className="sidebar">
-    Longitude: {lng} | Latitude: {lat} | Zoom: {zoom}
-    </div> */}
-    <div ref={mapContainer} className="map-container" />
+    Hello from Map
+        <div ref={mapContainer} className="map-container" />
     </div>
     );
 }

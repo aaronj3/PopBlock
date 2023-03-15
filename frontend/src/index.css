@@ -50,3 +50,8 @@ table {
 * {
 	font-family: Arial, Helvetica, sans-serif;
 }
+
+
+.map-container {
+	height: 400px;
+	}

@@ -28,6 +28,10 @@
     "production": [
       ">0.2%",
       "not dead",
+      "not ie 11", 
+      "not chrome < 51", 
+      "not safari < 10", 
+      "not android < 51",
       "not op_mini all"
     ],
     "development": [
@@ -40,4 +44,5 @@
     "redux-logger": "^3.0.6"
   },
   "proxy": "http://localhost:5500"
+  
 }

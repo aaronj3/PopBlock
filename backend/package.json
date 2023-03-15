@@ -12,7 +12,6 @@
     "cors": "^2.8.5",
     "csurf": "^1.11.0",
     "debug": "~2.6.9",
-    "dotenv": "^16.0.3",
     "express": "~4.16.1",
     "express-validator": "^6.15.0",
     "jsonwebtoken": "^9.0.0",
@@ -23,6 +22,7 @@
     "passport-local": "^1.0.0"
   },
   "devDependencies": {
+    "dotenv": "^16.0.3",
     "dotenv-cli": "^7.1.0",
     "nodemon": "^2.0.21"
   }
