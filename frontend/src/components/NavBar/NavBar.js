@@ -1,4 +1,4 @@
-import { Link, useHistory } from 'react-router-dom';
+import { Link, useHistory, NavLink } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 import LoginFormModal from '../SessionForms/LoginFormModal';
 import SignupFormModal from '../SessionForms/SignupFormModal';
@@ -54,12 +54,7 @@ function NavBar () {
             <ul className="nav-bar">
                 <div className="nav-container">
                     <li>
-                        <div>
-                            <button className='logo-container' onClick={routeChange}>
-                                <img className='logo' src={logo}/>
-                            </button>
-                        </div>
-
+                    <NavLink exact to="/"><img className="logo" src={logo}/></NavLink>
                     </li>
                     <li className="sessionLinks-container" >
                         { getLinks() }
