@@ -4,6 +4,7 @@ const logger = require('morgan');
 const debug = require('debug');
 const cors = require('cors');
 const csurf = require('csurf');
+const bodyParser = require('body-parser');
 
 require('dotenv').config();
 /* --- Need to import these to load the models into mongoose --- */
@@ -19,9 +20,12 @@ const { isProduction } = require('./config/keys');
 const app = express();
 
 app.use(logger('dev')); // log request components (URL/method) to terminal
-app.use(express.json()); // parse JSON request body
+app.use(express.json({limit: '100mb'})); // parse JSON request body
 app.use(express.urlencoded({ extended: false })); // parse urlencoded request body
 app.use(cookieParser()); // parse cookies as an object on req.cookies
+
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 
 app.use(passport.initialize()); // make Express use passport for authentication
 

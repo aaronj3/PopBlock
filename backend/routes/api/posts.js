@@ -10,7 +10,6 @@ const Post = mongoose.model('Post');
 const { requireUser } = require('../../config/passport');
 const validatePostInput = require('../../validation/posts');
 
-console.log(process.env.AWS_ACCESS_KEY_ID);
 AWS.config.update({
   region: 'us-west-1',
   accessKeyId: process.env.AWS_ACCESS_KEY_ID,
@@ -105,22 +104,20 @@ router.delete('/:id', requireUser, async (req, res, next) => {
   return res.json({result:true});
 })
 
-// Attach requireUser as a middleware before the route handler to gain access
-// to req.user. (requireUser will return an error response if there is no 
-// current user.) Also attach validatePostInput as a middleware before the 
-// route handler.
 router.post('/', requireUser, validatePostInput, imageUploader.single('image'), async (req, res, next) => {
   try {
     const newPost = new Post({
-      url: req.file.location,
+      url: req.file?.location,
       area: req.body.area,
       author: req.user._id,
       content: req.body.content,
     });
-
-    let post = await newPost.save();
-    post = await post.populate('author', '_id username');
-    return res.json(post);
+    console.log(newPost);
+    // let post = await newPost.save();
+    // post = await post.populate('author', '_id username');
+    //return res.json({result: "ok"})
+    return "ok";
+    // return res.json(post);
   }
   catch(err) {
     next(err);
