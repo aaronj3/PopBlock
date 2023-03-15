@@ -112,12 +112,10 @@ router.post('/', requireUser, validatePostInput, imageUploader.single('image'), 
       author: req.user._id,
       content: req.body.content,
     });
-    console.log(newPost);
-    // let post = await newPost.save();
-    // post = await post.populate('author', '_id username');
-    //return res.json({result: "ok"})
-    return "ok";
-    // return res.json(post);
+
+    let post = await newPost.save();
+    post = await post.populate('author', '_id username');
+    return res.json(post);
   }
   catch(err) {
     next(err);

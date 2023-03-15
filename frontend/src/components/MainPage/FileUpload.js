@@ -1,44 +1,50 @@
 import NavBar from "../NavBar/NavBar";
 import {useState} from "react";
-import jwtFetch from "../../store/jwt";
+import jwtFetch, {jwtFetchFile} from "../../store/jwt";
 
-function FileUpload() {
+function FileUpload({area}) {
     const [selectedFile, setSelectedFile] = useState(null);
-    const [message, setMessage] = useState('');
+    const [content, setContent] = useState('');
 
     const handleFileChange = (event) => {
         setSelectedFile(event.target.files[0]);
     };
 
+    const handleContentChange = (event) => {
+        setContent(event.target.value)
+    }
+
     const handleFormSubmit = async (event) => {
         event.preventDefault();
         if (!selectedFile) {
-            setMessage('Please select a file');
+            alert("select file")
             return;
         }
 
         const formData = new FormData();
         formData.append('image', selectedFile);
-        formData.append('content', 'content');
-        formData.append('area', '3');
+        formData.append('content', content);
+        formData.append('area', area);
 
         const response = await jwtFetch('/api/posts', {
             method: 'POST',
-            headers: {'content-type' : 'multipart/form-data' },
             body: formData,
+            fileUpload: true,
         });
-        // if (response.ok) {
-        //     const data = await response.json();
-        //     setMessage(`File uploaded successfully: ${data.url}`);
-        // } else {
-        //     setMessage('Failed to upload file');
-        // }
+
+        alert("posted")
+        event.target.reset();
+        setSelectedFile(null);
+        setContent(null);
     };
 
     return (
-        <form onSubmit={handleFormSubmit}>
+        <form onSubmit={handleFormSubmit} encType="multipart/form-data">
             <div>
-                <input type={"file"} onChange={handleFileChange}></input>
+                <input type={"file"} name="image" onChange={handleFileChange}/>
+                <br/>
+                <input type="text" id="content" value={content} onChange={handleContentChange}/>
+                <br/>
                 <button type="submit">upload</button>
             </div>
         </form>

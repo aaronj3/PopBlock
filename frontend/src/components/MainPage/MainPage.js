@@ -4,7 +4,7 @@ import FileUpload from "./FileUpload";
 function MainPage() {
 return (
     <>
-        <FileUpload/>
+        <FileUpload area={3}/>
     <p>PopBlock - What's poppin in yo block bitch</p>
 
     <footer>
