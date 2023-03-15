@@ -9,6 +9,7 @@ import ProfilePage from './components/Profile/ProfilePage';
 import { Route } from 'react-router-dom';
 
 import NavBar from './components/NavBar/NavBar';
+import './index.css'
 
 
 function App() {
