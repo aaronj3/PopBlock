@@ -33,9 +33,9 @@ router.delete("/:id", requireUser, async (req, res, next) => {
     comments.deleteOne();
   } else {
     console.log("No permissions")
+    return res.json({result:false});
   }
-
-  return res.json({result:"ok"});
+  return res.json({result:true});
 })
 
 module.exports = router;
