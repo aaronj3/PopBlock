@@ -1,18 +1,16 @@
 import Comment from "./Comment"
-import { useState , useEffect } from "react";
 import { useParams } from "react-router-dom"
 import { useDispatch, useSelector } from 'react-redux';
-import "./RestaurantReviews.css"
-import ReviewForm from "../ReviewForm";
-import RestaurantReview from "../RestaurantReview";
-import { getReviews } from "../../store/reviews";
+import "./Comments.css"
+import CreateCommentForm from "./CreateCommentForm";
+
 
 function Comments() {
     const dispatch = useDispatch();
-    const reviews = useSelector(state => Object.values(state.reviews));
+    const comments = useSelector(state => Object.values(state.comments));
     const {restaurantId} = useParams();
 
-    if (!reviews) {
+    if (!comments) {
         return null
     }
 
@@ -20,18 +18,18 @@ function Comments() {
         <>
             <header className="profile-section-container">
                 <header className="section-header">
-                    <div className="review-header">
-                        <h2 className="header-text">What {reviews.length} people are saying</h2>
+                    <div className="comment-header">
+                        <h2 className="header-text">What {comments.length} people are saying</h2>
                     </div>
                 </header>
             </header>
 
-                    <ReviewForm/>
+                    <CreateCommentForm/>
 
                     <br></br>
 
-                    <ol className="reviews-list" id="restProfileReviewsContent">
-                        {reviews.map(review=><RestaurantReview key={review.id} review={review}/>)}
+                    <ol className="comments-list" id="restProfilecommentsContent">
+                        {comments.map(comment=><Comment key={comment.id} comment={comment}/>)}
                     </ol>
         </>
         )
@@ -39,4 +37,4 @@ function Comments() {
 
 
 
-export default RestaurantReviews
+export default Comments
