@@ -36,7 +36,7 @@ function FileUpload({area}) {
         setSelectedFile(null);
         setContent(null);
     };
-
+  
     return (
         <form onSubmit={handleFormSubmit} encType="multipart/form-data">
             <div>
