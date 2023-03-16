@@ -14,7 +14,8 @@ users.push(
   new User ({
     username: 'demo-user',
     hashedPassword: bcrypt.hashSync('password', 10),
-    color: colors[Math.floor(Math.random() * colors.length)]
+    // color: colors[Math.floor(Math.random() * colors.length)]
+    color: 000000
   })
 )
 
