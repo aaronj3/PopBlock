@@ -27,7 +27,6 @@ function NavBar () {
     }
 
     const getLinks = () => {
-        console.log('loggedIn',loggedIn)
         if (loggedIn) {
             return (
                 <ProfileButton user={sessionUser}/>
