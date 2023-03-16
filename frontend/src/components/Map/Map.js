@@ -119,11 +119,12 @@ export default function Map(){
                 if(selectedN){
                     const { nhood } = selectedN.properties;
                     const { ncode } = selectedN.properties;
+                    const areaId = parseInt(`${ncode}`);
                     // const post = useSelector(getPostByArea(`${id}`))
                     // dispatch(fetchPostByArea(`${id}`));
                     // const name = post.user.name
                     // const name = topPosts.areaID(selectedN.id).name
-                    const description = `<strong>Aaron</strong> is poppin in the <a href="/area/${ncode}" >${nhood} neighborhood</a>`
+                    const description = `<strong>Aaron</strong> is poppin in the <a href="/area/${areaId}" >${nhood} neighborhood</a>`
                     new mapboxgl.Popup()
                         .setLngLat(e.lngLat)
                         .setHTML(description)
