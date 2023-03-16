@@ -1,11 +1,14 @@
+import { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { getCurrentUser } from './store/session';
+
 import { Switch } from 'react-router-dom';
 import { AuthRoute, ProtectedRoute } from './components/routes/Routes';
 
 import MainPage from './components/MainPage/MainPage';
-import LoginForm from './components/SessionForms/LoginForm';
-import SignupForm from './components/SessionForms/SignupForm';
 import ProfilePage from './components/Profile/ProfilePage';
 import Map from './components/Map/Map';
+
 import { Route } from 'react-router-dom';
 
 import NavBar from './components/NavBar/NavBar';
@@ -13,7 +16,16 @@ import './index.css'
 
 
 function App() {
-  return (
+
+  const [loaded, setLoaded] = useState(false);
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(getCurrentUser()).then(() => setLoaded(true));
+  }, [dispatch]);
+
+
+
+  return loaded && (
     <>
       <NavBar/>
       <Switch>
