@@ -8,7 +8,7 @@ const NUM_SEED_USERS = 10;
 
 // Create users
 const users = [];
-const colors = ['red', 'green', 'blue'];
+// const colors = ['red', 'green', 'blue'];
 
 users.push(
   new User ({
@@ -26,7 +26,7 @@ for (let i = 1; i < NUM_SEED_USERS; i++) {
     new User ({
       username: faker.internet.userName(firstName, lastName),
       hashedPassword: bcrypt.hashSync('password', 10),
-      color: colors[Math.floor(Math.random() * colors.length)]
+      color: 000000
     })
   )
 }
