@@ -10,7 +10,9 @@ import logo from '../../assets/images/logo.png'
 
 
 function NavBar () {
-    const loggedIn = useSelector(state => !!state.session.user?.user);
+    // const loggedIn = useSelector(state => !!state.session.user?.user);
+    const loggedIn = useSelector(state => !!state.session.user);
+
     const dispatch = useDispatch();
     const history = useHistory();
     const modal = useSelector(state => state.ui.modal)
