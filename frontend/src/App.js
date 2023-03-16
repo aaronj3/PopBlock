@@ -13,7 +13,8 @@ import { Route } from 'react-router-dom';
 
 import NavBar from './components/NavBar/NavBar';
 import './index.css'
-
+import {useDispatch} from "react-redux";
+import {getCurrentUser} from "./store/session";
 
 function App() {
 
