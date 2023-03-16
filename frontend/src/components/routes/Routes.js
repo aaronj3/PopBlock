@@ -10,7 +10,7 @@ export const AuthRoute = ({ component: Component, path, exact }) => {
             <Component {...props} />
         ) : (
             //Change to map splash page
-            <Redirect to="/posts" />
+            <Redirect to="/" />
         )
         )} />
     );

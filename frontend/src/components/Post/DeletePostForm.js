@@ -1,6 +1,5 @@
 import { useDispatch } from "react-redux";
-import { deletePost } from "../../store/posts";
-
+import { deletePost } from "../../store/post";
 
 
 function DeletePostForm({ post , setDeleteModalShow}) {
@@ -8,7 +7,7 @@ function DeletePostForm({ post , setDeleteModalShow}) {
 
     const handleDeleteButtonClick = (e) => {
         e.preventDefault();
-        dispatch(deletepost(post.id))
+        dispatch(deletePost(post.id))
         setDeleteModalShow(false);
     }
 

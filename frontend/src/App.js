@@ -28,10 +28,14 @@ function App() {
     <>
       <NavBar/>
       <Switch>
-        <AuthRoute exact path="/" component={MainPage} />
+        <Route exact path="/" component={MainPage} />
+        <Route exact path="/posts/:areaId" component={AreaShowPage} />
+        <Route exact path="/profile" component={ProfilePage} />
+        <Route exact path="/posts/new" component={MainPage} />
+        {/* <AuthRoute exact path="/" component={MainPage} />
         <ProtectedRoute exact path="/posts/:areaId" component={AreaShowPage} />
         <ProtectedRoute exact path="/profile" component={ProfilePage} />
-        <ProtectedRoute exact path="/posts/new" component={MainPage} />
+        <ProtectedRoute exact path="/posts/new" component={MainPage} /> */}
         {/* <Route exact path="/area/areaId" component={AreaPage} /> */}
         {/* <AuthRoute exact path="/login" component={LoginForm} /> */}
         {/* <AuthRoute exact path="/signup" component={SignupForm} /> */}

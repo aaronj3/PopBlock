@@ -1,5 +1,6 @@
 import { Link  } from "react-router-dom";
 import React from "react";
+import PostUpdateDeleteButtons from "./PostUpdateDeleteButtons";
 
 function PostIndexItem ({post}) {
     
@@ -14,6 +15,9 @@ function PostIndexItem ({post}) {
             <p>{post.content}</p>
             {/* if post creator id equals the sessionUser id then show buttons where you can update or delete             */}
             </Link>
+
+            <PostUpdateDeleteButtons/>
+            
 
         </>
         )

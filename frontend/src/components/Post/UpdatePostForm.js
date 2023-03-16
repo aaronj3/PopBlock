@@ -1,5 +1,4 @@
 import { useDispatch } from "react-redux";
-import { updateComment } from "../../store/comments";
 import { useState } from "react";
 
 function UpdatePostForm({ post , setUpdateShowModal}) {
@@ -14,18 +13,18 @@ function UpdatePostForm({ post , setUpdateShowModal}) {
         if (!body) {
             setErrors(["Must fill out all fields"]);
         } else {
-            let newComment = {
-                ...comment,
+            let newPost = {
+                ...post,
                 body: body
             }
-            dispatch(updateComment(newComment))
+            dispatch()
             setUpdateShowModal(false);
         }
     }
 
     return (
         <div>
-            <form onSubmit={(handleUpdateSubmit)}>
+            <form onSubmit={console.log("submitted")}>
                 <ul>
                     {errors.map(error => <li key={error} className="error-messages">{error}</li>)}
                 </ul>
@@ -40,4 +39,4 @@ function UpdatePostForm({ post , setUpdateShowModal}) {
         )
 }
 
-export default UpdateCommentForm
+export default UpdatePostForm
