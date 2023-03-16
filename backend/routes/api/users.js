@@ -22,13 +22,16 @@ router.get('/current', restoreUser, (req, res) => {
     const csrfToken = req.csrfToken();
     res.cookie("CSRF-TOKEN", csrfToken);
   }
-  if (!req.user) return res.json(null);
-  res.json({
-    _id: req.user._id,
-    username: req.user.username,
-    color: req.user.color
-  });
-})
+  // if (!req.user) return res.json(null);
+  // // res.json({
+  // //   // _id: req.user._id,
+  // //   // username: req.user.username,
+  // //   // color: req.user.color
+  // // });
+  if (!req.user) return res.json({ user: null });
+  const user = req.user;
+  res.status(200).json({ user });
+});
 
 // Attach validateRegisterInput as a middleware before the route handler
 router.post('/register', validateRegisterInput, async (req, res, next) => {
@@ -75,10 +78,8 @@ router.post('/register', validateRegisterInput, async (req, res, next) => {
 
 // Attach validateLoginInput as a middleware before the route handler
 router.post('/login', validateLoginInput, async (req, res, next) => {
-  passport.authenticate('local',
-      async function(err, user) {
+  passport.authenticate('local', async function(err, user) {
     if (err) return next(err);
-        console.log("user", user)
     if (!user) {
       const err = new Error('Invalid credentials');
       err.statusCode = 400;

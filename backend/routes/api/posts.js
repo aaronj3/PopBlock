@@ -10,7 +10,6 @@ const Post = mongoose.model('Post');
 const { requireUser } = require('../../config/passport');
 const validatePostInput = require('../../validation/posts');
 
-console.log(process.env.AWS_ACCESS_KEY_ID);
 AWS.config.update({
   region: 'us-west-1',
   accessKeyId: process.env.AWS_ACCESS_KEY_ID,
@@ -18,6 +17,17 @@ AWS.config.update({
 });
 
 const s3 = new AWS.S3()
+
+/* GET posts listing. */
+router.get('/', async (req, res) => {
+  try {
+    const posts = await Post.find().populate("author", "_id username").sort({ "like.length": -1 });
+    return res.json(posts);
+  }
+  catch(err) {
+    return res.json([]);
+  }
+})
 
 const allowedExtensions = ['.png', '.PNG','.jpg', '.jpeg', '.bmp', '.mov', '.MOV']
 const imageUploader = multer({
@@ -75,8 +85,8 @@ router.get('/user/:userId', requireUser, async (req, res, next) => {
   }
   try {
     const posts = await Post.find({ author: user._id })
-                            .sort({ createdAt: -1 })
-                            .populate("author", "_id username");
+                              .sort({ "like.length": -1 })
+                              .populate("author", "_id username");
     return res.json(posts);
   }
   catch(err) {
@@ -98,6 +108,17 @@ router.get('/area/:areaId', async (req, res, next) => {
   }
 })
 
+router.delete('/:id', requireUser, async (req, res, next) => {
+  const post = await Post.findById(req.params.id)
+  if (post && post.author._id.toString() == req.user._id ) {
+    post.deleteOne();
+  } else {
+    console.log("No permissions")
+    return res.json({result:false});
+  }
+  return res.json({result:true});
+})
+
 // Attach requireUser as a middleware before the route handler to gain access
 // to req.user. (requireUser will return an error response if there is no 
 // current user.) Also attach validatePostInput as a middleware before the 
@@ -107,7 +128,7 @@ router.get('/area/:areaId', async (req, res, next) => {
 router.post('/', requireUser, validatePostInput, imageUploader.single('image'), async (req, res, next) => {
   try {
     const newPost = new Post({
-      url: req.file.location,
+      url: req.file?.location,
       area: req.body.area,
       author: req.user._id,
       content: req.body.content,
