@@ -29,7 +29,7 @@ function FileUpload({area}) {
         .then(res => res.json());
 
         await fetch(url, {
-            method: 'put',
+            method: 'PUT',
             headers: {
                 "Content-Type": "*"
             },
@@ -38,15 +38,17 @@ function FileUpload({area}) {
 
         const imageUrl = url.split('?')[0];
         console.log('image url', imageUrl)
+        formData.append('url', imageUrl);
+        console.log("formdata", formData.values());
 
-        // await jwtFetch('/api/posts', {
-        //     method: 'POST',
-        //     body: formData,
-        //     headers: {
-        //         "Content-Type": "image/*"
-        //     },
-        //     fileUpload: true,
-        // });
+        await jwtFetch('/api/posts', {
+            method: 'POST',
+            body: formData,
+            // headers: {
+            //     "Content-Type": "*"
+            // },
+            fileUpload: true,
+        });
 
         alert("posted")
         event.target.reset();

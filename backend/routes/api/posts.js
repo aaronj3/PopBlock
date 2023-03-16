@@ -127,8 +127,9 @@ router.get('/area/:areaId', async (req, res, next) => {
 // Create a new post.
 router.post('/', requireUser, validatePostInput, imageUploader.single('image'), async (req, res, next) => {
   try {
+    console.log("req". req);
     const newPost = new Post({
-      url: req.file?.location,
+      url: req.body.url,
       area: req.body.area,
       author: req.user._id,
       content: req.body.content,

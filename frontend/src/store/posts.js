@@ -167,5 +167,3 @@ const postsReducer = (state = { all: {}, user: {} }, action) => {
             return state;
     }
 };
-
-export default postsReducer;
