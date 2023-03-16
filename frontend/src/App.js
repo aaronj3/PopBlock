@@ -32,7 +32,7 @@ function App() {
         <ProtectedRoute exact path="/posts/:areaId" component={AreaShowPage} />
         <ProtectedRoute exact path="/profile" component={ProfilePage} />
         <ProtectedRoute exact path="/posts/new" component={MainPage} />
-        {/* <Route exact path="/" component={MainPage} /> */}
+        {/* <Route exact path="/area/areaId" component={AreaPage} /> */}
         {/* <AuthRoute exact path="/login" component={LoginForm} /> */}
         {/* <AuthRoute exact path="/signup" component={SignupForm} /> */}
       </Switch>

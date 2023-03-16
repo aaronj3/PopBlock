@@ -8,7 +8,8 @@
 import React, { useRef, useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import mapboxgl from 'mapbox-gl';
-import './Map.css'
+import './Map.css';
+import { Link } from 'react-router-dom';
 
 
 
@@ -117,12 +118,13 @@ export default function Map(){
                 });
                 if(selectedN){
                     const { nhood } = selectedN.properties;
-                    const { id } = selectedN.properties;
+                    const { ncode } = selectedN.properties;
+                    const areaId = parseInt(`${ncode}`);
                     // const post = useSelector(getPostByArea(`${id}`))
                     // dispatch(fetchPostByArea(`${id}`));
                     // const name = post.user.name
                     // const name = topPosts.areaID(selectedN.id).name
-                    const description = `<strong>Aaron</strong> is poppin in the <Link>${nhood} neighborhood</Link>`
+                    const description = `<strong>Aaron</strong> is poppin in the <a href="/area/${areaId}" >${nhood} neighborhood</a>`
                     new mapboxgl.Popup()
                         .setLngLat(e.lngLat)
                         .setHTML(description)
@@ -268,14 +270,14 @@ export default function Map(){
             n20.textContent = `A`;
             n20.className ='marker'
             new mapboxgl.Marker(n20)
-                .setLngLat([-122.481362,37.769060])
+                .setLngLat([-122.414766,37.790109])
                 .addTo(map.current);
 
             const n21 = document.createElement('div'); // Mission Bay
             n21.textContent = `A`;
             n21.className ='marker'
             new mapboxgl.Marker(n21)
-                .setLngLat([-122.481362,37.769060])
+                .setLngLat([-122.394271,37.770478])
                 .addTo(map.current);
             
             const n22 = document.createElement('div'); // Mission
@@ -289,56 +291,63 @@ export default function Map(){
             n23.textContent = `A`;
             n23.className ='marker'
             new mapboxgl.Marker(n23)
-                .setLngLat([-122.494512,37.722528])
+                .setLngLat([-122.419647,37.800428])
                 .addTo(map.current);
 
             const n24 = document.createElement('div'); // Marina
             n24.textContent = `A`;
             n24.className ='marker'
             new mapboxgl.Marker(n24)
-                .setLngLat([-122.481362,37.769060])
+                .setLngLat([-122.435989,37.800052])
                 .addTo(map.current);
             
             const n25 = document.createElement('div'); // Lakeshore
             n25.textContent = `A`;
             n25.className ='marker'
             new mapboxgl.Marker(n25)
-                .setLngLat([-122.494512,37.722528])
+                .setLngLat([-122.489963,37.719168])
                 .addTo(map.current);
 
             const n26 = document.createElement('div'); // Tenderloin
             n26.textContent = `A`;
             n26.className ='marker'
             new mapboxgl.Marker(n26)
-                .setLngLat([-122.481362,37.769060])
+                .setLngLat([-122.414130,37.783586])
                 .addTo(map.current);
 
             const n27 = document.createElement('div'); //McLaren Park
             n27.textContent = `A`;
             n27.className ='marker'
             new mapboxgl.Marker(n27)
-                .setLngLat([-122.481362,37.769060])
+                .setLngLat([-122.419105,37.717505])
                 .addTo(map.current);
 
             const n28 = document.createElement('div'); //Japantown
             n28.textContent = `A`;
             n28.className ='marker'
             new mapboxgl.Marker(n28)
-                .setLngLat([-122.481362,37.769060])
+                .setLngLat([-122.438030,37.784446])
                 .addTo(map.current);
 
             const n29 = document.createElement('div'); // Inner Sunset
             n29.textContent = `A`;
             n29.className ='marker'
             new mapboxgl.Marker(n29)
-                .setLngLat([-122.481362,37.769060])
+                .setLngLat([-122.465223,37.757196])
                 .addTo(map.current);
 
             const n30 = document.createElement('div'); // Hayes Valley
             n30.textContent = `A`;
             n30.className ='marker'
             new mapboxgl.Marker(n30)
-                .setLngLat([-122.481362,37.769060])
+                .setLngLat([-122.428468,37.774426])
+                .addTo(map.current);
+
+            const n31 = document.createElement('div'); // Haight Ashbury
+            n31.textContent = `A`;
+            n31.className ='marker'
+            new mapboxgl.Marker(n31)
+                .setLngLat([-122.443236,37.768976])
                 .addTo(map.current);
 
             const n32 = document.createElement('div'); // Golden Gate Park
@@ -348,53 +357,54 @@ export default function Map(){
                 .setLngLat([-122.481362,37.769060])
                 .addTo(map.current);
                 
+                
             const n33 = document.createElement('div'); // Inner Richmond
             n33.textContent = `A`;
             n33.className ='marker'
             new mapboxgl.Marker(n33)
-                .setLngLat([-122.481362,37.769060])
+                .setLngLat([-122.465290,37.780804])
                 .addTo(map.current);
                 
             const n34 = document.createElement('div'); // Glen Park
             n34.textContent = `A`;
             n34.className ='marker'
             new mapboxgl.Marker(n34)
-                .setLngLat([-122.481362,37.769060])
+                .setLngLat([-122.434959,37.735655])
                 .addTo(map.current);
 
             const n35 = document.createElement('div'); //Financial District
             n35.textContent = `A`;
             n35.className ='marker'
             new mapboxgl.Marker(n35)
-                .setLngLat([-122.481362,37.769060])
+                .setLngLat([-122.398942,37.786973])
                 .addTo(map.current);
             
             const n36 = document.createElement('div'); // Excelsior
             n36.textContent = `A`;
             n36.className ='marker'
             new mapboxgl.Marker(n36)
-                .setLngLat([-122.481362,37.769060])
+                .setLngLat([-122.432141,37.717058])
                 .addTo(map.current);
 
             const n37 = document.createElement('div'); // Chinatown
             n37.textContent = `A`;
             n37.className ='marker'
             new mapboxgl.Marker(n37)
-                .setLngLat([-122.481362,37.769060])
+                .setLngLat([-122.406955,37.795075])
                 .addTo(map.current);
 
             const n38 = document.createElement('div'); // Castro/ Upper Market
             n38.textContent = `A`;
             n38.className ='marker'
             new mapboxgl.Marker(n38)
-                .setLngLat([-122.481362,37.769060])
+                .setLngLat([-122.434738,37.760814])
                 .addTo(map.current);
 
             const n39 = document.createElement('div'); //Bernal Heights
             n39.textContent = `A`;
             n39.className ='marker'
             new mapboxgl.Marker(n39)
-                .setLngLat([-122.481362,37.769060])
+                .setLngLat([-122.414239,37.740596])
                 .addTo(map.current);
             
             const n40 = document.createElement('div'); // Bayview Hunters
