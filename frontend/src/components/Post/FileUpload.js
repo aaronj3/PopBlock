@@ -1,6 +1,5 @@
-import NavBar from "../NavBar/NavBar";
 import {useState} from "react";
-import jwtFetch, {jwtFetchFile} from "../../store/jwt";
+import jwtFetch from "../../store/jwt";
 
 function FileUpload({area}) {
     const [selectedFile, setSelectedFile] = useState(null);
