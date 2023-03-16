@@ -49,10 +49,9 @@ export const getComment = (commentId) => (state) => (
     state.comments ? state.comments[commentId] : null
 )
 
-
-export const fetchComments = id => async dispatch => {
+export const fetchComments = (postId) => async dispatch => {
     try {
-        const res = await jwtFetch(`/api/${id}`);
+        const res = await jwtFetch(`api/comments/posts/${postId}`);
         const comments = await res.json();
         dispatch(receiveComments(comments));
     } catch (err) {
@@ -65,7 +64,7 @@ export const fetchComments = id => async dispatch => {
 
 export const createComment = (commentData) => async dispatch => {
     try {
-        const res = await jwtFetch('/api/tweets/', {
+        const res = await jwtFetch(`/api/comments/${commentData.post}`, {
             method: 'POST',
             body: JSON.stringify(commentData)
         });
@@ -81,7 +80,7 @@ export const createComment = (commentData) => async dispatch => {
 
 export const updateComment = (commentData) => async dispatch => {
     try {
-        const res = await jwtFetch('/api/tweets/', {
+        const res = await jwtFetch(`/api/comments/${commentData.post}`, {
             method: 'PATCH',
             body: JSON.stringify(commentData)
         });
@@ -106,7 +105,7 @@ export const deleteComment = (commentId) => async dispatch => {
 
 export default function commentsReducer(oldState = {}, action) {
     switch (action.type) {
-        case RECEIVE_COMMENT:
+        case RECEIVE_COMMENTS:
             return action.comments
         case RECEIVE_COMMENT:
             return {...oldState, [action.comment.id] : action.comment}

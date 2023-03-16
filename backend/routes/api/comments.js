@@ -7,7 +7,7 @@ const { requireUser } = require('../../config/passport');
 // GET all comments listing.
 router.get('/', async (req, res) => {
   try {
-    const comments = await Comment.find().populate("author", "_id username").populate("post").sort({ createdAt: -1 });
+    const comments = await Comment.find().populate("author").populate("post").sort({ createdAt: -1 });
     return res.json(comments);
   }
   catch(err) {
@@ -18,7 +18,7 @@ router.get('/', async (req, res) => {
 // GET a single comment with it's id.
 router.get('/:id', async (req, res, next) => {
   try {
-    const comment = await Comment.findById(req.params.id).populate("author", "_id username").populate("post");
+    const comment = await Comment.findById(req.params.id).populate("author").populate("post");
     return res.json(comment);
   }
   catch(err) {
@@ -32,7 +32,7 @@ router.get('/:id', async (req, res, next) => {
 // GET comments that belongs to a specific post.
 router.get('/post/:postId', async (req, res) => {
   try {
-    const comments = await Comment.find({ post: req.params.postId }).populate("author", "_id username").populate("post").sort({ createdAt: -1 });
+    const comments = await Comment.find({ post: req.params.postId }).populate("author").populate("post").sort({ createdAt: -1 });
     return res.json(comments);
   }
   catch(err) {
@@ -54,7 +54,7 @@ router.get('/user/:userId', requireUser, async (req, res, next) => {
   try {
     const comments = await Comment.find({ author: user._id })
                                   .sort({ createdAt: -1 })
-                                  .populate("author", "_id username").populate("post");
+                                  .populate("author").populate("post");
     return res.json(comments);
   }
   catch(err) {
@@ -67,7 +67,7 @@ router.post('/:postId', requireUser, async (req, res, next) => {
   const newComment = new Comment({
     author: req.user._id,
     post: req.params.postId,
-    body: req.body.body,
+    body: req.body.body
   })  
 
 
@@ -81,7 +81,7 @@ router.put('/:id', requireUser, async (req, res, next) => {
   const { id } = req.params;
   
   try {
-    const comment = await Comment.findById(id).populate("author", "_id username").populate("post");
+    const comment = await Comment.findById(id).populate("author").populate("post");
     
     if (!comment) {
       const err = new Error('Comment not found');

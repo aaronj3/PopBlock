@@ -19,15 +19,15 @@ AWS.config.update({
 const s3 = new AWS.S3()
 
 /* GET posts listing. */
-router.get('/', async (req, res) => {
-  try {
-    const posts = await Post.find().populate("author", "_id username").sort({ "like.length": -1 });
-    return res.json(posts);
-  }
-  catch(err) {
-    return res.json([]);
-  }
-})
+// router.get('/', async (req, res) => {
+//   try {
+//     const posts = await Post.find().populate("author", "_id username").sort({ "likes.length": -1 });
+//     return res.json(posts);
+//   }
+//   catch(err) {
+//     return res.json([]);
+//   }
+// })
 
 const allowedExtensions = ['.png', '.PNG','.jpg', '.jpeg', '.bmp', '.mov', '.MOV']
 const imageUploader = multer({
@@ -49,7 +49,7 @@ const imageUploader = multer({
 // GET all posts listing.
 router.get('/', async (req, res) => {
   try {
-    const posts = await Post.find().populate("author", "_id username").sort({ "likes.length": -1 });
+    const posts = await Post.find().populate("author").sort({ "likes.length": -1 });
     return res.json(posts);
   }
   catch(err) {
@@ -60,7 +60,7 @@ router.get('/', async (req, res) => {
 // GET a single post with it's id.
 router.get('/:id', async (req, res, next) => {
   try {
-    const post = await Post.findById(req.params.id).populate("author", "_id username");
+    const post = await Post.findById(req.params.id).populate("author");
     return res.json(post);
   }
   catch(err) {
@@ -85,8 +85,8 @@ router.get('/user/:userId', requireUser, async (req, res, next) => {
   }
   try {
     const posts = await Post.find({ author: user._id })
-                              .sort({ "like.length": -1 })
-                              .populate("author", "_id username");
+                              .sort({ "likes.length": -1 })
+                              .populate("author");
     return res.json(posts);
   }
   catch(err) {
@@ -97,7 +97,7 @@ router.get('/user/:userId', requireUser, async (req, res, next) => {
 // GET posts that belongs to a specific area.
 router.get('/area/:areaId', async (req, res, next) => {
   try {
-    const post = await Post.find({ area: req.params.areaId}).populate("author", "_id username");
+    const post = await Post.find({ area: req.params.areaId}).populate("author");
     return res.json(post);
   }
   catch(err) {
@@ -108,16 +108,16 @@ router.get('/area/:areaId', async (req, res, next) => {
   }
 })
 
-router.delete('/:id', requireUser, async (req, res, next) => {
-  const post = await Post.findById(req.params.id)
-  if (post && post.author._id.toString() == req.user._id ) {
-    post.deleteOne();
-  } else {
-    console.log("No permissions")
-    return res.json({result:false});
-  }
-  return res.json({result:true});
-})
+// router.delete('/:id', requireUser, async (req, res, next) => {
+//   const post = await Post.findById(req.params.id)
+//   if (post && post.author._id.toString() == req.user._id ) {
+//     post.deleteOne();
+//   } else {
+//     console.log("No permissions")
+//     return res.json({result:false});
+//   }
+//   return res.json({result:true});
+// })
 
 // Attach requireUser as a middleware before the route handler to gain access
 // to req.user. (requireUser will return an error response if there is no 
@@ -135,7 +135,7 @@ router.post('/', requireUser, validatePostInput, imageUploader.single('image'), 
     });
 
     let post = await newPost.save();
-    post = await post.populate('author', '_id username');
+    post = await post.populate('author');
     return res.json(post);
   }
   catch(err) {
@@ -146,7 +146,7 @@ router.post('/', requireUser, validatePostInput, imageUploader.single('image'), 
 // Add like to a post
 router.post('/:id/likes', requireUser, async (req, res, next) => {
   try {
-    const post = await Post.findById(req.params.id).populate("author", "_id username");
+    const post = await Post.findById(req.params.id).populate("author");
     const user_id = req.user._id;
 
     if (post.likes.includes(user_id)) {
@@ -171,7 +171,7 @@ router.put('/:id', requireUser, validatePostInput, async (req, res, next) => {
   const { id } = req.params;
 
   try {
-    const post = await Post.findById(id).populate("author", "_id username");
+    const post = await Post.findById(id).populate("author");
 
     if (!post) {
       const err = new Error('Post not found');
