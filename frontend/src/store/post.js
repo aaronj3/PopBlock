@@ -39,6 +39,10 @@ export const getPosts = (state) => (
     state.posts ? Object.values(state.posts) : []
 )
 
+// export const getPostsByAreaId = (areaId) => (state) => (
+//     state.posts ? 
+// )
+
 export const getPost = (postId) => (state) => (
     state.posts ? state.posts[postId] : null
 )
@@ -58,6 +62,8 @@ export const fetchPosts = (areaId) => async dispatch => {
     try {
         const res = await jwtFetch (`/api/posts/area/${areaId}`);
         const posts = await res.json();
+        console.log("posts", posts);
+        console.log("res", res);
         dispatch(receivePosts(posts));
     } catch (err) {
         const resBody = await err.json();
