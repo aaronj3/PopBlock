@@ -67,7 +67,7 @@ export const fetchPosts = (areaId) => async dispatch => {
     }
 };
 
-export const fetchpost = (postId) => async dispatch => {
+export const fetchPost = (postId) => async dispatch => {
     try {
         const res = await jwtFetch (`/api/posts/${postId}`);
         const post = await res.json();
@@ -108,6 +108,23 @@ export const createPost = data => async dispatch => {
         }
     }
 };
+
+export const updatePost = post => async dispatch => {
+    try {
+        const res = await jwtFetch(`/api/posts/${post.id}`, {
+            method: 'PUT',
+            body: JSON.stringify(post)
+        });
+        const post = await res.json();
+        dispatch(receivePost(post));
+    } catch(err) {
+        const resBody = await err.json();
+        if (resBody.statusCode === 400) {
+            return dispatch(receiveErrors(resBody.errors));
+        }
+    }
+};
+
 
 export const deletePost = (postId) => async dispatch => {
     const response = await jwtFetch(`api/posts/${postId}`, {

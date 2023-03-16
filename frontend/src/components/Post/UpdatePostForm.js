@@ -1,14 +1,16 @@
 import { useDispatch } from "react-redux";
 import { useState } from "react";
+import { updatePost } from "../../store/posts";
+
 
 function UpdatePostForm({ post , setUpdateShowModal}) {
     const dispatch = useDispatch();
-
     const [body, setBody] = useState(post.body);
     const [errors, setErrors] = useState([]);
 
 
     const handleUpdateSubmit = (e) => {
+        console.log("handle update being logged")
         e.preventDefault();
         if (!body) {
             setErrors(["Must fill out all fields"]);
@@ -17,14 +19,14 @@ function UpdatePostForm({ post , setUpdateShowModal}) {
                 ...post,
                 body: body
             }
-            dispatch()
+            dispatch(updatePost(post))
             setUpdateShowModal(false);
         }
     }
 
     return (
         <div>
-            <form onSubmit={console.log("submitted")}>
+            <form onSubmit={handleUpdateSubmit}>
                 <ul>
                     {errors.map(error => <li key={error} className="error-messages">{error}</li>)}
                 </ul>

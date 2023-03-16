@@ -1,5 +1,5 @@
 import { useDispatch } from "react-redux";
-import { deletePost } from "../../store/post";
+import { deletePost } from "../../store/posts";
 
 
 function DeletePostForm({ post , setDeleteModalShow}) {
