@@ -9,11 +9,11 @@ import { Modal } from "../../context/Modal";
 
 
 
-
 function AreaShowPage() {
     const {areaId} = useParams();
     const dispatch = useDispatch();
     const posts = useSelector(getPosts);
+    console.log(posts)
 
     const[uploadModal, setUploadModal] = useState(false);
 
@@ -21,6 +21,8 @@ function AreaShowPage() {
         dispatch(fetchPosts(areaId))
     }, [dispatch, areaId])
 
+    const areaposts = posts.filter(post=>
+        post.areaId===areaId)
 
     const sessionUser = useSelector(state => state.session.user)
 
@@ -29,10 +31,12 @@ function AreaShowPage() {
         e.preventDefault();
         setUploadModal(true);
     }
-
+    console.log(areaposts)
+    console.log(posts)
     return (
     <>
         Hi Hello from area show page
+        
         {(sessionUser) ? <button className='uploadButton' onClick={handleUpload}>Upload</button> : <button className='requireLoginButton' onClick={()=>dispatch(showLoginModal())}>Log in to upload</button> }
         {posts.map((post)=> <PostIndexItem post={post} key={post.id}/>)}
         {uploadModal && (

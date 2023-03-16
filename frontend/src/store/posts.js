@@ -58,6 +58,8 @@ export const fetchPosts = (areaId) => async dispatch => {
     try {
         const res = await jwtFetch (`/api/posts/area/${areaId}`);
         const posts = await res.json();
+        console.log("res ----", res)
+        console.log("posts ----", posts)
         dispatch(receivePosts(posts));
     } catch (err) {
         const resBody = await err.json();
