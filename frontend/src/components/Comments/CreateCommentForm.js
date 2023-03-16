@@ -5,10 +5,10 @@ import { createComment } from "../../store/comments";
 import { useParams } from "react-router-dom";
 
 
-function CreateCommentForm() {
+function CreateCommentForm({postId}) {
     const dispatch = useDispatch();
     const sessionUser = useSelector(state => state.session.user);
-    const {postId} = useParams();
+    // const {postId} = useParams();
     const [body, setBody] = useState("");
     const [errors, setErrors] = useState([]);
 

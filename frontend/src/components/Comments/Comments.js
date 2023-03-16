@@ -3,12 +3,17 @@ import { useParams } from "react-router-dom"
 import { useDispatch, useSelector } from 'react-redux';
 import "./Comments.css"
 import CreateCommentForm from "./CreateCommentForm";
+import { fetchComments } from "../../store/comments";
 
 
 function Comments() {
     const dispatch = useDispatch();
     const comments = useSelector(state => Object.values(state.comments));
-    const {restaurantId} = useParams();
+    const { postId } = useParams();
+
+    useEffect(()=> {
+        dispatch(fetchComments(postId))
+    }, [dispatch, postId])
 
     if (!comments) {
         return null
@@ -34,7 +39,6 @@ function Comments() {
         </>
         )
     }
-
 
 
 export default Comments

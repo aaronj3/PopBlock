@@ -3,12 +3,14 @@ import thunk from 'redux-thunk';
 import uiReducer from './ui';
 import sessionReducer from './session';
 import commentsReducer from './comments';
-import errors from './errors'
+import postsReducer from './posts';
+import errors from './errors';
 
 const rootReducer = combineReducers({
     ui: uiReducer,
     session: sessionReducer,
     comments: commentsReducer,
+    posts: postsReducer,
     errors
 });
 
@@ -28,3 +30,5 @@ const configureStore = (preloadedState) => {
 };
 
 export default configureStore;
+
+
