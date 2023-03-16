@@ -4,6 +4,7 @@ const logger = require('morgan');
 const debug = require('debug');
 const cors = require('cors');
 const csurf = require('csurf');
+const { generateUploadURL } = require('./s3');
 
 require('dotenv').config();
 /* --- Need to import these to load the models into mongoose --- */
@@ -27,7 +28,10 @@ app.use(passport.initialize()); // make Express use passport for authentication
 
 // Security Middleware
 if (!isProduction) {
-  app.use(cors());
+  app.use(cors({
+    origin: true,
+    credentials: true
+  }));
 }
 
 // Set the _csrf token and create req.csrfToken method to generate a hashed
@@ -77,6 +81,11 @@ if (isProduction) {
     );
   });
 }
+
+app.get('/s3Url', async (req, res) => {
+  const url = await generateUploadURL()
+  res.send({url})
+})
 
 // Express custom middleware for catching all unmatched requests and formatting
 // a 404 error to be sent as the response.

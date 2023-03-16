@@ -25,11 +25,28 @@ function FileUpload({area}) {
         formData.append('content', content);
         formData.append('area', area);
 
-        const response = await jwtFetch('/api/posts', {
-            method: 'POST',
-            body: formData,
-            fileUpload: true,
-        });
+        const { url } = await fetch('http://127.0.0.1:5500/s3Url')
+        .then(res => res.json());
+
+        await fetch(url, {
+            method: 'put',
+            headers: {
+                "Content-Type": "*"
+            },
+            body: formData
+        })
+
+        const imageUrl = url.split('?')[0];
+        console.log('image url', imageUrl)
+
+        // await jwtFetch('/api/posts', {
+        //     method: 'POST',
+        //     body: formData,
+        //     headers: {
+        //         "Content-Type": "image/*"
+        //     },
+        //     fileUpload: true,
+        // });
 
         alert("posted")
         event.target.reset();
