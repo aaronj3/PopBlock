@@ -8,7 +8,8 @@
 import React, { useRef, useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import mapboxgl from 'mapbox-gl';
-import './Map.css'
+import './Map.css';
+import { Link } from 'react-router-dom';
 
 
 
@@ -117,12 +118,12 @@ export default function Map(){
                 });
                 if(selectedN){
                     const { nhood } = selectedN.properties;
-                    const { id } = selectedN.properties;
+                    const { ncode } = selectedN.properties;
                     // const post = useSelector(getPostByArea(`${id}`))
                     // dispatch(fetchPostByArea(`${id}`));
                     // const name = post.user.name
                     // const name = topPosts.areaID(selectedN.id).name
-                    const description = `<strong>Aaron</strong> is poppin in the <Link>${nhood} neighborhood</Link>`
+                    const description = `<strong>Aaron</strong> is poppin in the <a href="/area/${ncode}" >${nhood} neighborhood</a>`
                     new mapboxgl.Popup()
                         .setLngLat(e.lngLat)
                         .setHTML(description)
