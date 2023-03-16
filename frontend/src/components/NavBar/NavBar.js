@@ -1,18 +1,16 @@
-import { Link, useHistory, NavLink } from 'react-router-dom';
-import { useSelector, useDispatch } from 'react-redux';
+import {NavLink, useHistory} from 'react-router-dom';
+import {useDispatch, useSelector} from 'react-redux';
 import LoginFormModal from '../SessionForms/LoginFormModal';
 import SignupFormModal from '../SessionForms/SignupFormModal';
 import './NavBar.css';
-import { logout } from '../../store/session';
-import { showSignupModal, showLoginModal } from '../../store/ui';
+import {logout} from '../../store/session';
+import {showLoginModal, showSignupModal} from '../../store/ui';
 import ProfileButton from './ProfileButton';
-import { Modal } from '../../context/Modal';
 import logo from '../../assets/images/logo.png'
 
 
-
 function NavBar () {
-    const loggedIn = useSelector(state => !!state.session.user);
+    const loggedIn = useSelector(state => !!state.session.user?.user);
     const dispatch = useDispatch();
     const history = useHistory();
     const modal = useSelector(state => state.ui.modal)
@@ -29,6 +27,7 @@ function NavBar () {
     }
 
     const getLinks = () => {
+        console.log('loggedIn',loggedIn)
         if (loggedIn) {
             return (
                 <ProfileButton user={sessionUser}/>

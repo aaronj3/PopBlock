@@ -1,15 +1,11 @@
-import { useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { Redirect } from "react-router-dom";
-import { showLoginModal } from "../../store/ui";
+import {useState} from "react";
+import {useDispatch, useSelector} from "react-redux";
+import {Redirect} from "react-router-dom";
+import {showLoginModal} from "../../store/ui";
 import * as sessionActions from "../../store/session";
-import { Modal } from "../../context/Modal";
 import './SessionForms.css'
 
-
 //need to import sessionActions from store/session
-
-
 function SignupForm() {
     const dispatch = useDispatch();
     const sessionUser = useSelector(state => state.session.user);
