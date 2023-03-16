@@ -55,7 +55,7 @@ router.post('/register', validateRegisterInput, async (req, res, next) => {
   // Otherwise create a new user
   const newUser = new User({
     username: req.body.username,
-    color: "000000"
+    color: 000000
     // colors[Math.floor(Math.random() * colors.length)]
   });
 
