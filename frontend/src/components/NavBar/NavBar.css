@@ -7,6 +7,9 @@
     list-style-type: none;
     padding: 0px;
     background-color: white;
+    position: fixed;
+    left: 0;
+    right: 0;
 }
 
 .profile-button{
@@ -23,6 +26,7 @@
     margin-right: 50px;
     margin-top: 24px;
     margin-bottom: 50px;
+    /* position: fixed; */
 }
 
 .nav-button {

@@ -6,14 +6,14 @@ import { useParams } from 'react-router-dom';
 import FileUpload from "../Post/FileUpload";
 import { showLoginModal } from "../../store/ui";
 import { Modal } from "../../context/Modal";
+import './Map.css';
 
 
 
 function AreaShowPage() {
-    const {areaId} = useParams();
+    const { areaId } = useParams();
     const dispatch = useDispatch();
     const posts = useSelector(getPosts);
-    console.log('posts',posts)
 
 
     const[uploadModal, setUploadModal] = useState(false);
@@ -27,7 +27,7 @@ function AreaShowPage() {
 
     const sessionUser = useSelector(state => state.session.user)
 
-    
+
     const handleUpload = async(e) => {
         e.preventDefault();
         setUploadModal(true);
@@ -38,19 +38,25 @@ function AreaShowPage() {
     }else {
     return (
     <>
-        Hi Hello from area show page
-        
-        {(sessionUser) ? <button className='uploadButton' onClick={handleUpload}>Upload</button> : <button className='requireLoginButton' onClick={()=>dispatch(showLoginModal())}>Log in to upload</button> }
-        {posts.map((post)=> <PostIndexItem post={post} key={post.id}/>)}
+        <div id="areaShowPageHeader">
+            <h1>WHAT'S POPPIN IN AREA_NAME?</h1>
+            {(sessionUser) ? <button className='uploadButton' onClick={handleUpload}>Upload</button> : <button className='requireLoginButton' onClick={()=>dispatch(showLoginModal())}>Log in to upload</button> }
+        </div>
+
+
+
+        <div className = "postsIndexContainer">
+            {posts.map((post)=> <PostIndexItem post={post} key={post.id}/>)}
+        </div>
+
         {uploadModal && (
             <Modal onClose={()=>setUploadModal(false)}>
                 <FileUpload area={areaId} />
             </Modal>
         )}
-    </>      
+    </>
     )
         }
 }
 
 export default AreaShowPage
-    
