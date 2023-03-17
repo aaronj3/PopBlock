@@ -36,11 +36,11 @@ function NavBar () {
         } else {
             return (
                 <div className="links-auth">
-                    <button onClick={()=>dispatch(showSignupModal())}>
+                    <button className="button" id="signup-button" onClick={()=>dispatch(showSignupModal())}>
                         Signup
                     </button>
 
-                    <button onClick={()=>dispatch(showLoginModal())}>
+                    <button className="button" id="login-button" onClick={()=>dispatch(showLoginModal())}>
                         Login
                     </button>
 

@@ -6,19 +6,23 @@
 //     style: 'mapbox://styles/mapbox/streets-v11'
 // });
 import React, { useRef, useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import mapboxgl from 'mapbox-gl';
 import './Map.css';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
+import { getPosts, fetchPosts } from '../../store/posts';
 
 
 
 // mapboxgl.accessToken = process.env.REACT_APP_MAPBOX_ACCESS_TOKEN;
 
 mapboxgl.accessToken = "pk.eyJ1IjoiZGFjYWJ1IiwiYSI6ImNsZjljZGYzMzE5ejMzcXBvbDFuMW5hMmEifQ.qFJCBw1xmv4j-rjefmAkoA";
+// mapboxgl.accessToken = process.env.MAP_TOKEN;
+
 
 export default function Map(){
-
+    const posts = useSelector(getPosts);
+    const dispatch = useDispatch();
     const mapContainer = useRef(null);
     const map = useRef(null);
     const [lng, setLng] = useState(-122.45);
@@ -28,7 +32,26 @@ export default function Map(){
         [-122.656150, 37.659881], //southwest coordinates
         [-122.235293, 37.857600] // Northeast coordinates
     ];
-    
+    const areaIds = Array.from({length: 40}, (_, index) => index + 1);
+    let firstPosts= [];
+
+    // useEffect(() => {
+    //     areaIds.forEach(areaId => {
+    //       dispatch(fetchPosts(areaId)).then(response => {
+    //         console.log('response:', response); // log the response object
+      
+    //         const post = response?.data?.[0]; // use optional chaining to avoid the error if response is undefined
+    //         console.log('post:', post); // log the first post
+      
+    //         if (post) {
+    //           firstPosts.push(post);
+    //         }
+    //       }).catch(error => {
+    //         console.log('error:', error); // log any errors that occur
+    //       });
+    //     });
+    //   }, [dispatch, areaIds]);
+
     useEffect(() => {
         if (map.current) return; // initialize map only once
         map.current = new mapboxgl.Map({
@@ -38,6 +61,42 @@ export default function Map(){
         zoom: zoom, // starting zoom
         maxBounds: bounds // set map's geographical boundaries
         });
+
+        // areaIds.forEach(areaId => {
+        //             dispatch(fetchPosts(areaId)).then(response => {
+        //                 const post = response.data[0]; // assuming that the response data is an array of posts
+        //                 if (post) {
+        //                     topPosts.push(post);
+        //                 }
+        //             });
+        //         });
+
+        // Promise.all(
+        //     areaIds.map((areaId) => dispatch(fetchPosts(areaId)))
+        // )
+        //     .then((responses) => {
+        //         firstPosts = responses
+        //         .map((response) => response.data[0])
+        //         .filter((post) => post !== undefined);
+        //         console.log('firstPosts', firstPosts);
+        //     })
+        //     .catch((error) => console.log(error));
+
+        // areaIds.forEach(areaId => {
+        //           dispatch(fetchPosts(areaId)).then(response => {
+        //             console.log('response:', response); // log the response object
+              
+        //             const post = response?.data?.[0]; // use optional chaining to avoid the error if response is undefined
+        //             console.log('post:', post); // log the first post
+              
+        //             if (post) {
+        //               firstPosts.push(post);
+        //             }
+        //           }).catch(error => {
+        //             console.log('error:', error); // log any errors that occur
+        //           });
+        //         });
+
 
         map.current.on('load', () => {
             map.current.setFog({});
