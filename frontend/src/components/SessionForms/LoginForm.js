@@ -69,7 +69,8 @@ function LoginForm() {
 
                     <br/>
 
-                <button className="modal-button" type="submit">Log In</button>
+                        <button className="modal-button" type="submit">Log In</button>
+
                     </div>
                 </div>
             </form>
