@@ -134,7 +134,7 @@
 .profile-dropdown-container {
     margin-top: 12px;
     padding-bottom: 8px;
-    width: 19.75rem;
+    width: 12rem;
     background-color: #fff;
     border-radius: 0.1875rem;
     box-shadow: 0 0 0 0.0625rem #0000001a;
@@ -143,7 +143,7 @@
     max-height: 70rem;
     right: 0;
     top: 100%;
-    width: 9.375rem;
+    /* width: 9.375rem; */
     z-index: 900;
     position: absolute;
 }

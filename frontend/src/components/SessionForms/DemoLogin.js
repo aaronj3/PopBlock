@@ -8,7 +8,7 @@ function DemoLogin() {
     const dispatch = useDispatch();
 
     //we need to seed a demo account
-    const [username, useUsername] = useState("demo");
+    const [username, useUsername] = useState("demo-user");
     const [password, usePassword] = useState("password")
 
     const handleLogin = (e) => {

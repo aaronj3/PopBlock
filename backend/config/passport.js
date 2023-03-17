@@ -33,6 +33,7 @@ exports.loginUser = async function(user) {
   const userInfo = {
     _id: user._id,
     username: user.username,
+    color: user.color
   };
   const token = await jwt.sign(
     userInfo, // Payload
