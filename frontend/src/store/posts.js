@@ -67,9 +67,8 @@ export const fetchPosts = (areaId) => async dispatch => {
         console.log("posts ----", posts)
         dispatch(receivePosts(posts));
     } catch (err) {
-        const resBody = await err.json();
-        if (resBody.statusCode === 400) {
-            dispatch(receiveErrors(resBody.errors));
+        if (err.statusCode === 400) {
+            dispatch(receiveErrors(err.errors));
         }
     }
 };
@@ -80,9 +79,8 @@ export const fetchPost = (postId) => async dispatch => {
         const post = await res.json();
         dispatch(receivePost(post));
     } catch (err) {
-        const resBody = await err.json();
-        if (resBody.statusCode === 400) {
-            dispatch(receiveErrors(resBody.errors));
+        if (err.statusCode === 400) {
+            dispatch(receiveErrors(err.errors));
         }
     }
 };
