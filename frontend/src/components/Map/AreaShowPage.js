@@ -6,15 +6,20 @@ import { useParams } from 'react-router-dom';
 import FileUpload from "../Post/FileUpload";
 import { showLoginModal } from "../../store/ui";
 import { Modal } from "../../context/Modal";
+import './Map.css';
 
 
 
 function AreaShowPage() {
-    const {areaId} = useParams();
+    const { areaId } = useParams();
     const dispatch = useDispatch();
     const posts = useSelector(getPosts);
-    console.log('posts',posts)
 
+    const areas = ['App Academy', 'Western Addition', 'West of Twin Peaks', 'Visitacion Valley', 'Twin Peaks', 'South of Market', 'Presidio Heights', 'Presidio', 'Portero Hill', 'Portola', 'Pacific Heights',
+                    'Outer Richmond', 'Outer Mission', 'Sunset/Parkside', 'Oceanview/Merced/Ingleside', 'North Beach', 'Noe Valley', 'Lone Mountain/USF', 'Lincoln Park', 'Seacliff', 'Nob Hill',
+                    'Mission Bay', 'Mission', 'Russian Hill', 'Marina', 'Lakeshore', 'Tenderloin', 'McLaren Park', 'Japantown', 'Inner Sunset', 'Hayes Valley', 'Haight Ashbury', 'Golden Gate Park',
+                    'Inner Richmond', 'Glen Park', 'Financial District/South Beach', 'Excelsior', 'Chinatown', 'Castro/Upper Market', 'Bernal Heights', 'Bayview Hunters Point']
+    const areaName = areas[areaId].toUpperCase();
 
     const[uploadModal, setUploadModal] = useState(false);
 
@@ -22,12 +27,14 @@ function AreaShowPage() {
         dispatch(fetchPosts(areaId))
     }, [dispatch, areaId])
 
-    // const allposts = posts.slice(0);
-    // console.log('allposts', allposts)
+    const handleCancelUpload = () => {
+        setUploadModal(false);
+    }
+
 
     const sessionUser = useSelector(state => state.session.user)
 
-    
+
     const handleUpload = async(e) => {
         e.preventDefault();
         setUploadModal(true);
@@ -38,19 +45,24 @@ function AreaShowPage() {
     }else {
     return (
     <>
-        Hi Hello from area show page
-        
-        {(sessionUser) ? <button className='uploadButton' onClick={handleUpload}>Upload</button> : <button className='requireLoginButton' onClick={()=>dispatch(showLoginModal())}>Log in to upload</button> }
-        {posts.map((post)=> <PostIndexItem post={post} key={post.id}/>)}
+        <div id="areaShowPageHeader">
+            <h1>WHAT'S POPPIN IN {areaName}?</h1>
+            {(sessionUser) ? <button className='uploadButton' onClick={handleUpload}>Upload</button> : <button className='requireLoginButton' onClick={()=>dispatch(showLoginModal())}>Log in to upload</button> }
+        </div>
+
+
+        <div className = "postsIndexContainer">
+            {posts.map((post)=> <PostIndexItem post={post} key={post.id}/>)}
+        </div>
+
         {uploadModal && (
             <Modal onClose={()=>setUploadModal(false)}>
-                <FileUpload area={areaId} />
+                <FileUpload area={areaId} onCancel={handleCancelUpload}/>
             </Modal>
         )}
-    </>      
+    </>
     )
         }
 }
 
 export default AreaShowPage
-    

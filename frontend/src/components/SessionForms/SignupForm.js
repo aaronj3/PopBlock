@@ -3,7 +3,7 @@ import {useDispatch, useSelector} from "react-redux";
 import {Redirect} from "react-router-dom";
 import {showLoginModal} from "../../store/ui";
 import * as sessionActions from "../../store/session";
-import './SessionForms.css'
+import "./SessionForms.css"
 
 //need to import sessionActions from store/session
 function SignupForm() {

@@ -29,3 +29,22 @@
     width: 396px;
     height: 673px;
 }
+
+.alternate-button {
+    background: none;
+	color: inherit;
+	border: none;
+	padding: 0;
+	font: inherit;
+	outline: inherit;
+    cursor: pointer;
+}
+
+.alternate-button:hover {
+    text-decoration: underline;
+}
+
+#alternate-button-container {
+    text-align: center;
+    margin-top: 16px;
+}

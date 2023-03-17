@@ -7,6 +7,9 @@
     list-style-type: none;
     padding: 0px;
     background-color: white;
+    position: fixed;
+    left: 0;
+    right: 0;
 }
 
 .profile-button{
@@ -23,6 +26,7 @@
     margin-right: 50px;
     margin-top: 24px;
     margin-bottom: 50px;
+    /* position: fixed; */
 }
 
 .nav-button {
@@ -201,4 +205,33 @@
 .logo {
     width: 300px;
     height: 90px
+}
+
+.button {
+    border-radius: 5px;
+    border-width: 0.5px;
+    margin-right: 4px;
+    /* height: 20px; */
+    padding: 4px;
+    padding-right: 8px;
+    padding-left: 8px;
+    transition: 0.2s;
+}
+
+#signup-button{
+    background-color: #00cf35;
+    color: black;
+    font-weight: 200;
+}
+
+#login-button{
+    /* background-color: #00b8ff; */
+    background-color: rgb(176, 197, 218);
+    color: black
+}
+
+
+.button:hover {
+    cursor: pointer;
+    opacity: 0.5;
 }
