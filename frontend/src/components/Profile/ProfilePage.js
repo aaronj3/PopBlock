@@ -23,7 +23,6 @@ function ProfilePage() {
 
     return (
         <div className={'profile'}>
-
             <div>
                 <h1>Your posts</h1>
                 <br/>
@@ -33,6 +32,7 @@ function ProfilePage() {
                 {!loaded && (
                     <img src="http://webcreatorbox.com/sample/images/loading.gif"/>
                 )}
+
                 {loaded == true && posts.length == 0 && (
                     <span>No Post</span>
                 )}
