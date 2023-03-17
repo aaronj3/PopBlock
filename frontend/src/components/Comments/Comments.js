@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import "./Comments.css"
 import CreateCommentForm from "./CreateCommentForm";
 import { fetchComments } from "../../store/comments";
+import { useEffect } from "react";
 
 
 function Comments() {
