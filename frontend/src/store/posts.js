@@ -6,7 +6,6 @@ import { useSelector } from 'react-redux';
 const RECEIVE_POSTS = "posts/RECEIVE_POSTS";
 const RECEIVE_POST = "posts/RECEIVE_POST"
 const RECEIVE_USER_POSTS = "posts/RECEIVE_USER_POSTS";
-// const RECEIVE_NEW_POST = "posts/RECEIVE_NEW_POST";
 const RECEIVE_POST_ERRORS = "posts/RECEIVE_POST_ERRORS";
 const CLEAR_POST_ERRORS = "posts/CLEAR_POST_ERRORS";
 const REMOVE_POST = "post/REMOVE"
