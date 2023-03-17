@@ -15,18 +15,20 @@ function PostShow(){
 
     console.log('post from post show', post)
     console.log('postid from post show', postId)
+    console.log('postid from post show', postId)
 
+    // const pops = post.likes.length ? post.likes.length: 0
 
     useEffect(()=>{
         dispatch(fetchPost(postId))
     }, [dispatch, postId])
 
     const sessionUser = useSelector(state => state.session.user)
-    const [likes,setLikes]= useState(post.likes.length ? post.likes.length: 0)
+    // const [numLikes,setNumLikes]= useState(pops)
     
     const addLike = (e) => {
         e.preventDefault();
-        setLikes(likes+1)
+        post.likes.append(sessionUser.id)
 
     }
 
@@ -41,10 +43,10 @@ function PostShow(){
         <>
             hello from post show
             <div className="showpage">
-                <div>{post.url}</div>
+                <div><img src='https://popblock.s3.us-west-1.amazonaws.com/z6h7x' height='500px' width='500px' alt=''/></div>
                 <div>{post.body}</div>
                 <div>
-                    <div>{likes}</div>
+                    {/* <div>{numLikes}</div> */}
                     <button onClick={addLike}></button>
                 
                 </div>

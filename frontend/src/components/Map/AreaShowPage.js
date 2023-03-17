@@ -13,7 +13,7 @@ function AreaShowPage() {
     const {areaId} = useParams();
     const dispatch = useDispatch();
     const posts = useSelector(getPosts);
-    console.log(posts)
+    console.log('posts',posts)
 
 
     const[uploadModal, setUploadModal] = useState(false);
@@ -33,7 +33,7 @@ function AreaShowPage() {
         setUploadModal(true);
     }
     console.log('posts in show page', posts)
-    if (!posts|| posts.length===0){
+    if (!posts){
         return null
     }else {
     return (
@@ -41,7 +41,7 @@ function AreaShowPage() {
         Hi Hello from area show page
         
         {(sessionUser) ? <button className='uploadButton' onClick={handleUpload}>Upload</button> : <button className='requireLoginButton' onClick={()=>dispatch(showLoginModal())}>Log in to upload</button> }
-        {posts[0].map((post)=> <PostIndexItem post={post} key={post.id}/>)}
+        {posts.map((post)=> <PostIndexItem post={post} key={post.id}/>)}
         {uploadModal && (
             <Modal onClose={()=>setUploadModal(false)}>
                 <FileUpload area={areaId} />
