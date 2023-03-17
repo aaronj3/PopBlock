@@ -5,10 +5,8 @@ const passport = require('passport');
 const mongoose = require('mongoose');
 const User = mongoose.model('User');
 const { loginUser, restoreUser } = require('../../config/passport');
-
 const validateRegisterInput = require('../../validation/register');
 const validateLoginInput = require('../../validation/login');
-
 const { isProduction } = require('../../config/keys');
 
 // Attach restoreUser as a middleware before the route handler to gain access
@@ -53,10 +51,10 @@ router.post('/register', validateRegisterInput, async (req, res, next) => {
   }
 
   // Otherwise create a new user
+  const colors = ["#E74C3C", "#2980B9", "#1ABC9C", "#F39C12"];
   const newUser = new User({
     username: req.body.username,
-    color: 000000
-    // colors[Math.floor(Math.random() * colors.length)]
+    color: colors[Math.floor(Math.random() * colors.length)]
   });
 
   bcrypt.genSalt(10, (err, salt) => {
