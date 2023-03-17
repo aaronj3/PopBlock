@@ -12,7 +12,7 @@ const postSchema = new Schema({
     required: true
   },
   likes: {
-    type: {String}
+    type: [String]
   },
   area: {
     type: Number,

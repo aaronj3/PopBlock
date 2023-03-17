@@ -18,17 +18,6 @@ AWS.config.update({
 
 const s3 = new AWS.S3()
 
-/* GET posts listing. */
-// router.get('/', async (req, res) => {
-//   try {
-//     const posts = await Post.find().populate("author", "_id username").sort({ "likes.length": -1 });
-//     return res.json(posts);
-//   }
-//   catch(err) {
-//     return res.json([]);
-//   }
-// })
-
 const allowedExtensions = ['.png', '.PNG','.jpg', '.jpeg', '.bmp', '.mov', '.MOV']
 const imageUploader = multer({
   storage: multerS3({
@@ -108,22 +97,6 @@ router.get('/area/:areaId', async (req, res, next) => {
   }
 })
 
-// router.delete('/:id', requireUser, async (req, res, next) => {
-//   const post = await Post.findById(req.params.id)
-//   if (post && post.author._id.toString() == req.user._id ) {
-//     post.deleteOne();
-//   } else {
-//     console.log("No permissions")
-//     return res.json({result:false});
-//   }
-//   return res.json({result:true});
-// })
-
-// Attach requireUser as a middleware before the route handler to gain access
-// to req.user. (requireUser will return an error response if there is no 
-// current user.) Also attach validatePostInput as a middleware before the 
-// route handler.
-
 // Create a new post.
 router.post('/', requireUser, validatePostInput, imageUploader.single('image'), async (req, res, next) => {
   try {
@@ -133,6 +106,7 @@ router.post('/', requireUser, validatePostInput, imageUploader.single('image'), 
       area: req.body.area,
       author: req.user._id,
       content: req.body.content,
+      likes: []
     });
 
     let post = await newPost.save();
