@@ -8,7 +8,7 @@ function Comment({comment}){
         <li className="comment-container">
             <section className="commenter-container">
                 <div className="commenter-avatar">??</div>
-                <p className="commenter-detail">commenter name</p>
+                <p className="commenter-detail">{comment.author.username}</p>
                 <UpdateDeleteButtons comment={comment}/>
             </section>
             <section className="comment-body-container">

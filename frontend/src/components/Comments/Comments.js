@@ -7,16 +7,16 @@ import { fetchComments } from "../../store/comments";
 import { useEffect } from "react";
 
 
-function Comments() {
+function Comments({comments}) {
     const dispatch = useDispatch();
-    const comments = useSelector(state => Object.values(state.comments));
+    // const comments = useSelector(state => Object.values(state.comments));
     const { postId } = useParams();
 
     useEffect(()=> {
         dispatch(fetchComments(postId))
     }, [dispatch, postId])
 
-    if (!comments) {
+    if (comments.length == 0) {
         return null
     }
 
@@ -30,9 +30,9 @@ function Comments() {
                 </header>
             </header>
 
-                    <CreateCommentForm/>
+                    {/*<CreateCommentForm/>
 
-                    <br></br>
+                    <br></br>*/}
 
                     <ol className="comments-list" id="restProfilecommentsContent">
                         {comments.map(comment=><Comment key={comment.id} comment={comment}/>)}
