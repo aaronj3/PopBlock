@@ -1,7 +1,7 @@
 import "./Comments.css"
 import { useState } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { createComment } from "../../store/comments";
+import {createComment, fetchComments} from "../../store/comments";
 import { useParams } from "react-router-dom";
 
 
@@ -18,11 +18,12 @@ function CreateCommentForm({postId}) {
             setErrors(["Must fill out all fields"]);
         } else {
             let newComment = {
-                author_id: sessionUser.id,
                 post_id: postId,
                 body: body
             }
             dispatch(createComment(newComment))
+            dispatch(fetchComments(postId))
+            setBody("")
         }
     }
 
