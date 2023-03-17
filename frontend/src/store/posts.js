@@ -33,13 +33,15 @@ const removePost = payload => ({
     payload
 })
 
-const receiveLike = payload => ({
+const receiveLike = post => ({
     type: RECEIVE_LIKE,
-    payload
+    post
 })
 
 export const getPosts = (state) => (
+    // Object.values(state.posts).length > 0 ? Object.values(state.posts) : []
     state.posts ? Object.values(state.posts) : []
+
 )
 
 export const getPost = (postId) => (state) => (
@@ -139,14 +141,14 @@ export const deletePost = (postId) => async dispatch => {
     }
 }
 
-export const likePost = (postId) => async dispatch => {
+export const likePost = (post) => async dispatch => {
     const user = useSelector(state => state.currentUser)
-    const response = await jwtFetch(`api/posts/${postId}/likes`, {
+    const response = await jwtFetch(`api/posts/${post._id}/likes`, {
         method: "POST",
         body: JSON.stringify(user)
     })
     if (response.ok) {
-        dispatch(receiveLike(postId))
+        dispatch(receiveLike(post))
     }
 }
 
@@ -164,10 +166,20 @@ export const postErrorsReducer = (state = nullErrors, action) => {
     }
 };
 
-const postsReducer = (state = { all: {}, user: {} }, action) => {
+const postsReducer = (state = {}, action) => {
+    // debugger
+    let newState = {...state}
     switch(action.type) {
+        
         case RECEIVE_POSTS:
-            return { ...state, all: action.posts };
+            // console.log('posts from reducer', action.posts)
+            // // const newState = {...state};
+            // console.log('all', all)
+            // const {all} = newState
+            // for(let post of action.posts){
+            //     all[post._id] = post
+            // }
+            return action.posts;
         case RECEIVE_USER_POSTS:
             return { ...state, user: action.posts};
         case RECEIVE_POST:
@@ -176,6 +188,10 @@ const postsReducer = (state = { all: {}, user: {} }, action) => {
             return {};
         case RECEIVE_USER_LOGOUT:
             return { ...state, user: {} }
+        case RECEIVE_LIKE: 
+            // const newState = {...state};
+            newState[action.post._id] = action.post;
+            return newState;
         default:
             return state;
     }

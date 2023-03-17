@@ -44,9 +44,6 @@ function FileUpload({area}) {
         await jwtFetch('/api/posts', {
             method: 'POST',
             body: formData,
-            // headers: {
-            //     "Content-Type": "*"
-            // },
             fileUpload: true,
         });
 
