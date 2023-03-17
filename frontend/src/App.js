@@ -13,6 +13,7 @@ import { Route } from 'react-router-dom';
 import NavBar from './components/NavBar/NavBar';
 import './index.css'
 import AreaShowPage from './components/Map/AreaShowPage';
+import PostShow from './components/Post/PostShow';
 
 function App() {
 
@@ -28,9 +29,10 @@ function App() {
       <NavBar/>
       <Switch>
         <Route exact path="/" component={MainPage} />
-        <Route exact path="/posts/:areaId" component={AreaShowPage} />
+        <Route exact path="/posts/area/:areaId" component={AreaShowPage} />
         <Route exact path="/profile" component={ProfilePage} />
         <Route exact path="/posts/new" component={MainPage} />
+        <Route exact path="/posts/:postId" component={PostShow} />
         {/* <AuthRoute exact path="/" component={MainPage} />
         <ProtectedRoute exact path="/posts/:areaId" component={AreaShowPage} />
         <ProtectedRoute exact path="/profile" component={ProfilePage} />

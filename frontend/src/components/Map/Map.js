@@ -124,7 +124,7 @@ export default function Map(){
                     // dispatch(fetchPostByArea(`${id}`));
                     // const name = post.user.name
                     // const name = topPosts.areaID(selectedN.id).name
-                    const description = `<strong>Aaron</strong> is poppin in the <a href="/posts/${areaId}" >${nhood} neighborhood</a>`
+                    const description = `<strong>Aaron</strong> is poppin in the <a href="/posts/area/${areaId}" >${nhood} neighborhood</a>`
                     new mapboxgl.Popup()
                         .setLngLat(e.lngLat)
                         .setHTML(description)
