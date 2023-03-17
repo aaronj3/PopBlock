@@ -6,12 +6,14 @@ import Comments from "../Comments/Comments";
 import CreateCommentForm from "../Comments/CreateCommentForm";
 import { useParams } from "react-router-dom";
 import { showLoginModal } from "../../store/ui";
+import {fetchComments, getComments} from "../../store/comments";
 
 
 function PostShow(){
     const dispatch = useDispatch();
     const { postId } = useParams();
     const post = useSelector(getPost(postId));
+    const comments = useSelector(getComments)
 
     console.log('post from post show', post)
     console.log('postid from post show', postId)
@@ -21,6 +23,7 @@ function PostShow(){
 
     useEffect(()=>{
         dispatch(fetchPost(postId))
+        dispatch(fetchComments(postId))
     }, [dispatch, postId])
 
     const sessionUser = useSelector(state => state.session.user)
@@ -61,12 +64,14 @@ function PostShow(){
                     <button onClick={addLike}></button>
                 
                 </div>
-                <div>
-                    <Comments/>
-                </div>
             </div>
             {(sessionUser) ? <CreateCommentForm postId={postId}/> : <button className='requireLoginButton' onClick={()=>dispatch(showLoginModal())}>Log in to comment</button> }
-            
+
+            <ul>
+                {comments.map(comment => (
+                    <li key={comment._id}>{comment.body}</li>
+                ))}
+            </ul>
         
         </>
         )
