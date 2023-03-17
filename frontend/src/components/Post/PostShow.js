@@ -29,21 +29,32 @@ function PostShow(){
     const addLike = (e) => {
         e.preventDefault();
         post.likes.append(sessionUser.id)
-
     }
 
-
+    const isImage = (filename) =>{
+        var ext = filename.split('.').pop().toLowerCase();
+        if (ext == 'jpg' || ext == 'jpeg' || ext == 'png' || ext == 'gif' || ext == 'bmp') {
+            return true;
+        }
+        return false;
+    }
 
     if(!post){
         return null
     }else{
-
-    
+        const imgFlag = isImage(post.url);
     return (
         <>
             hello from post show
             <div className="showpage">
-                <div><img src='https://popblock.s3.us-west-1.amazonaws.com/z6h7x' height='500px' width='500px' alt=''/></div>
+
+                <div>
+                    {imgFlag ? (
+                        <img src={post.url} height='500px' width='500px' alt=''/>
+                    ) : (
+                        <video src={post.url} controls width="500px"/>
+                    )}
+                </div>
                 <div>{post.body}</div>
                 <div>
                     {/* <div>{numLikes}</div> */}
