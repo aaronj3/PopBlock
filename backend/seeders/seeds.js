@@ -44,17 +44,31 @@ mongoose
   });
 
 // Reset and seed db
-const insertSeeds = () => {
-  console.log("Resetting db and seeding users...");
+// const insertSeeds = () => {
+//   console.log("Resetting db and seeding users...");
 
-  User.collection.drop()
-                 .then(() => User.insertMany(users))
-                 .then(() => {
-                   console.log("Done!");
-                   mongoose.disconnect();
-                 })
-                 .catch(err => {
-                   console.error(err.stack);
-                   process.exit(1);
-                 });
-}
+//   User.collection.drop()
+//                  .then(() => User.insertMany(users))
+//                  .then(() => {
+//                    console.log("Done!");
+//                    mongoose.disconnect();
+//                  })
+//                  .catch(err => {
+//                    console.error(err.stack);
+//                    process.exit(1);
+//                  });
+// };
+
+const insertSeeds = () => {
+  console.log("Seeding users...");
+
+  User.insertMany(users)
+      .then(() => {
+        console.log("Done!");
+        mongoose.disconnect();
+      })
+      .catch(err => {
+        console.error(err.stack);
+        process.exit(1);
+      });
+};
