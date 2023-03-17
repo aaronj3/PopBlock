@@ -35,7 +35,7 @@ function CreateCommentForm({postId}) {
                     {errors.map(error => <li key={error} className="error-messages">{error}</li>)}
                 </ul>
 
-                <label>Comment
+                <label>Comment&nbsp;&nbsp;
                     <input type="textarea" value={body} onChange={(e) => {setBody(e.target.value)}} ></input>
                 </label>
 

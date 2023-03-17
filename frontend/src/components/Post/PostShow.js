@@ -54,11 +54,14 @@ function PostShow(){
                     <div>{post.body}</div>
                     <div>
                         <br/>
-                        <div>likes Count:{likes.length}</div>
-                        {(sessionUser) ?
+                        <div>
+                            Pops: {likes.length} &nbsp;&nbsp;
+                            {(sessionUser) ?
                             <button onClick={addLike}>
-                            {likes.includes(sessionUser._id)?'UNLIKE':'LIKE'}</button>
+                            {likes.includes(sessionUser._id)?'UNPOP':'POP'}
+                            </button>
                             : ""}
+                        </div>
                         <br/>
                         <br/>
                     </div>
