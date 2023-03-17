@@ -43,7 +43,6 @@ function NavBar () {
                     <button className="button" id="login-button" onClick={()=>dispatch(showLoginModal())}>
                         Login
                     </button>
-
                 </div>
             );
         }
@@ -51,7 +50,7 @@ function NavBar () {
 
     return (
         <>
-            <ul className="nav-bar">
+            <ul className={'nav-bar ' + (modal === 'login'? 'z-index' : '')}>
                 <div className="nav-container">
                     <li>
                     <NavLink exact to="/"><img className="logo" src={logo}/></NavLink>

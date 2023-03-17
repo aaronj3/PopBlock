@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const mongoose = require('mongoose');
 const Comment = mongoose.model('Comment');
+const User = mongoose.model('User')
 const { requireUser } = require('../../config/passport');
 
 // GET all comments listing.
@@ -14,6 +15,29 @@ router.get('/', async (req, res) => {
     return res.json([{ message: "Error retrieving comments" }]);
   }  
 });
+
+
+// GET comments that belongs to a specific user.
+router.get('/user', requireUser, async (req, res, next) => {
+  let user;
+  try {
+    user = await User.findById(req.user._id);
+  } catch(err) {
+    const error = new Error('User not found');
+    error.statusCode = 404;
+    error.errors = { message: "No user found with that id" };
+    return next(error);
+  }
+  try {
+    const comments = await Comment.find({ author: user._id })
+                                  .sort({ createdAt: -1 })
+                                  .populate("author").populate("post");
+    return res.json(comments);
+  }
+  catch(err) {
+    return res.json([]);
+  }
+})
 
 // GET a single comment with it's id.
 router.get('/:id', async (req, res, next) => {
@@ -39,28 +63,6 @@ router.get('/post/:postId', async (req, res) => {
     return res.json([{ message: "Error retrieving comments" }]);
   }  
 });
-
-// GET comments that belongs to a specific user.
-router.get('/user/:userId', requireUser, async (req, res, next) => {
-  let user;
-  try {
-    user = await User.findById(req.params.userId);
-  } catch(err) {
-    const error = new Error('User not found');
-    error.statusCode = 404;
-    error.errors = { message: "No user found with that id" };
-    return next(error);
-  }
-  try {
-    const comments = await Comment.find({ author: user._id })
-                                  .sort({ createdAt: -1 })
-                                  .populate("author").populate("post");
-    return res.json(comments);
-  }
-  catch(err) {
-    return res.json([]);
-  }
-})
 
 // POST (create) comment that belongs to a specific post.
 router.post('/:postId', requireUser, async (req, res, next) => {

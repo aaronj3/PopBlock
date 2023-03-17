@@ -7,7 +7,7 @@ function PostIndexItem ({post}) {
     console.log('post in index item', post);
 
     const isImage = (filename) =>{
-        var ext = filename.split('.').pop().toLowerCase();
+        var ext = filename?.split('.').pop().toLowerCase();
         if (ext == 'jpg' || ext == 'jpeg' || ext == 'png' || ext == 'gif' || ext == 'bmp') {
             return true;
         }

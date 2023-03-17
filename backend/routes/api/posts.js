@@ -46,6 +46,85 @@ router.get('/', async (req, res) => {
   }
 });
 
+router.get('/likes',async (req, res, next) => {
+  try {
+    const post = await Post.aggregate([
+      // Select the `area` and `likes` fields, and populate the `author` field.
+      {
+        $project: {
+          area: 1,
+          likes: 1,
+          author: 1,
+        },
+      },
+      {
+        $lookup: {
+          from: 'users',
+          localField: 'author',
+          foreignField: '_id',
+          as: 'author',
+        },
+      },
+      {
+        $unwind: '$author',
+      },
+      // Group by `area`.
+      {
+        $group: {
+          _id: '$area',
+          // Sort the `likes` field in descending order.
+          max_likes: {
+            $max: '$likes',
+          },
+          // Select the first document in each group.
+          doc: {
+            $first: '$$ROOT',
+          },
+        },
+      },
+      // Select the `author` field from the selected document.
+      {
+        $project: {
+          _id: 0,
+          area: '$_id',
+          author: '$doc.author',
+        },
+      },
+    ]);
+
+    return res.json(post);
+  }
+  catch(err) {
+    const error = new Error('Post not found');
+    error.statusCode = 404;
+    error.errors = { message: "No post found with that id" };
+    return next(error);
+  }
+});
+
+
+// GET posts that belongs to a specific user.
+router.get('/user', requireUser, async (req, res, next) => {
+  let user;
+  try {
+    user = await User.findById(req.user._id);
+  } catch(err) {
+    const error = new Error('User not found');
+    error.statusCode = 404;
+    error.errors = { message: "No user found with that id" };
+    return next(error);
+  }
+  try {
+    const posts = await Post.find({ author: user._id })
+        .sort({ "likes.length": -1 })
+        .populate("author");
+    return res.json(posts);
+  }
+  catch(err) {
+    return res.json([]);
+  }
+});
+
 // GET a single post with it's id.
 router.get('/:id', async (req, res, next) => {
   try {
@@ -61,28 +140,6 @@ router.get('/:id', async (req, res, next) => {
 });
 
 
-// GET posts that belongs to a specific user.
-router.get('/user/:userId', requireUser, async (req, res, next) => {
-  let user;
-  try {
-    user = await User.findById(req.params.userId);
-  } catch(err) {
-    const error = new Error('User not found');
-    error.statusCode = 404;
-    error.errors = { message: "No user found with that id" };
-    return next(error);
-  }
-  try {
-    const posts = await Post.find({ author: user._id })
-                              .sort({ "likes.length": -1 })
-                              .populate("author");
-    return res.json(posts);
-  }
-  catch(err) {
-    return res.json([]);
-  }
-});
-
 // GET posts that belongs to a specific area.
 router.get('/area/:areaId', async (req, res, next) => {
   try {
@@ -96,6 +153,8 @@ router.get('/area/:areaId', async (req, res, next) => {
     return next(error);
   }
 })
+
+
 
 // Create a new post.
 router.post('/', requireUser, validatePostInput, imageUploader.single('image'), async (req, res, next) => {
