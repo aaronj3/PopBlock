@@ -44,6 +44,7 @@ mongoose
   });
 
 // Reset and seed db
+
 // const insertSeeds = () => {
 //   console.log("Resetting db and seeding users...");
 
