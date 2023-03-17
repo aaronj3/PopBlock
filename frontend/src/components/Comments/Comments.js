@@ -30,13 +30,13 @@ function Comments({comments}) {
                 </header>
             </header>
 
-                    {/*<CreateCommentForm/>
+            {/*<CreateCommentForm/>
 
-                    <br></br>*/}
+            <br></br>*/}
 
-                    <ol className="comments-list" id="restProfilecommentsContent">
-                        {comments.map(comment=><Comment key={comment.id} comment={comment}/>)}
-                    </ol>
+            <ol className="comments-list" id="restProfilecommentsContent">
+                {comments.map(comment=><Comment key={comment.id} comment={comment}/>)}
+            </ol>
         </>
         )
     }

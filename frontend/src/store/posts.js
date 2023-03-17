@@ -48,6 +48,10 @@ export const getPost = (postId) => (state) => (
     state.posts ? state.posts[postId] : null
 )
 
+export const getPostLike = (postId) => (state) => {
+    return state.posts ? state.posts[postId]?.likes : null
+}
+
 
 export const receiveErrors = errors => ({
     type: RECEIVE_POST_ERRORS,
@@ -131,7 +135,7 @@ export const updatePost = post => async dispatch => {
 };
 
 export const deletePost = (postId) => async dispatch => {
-    const response = await jwtFetch(`api/posts/${postId}`, {
+    const response = await jwtFetch(`/api/posts/${postId}`, {
         method: "DELETE"
     });
     if (response.ok) {
@@ -140,13 +144,12 @@ export const deletePost = (postId) => async dispatch => {
 }
 
 export const likePost = (post) => async dispatch => {
-    const user = useSelector(state => state.currentUser)
-    const response = await jwtFetch(`api/posts/${post._id}/likes`, {
-        method: "POST",
-        body: JSON.stringify(user)
+    const response = await jwtFetch(`/api/posts/${post._id}/likes`, {
+        method: "POST"
     })
     if (response.ok) {
-        dispatch(receiveLike(post))
+        const p = await response.json();
+        dispatch(receiveLike(p))
     }
 }
 
@@ -167,8 +170,9 @@ export const postErrorsReducer = (state = nullErrors, action) => {
 const postsReducer = (state = {}, action) => {
     // debugger
     let newState = {...state}
+
+    console.log('state', state)
     switch(action.type) {
-        
         case RECEIVE_POSTS:
             // console.log('posts from reducer', action.posts)
             // // const newState = {...state};
@@ -186,10 +190,8 @@ const postsReducer = (state = {}, action) => {
             return {};
         case RECEIVE_USER_LOGOUT:
             return { ...state, user: {} }
-        case RECEIVE_LIKE: 
-            // const newState = {...state};
-            newState[action.post._id] = action.post;
-            return newState;
+        case RECEIVE_LIKE:
+            return { ...state, [action.post._id] : action.post};
         default:
             return state;
     }
