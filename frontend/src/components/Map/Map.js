@@ -205,13 +205,10 @@ export default function Map(){
         setZoom(map.current.getZoom().toFixed(2));
         });
     }, []);
-    
+
     return (
     <div>
         <div ref={mapContainer} className="map-container" />
     </div>
     );
 }
-
-
-

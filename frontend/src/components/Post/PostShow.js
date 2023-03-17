@@ -45,7 +45,7 @@ function PostShow(){
         return (
             <>
                 <div className="showpage">
-                    <div>
+                    <div className="content-container">
                         {imgFlag ? (
                             <img src={post.url} height='500px' width='500px' alt=''/>
                         ) : (

@@ -4,6 +4,11 @@
 }
 
 .showpage {
-    padding-top: 200px; 
+    padding-top: 200px;
     padding-left: 60px;
+}
+
+.content-container {
+    padding-top: 200px;
+
 }
