@@ -11,23 +11,13 @@ async function jwtFetch(url, options = {}) {
     // If the options.method is not 'GET', then set the "Content-Type" header to
     // "application/json".
 
-    // if (options.method.toUpperCase() !== "GET") {
-    //     if (!options["fileUpload"]) {
-    //         options.headers["Content-Type"] =
-    //         options.headers["Content-Type"] || "application/json";
-    //         options.headers["CSRF-Token"] = getCookie("CSRF-TOKEN");
-    //     }
-    // }
-
-
     if (options.method.toUpperCase() !== "GET") {
-        options.headers["CSRF-Token"] = getCookie("CSRF-TOKEN");
-        if (!(options.body instanceof FormData)) {
+        if (!options["fileUpload"]) {
             options.headers["Content-Type"] =
             options.headers["Content-Type"] || "application/json";
         }
+        options.headers["CSRF-Token"] = getCookie("CSRF-TOKEN");
     }
-
 
     // Call fetch with the url and the updated options hash.
     let res = {}
