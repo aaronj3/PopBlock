@@ -1,6 +1,6 @@
 import {useEffect} from "react";
 import {useDispatch, useSelector} from "react-redux";
-import {fetchPost, getPost, getPostLike, likePost} from "../../store/posts";
+import {fetchPost, getPost, likePost} from "../../store/posts";
 import Comments from "../Comments/Comments";
 import CreateCommentForm from "../Comments/CreateCommentForm";
 import {useParams} from "react-router-dom";
@@ -14,6 +14,7 @@ function PostShow(){
     const { postId } = useParams();
     const post = useSelector(getPost(postId));
     const comments = useSelector(getComments);
+
     const likes = useSelector(state => {
         return state.posts[postId]?.likes
     });

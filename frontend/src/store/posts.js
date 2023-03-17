@@ -9,6 +9,7 @@ const RECEIVE_USER_POSTS = "posts/RECEIVE_USER_POSTS";
 // const RECEIVE_NEW_POST = "posts/RECEIVE_NEW_POST";
 const RECEIVE_POST_ERRORS = "posts/RECEIVE_POST_ERRORS";
 const CLEAR_POST_ERRORS = "posts/CLEAR_POST_ERRORS";
+const RECEIVE_POST_MAX_LIKE_GROUP_BY_REGION = "posts/RECEIVE_POST_MAX_LIKE_GROUP_BY_REGION";
 const REMOVE_POST = "post/REMOVE"
 const RECEIVE_LIKE = "post/LIKE"
 
@@ -38,6 +39,11 @@ const receiveLike = post => ({
     post
 })
 
+const receivePostsMaxLikeGroupByRegion = area => ({
+    type: RECEIVE_POST_MAX_LIKE_GROUP_BY_REGION,
+    area
+})
+
 export const getPosts = (state) => (
     // Object.values(state.posts).length > 0 ? Object.values(state.posts) : []
     state.posts ? Object.values(state.posts) : []
@@ -51,7 +57,6 @@ export const getPost = (postId) => (state) => (
 export const getPostLike = (postId) => (state) => {
     return state.posts ? state.posts[postId]?.likes : null
 }
-
 
 export const receiveErrors = errors => ({
     type: RECEIVE_POST_ERRORS,
@@ -89,9 +94,9 @@ export const fetchPost = (postId) => async dispatch => {
     }
 };
 
-export const fetchUserPosts = (userId) => async dispatch => {
+export const fetchUserPosts = () => async dispatch => {
     try {
-        const res = await jwtFetch(`/api/posts/user/${userId}`);
+        const res = await jwtFetch(`/api/posts/user`);
         const posts = await res.json();
         dispatch(receiveUserPosts(posts));
     } catch(err) {
@@ -153,6 +158,14 @@ export const likePost = (post) => async dispatch => {
     }
 }
 
+export const maxLikePostGroupByRegion = () => async dispatch => {
+    const response = await jwtFetch('/api/posts/likes')
+    if (response.ok) {
+        const res  = await response.json();
+        dispatch(receivePostsMaxLikeGroupByRegion(res));
+    }
+}
+
 const nullErrors = null;
 
 export const postErrorsReducer = (state = nullErrors, action) => {
@@ -170,8 +183,6 @@ export const postErrorsReducer = (state = nullErrors, action) => {
 const postsReducer = (state = {}, action) => {
     // debugger
     let newState = {...state}
-
-    console.log('state', state)
     switch(action.type) {
         case RECEIVE_POSTS:
             // console.log('posts from reducer', action.posts)
@@ -190,6 +201,7 @@ const postsReducer = (state = {}, action) => {
             return {};
         case RECEIVE_USER_LOGOUT:
             return { ...state, user: {} }
+        case RECEIVE_POST_MAX_LIKE_GROUP_BY_REGION:
         case RECEIVE_LIKE:
             return { ...state, [action.post._id] : action.post};
         default:

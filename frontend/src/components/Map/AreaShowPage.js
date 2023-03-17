@@ -29,6 +29,7 @@ function AreaShowPage() {
 
     const handleCancelUpload = () => {
         setUploadModal(false);
+        dispatch(fetchPosts(areaId));
     }
 
 

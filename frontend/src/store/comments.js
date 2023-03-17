@@ -51,7 +51,8 @@ export const getComment = (commentId) => (state) => (
 
 export const fetchComments = (postId) => async dispatch => {
     try {
-        const res = await jwtFetch(`/api/comments/post/${postId}`);
+        const url = postId ? `/api/comments/post/${postId}` : `/api/comments/user`
+        const res = await jwtFetch(url);
         const comments = await res.json();
         dispatch(receiveComments(comments));
     } catch (err) {
