@@ -65,13 +65,11 @@ function PostShow(){
                 
                 </div>
             </div>
-            {(sessionUser) ? <CreateCommentForm postId={postId}/> : <button className='requireLoginButton' onClick={()=>dispatch(showLoginModal())}>Log in to comment</button> }
+            <div>
+                <Comments comments={comments}/>
+            </div>
 
-            <ul>
-                {comments.map(comment => (
-                    <li key={comment._id}>{comment.body}</li>
-                ))}
-            </ul>
+            {(sessionUser) ? <CreateCommentForm postId={postId}/> : <button className='requireLoginButton' onClick={()=>dispatch(showLoginModal())}>Log in to comment</button> }
         
         </>
         )
