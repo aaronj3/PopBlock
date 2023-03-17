@@ -194,7 +194,7 @@ const postsReducer = (state = {}, action) => {
             // }
             return action.posts;
         case RECEIVE_USER_POSTS:
-            return { ...state, user: action.posts};
+            return action.posts;
         case RECEIVE_POST:
             return { ...state, [action.post._id] : action.post};
         case REMOVE_POST: 
