@@ -48,10 +48,9 @@ function ProfileButton({ user }) {
 
     {showMenu && (
         <div className="profile-dropdown-container">
-            <span>Hello, {user.username}!</span>
-            <Link to={'/posts'} className="link-container">All Posts</Link>
-            <Link to={'/profile'} className="link-container">Profile</Link>
-            <Link to={'/posts/new'} className="link-container">Show Your Moves</Link>
+            <span>👋🏼 Hello, {user.username}!</span>
+            <Link to={'/profile'} className="link-container">👤Profile</Link>
+            {/* <Link to={'/posts/new'} className="link-container">Make post</Link> */}
             <button onClick={logout}>Sign Out</button>
         </div>
     )}

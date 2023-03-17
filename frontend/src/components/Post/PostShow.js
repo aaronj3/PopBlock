@@ -6,6 +6,7 @@ import CreateCommentForm from "../Comments/CreateCommentForm";
 import {useParams} from "react-router-dom";
 import {showLoginModal} from "../../store/ui";
 import {fetchComments, getComments} from "../../store/comments";
+import './Post.css'
 
 
 function PostShow(){
@@ -42,7 +43,6 @@ function PostShow(){
         const imgFlag = isImage(post.url);
         return (
             <>
-                hello from post show
                 <div className="showpage">
                     <div>
                         {imgFlag ? (
@@ -62,11 +62,11 @@ function PostShow(){
                         <br/>
                         <br/>
                     </div>
-                </div>
                 <div>
                     <Comments comments={comments}/>
-                </div>
                 {(sessionUser) ? <CreateCommentForm postId={postId}/> : <button className='requireLoginButton' onClick={()=>dispatch(showLoginModal())}>Log in to comment</button> }
+                </div>
+                </div>
             </>
         );
     }

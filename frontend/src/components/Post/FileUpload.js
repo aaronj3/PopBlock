@@ -1,7 +1,7 @@
 import {useState} from "react";
 import jwtFetch from "../../store/jwt";
 
-function FileUpload({area}) {
+function FileUpload({area, onCancel}) {
     const [selectedFile, setSelectedFile] = useState(null);
     const [content, setContent] = useState('');
 
@@ -35,6 +35,7 @@ function FileUpload({area}) {
         event.target.reset();
         setSelectedFile(null);
         setContent(null);
+        onCancel();
     };
   
     return (
