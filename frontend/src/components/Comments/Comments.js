@@ -35,7 +35,7 @@ function Comments({comments}) {
             <br></br>*/}
 
             <ol className="comments-list" id="restProfilecommentsContent">
-                {comments.map(comment=><Comment key={comment.id} comment={comment}/>)}
+                {comments.map(comment=><Comment key={comment._id} comment={comment}/>)}
             </ol>
         </>
         )
