@@ -1,5 +1,6 @@
 import { Link  } from "react-router-dom";
 import React from "react";
+import { useSelector } from "react-redux";
 import PostUpdateDeleteButtons from "./PostUpdateDeleteButtons";
 import './Post.css'
 
@@ -13,7 +14,9 @@ function PostIndexItem ({post}) {
         }
         return false;
     }
-
+    const sessionUser = useSelector(state => state.session.user);
+    console.log('session', sessionUser._id);
+    console.log('author', post.author._id);
 // Styling idea - make the background color of the post container the color associated with that user
     if(!post){
         return null
@@ -30,6 +33,7 @@ function PostIndexItem ({post}) {
                         <video src={post.url} controls width="500px"/>
                     )}
                     <div>{post.content}</div>
+                    {sessionUser === post.author ? <PostUpdateDeleteButtons post={post}/> : <></>}
                 </div>
 
             </div>
