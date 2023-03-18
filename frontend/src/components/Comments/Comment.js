@@ -11,7 +11,7 @@ function Comment({comment}){
             <section className="commenter-container">
                 <div className="commenter-avatar">??</div>
                 <p className="commenter-detail">{comment.author?.username}</p>
-                {sessionUser.id!== comment.authorId ? <UpdateDeleteButtons comment={comment}/> : <></>}
+                {sessionUser?.id!== comment.authorId ? <UpdateDeleteButtons comment={comment}/> : <></>}
             </section>
             <section className="comment-body-container">
 

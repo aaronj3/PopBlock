@@ -15,9 +15,8 @@ function PostIndexItem ({post}) {
         return false;
     }
     const sessionUser = useSelector(state => state.session.user);
-    console.log('session', sessionUser._id);
-    console.log('author', post.author._id);
-// Styling idea - make the background color of the post container the color associated with that user
+
+    // Styling idea - make the background color of the post container the color associated with that user
     if(!post){
         return null
     }else{
