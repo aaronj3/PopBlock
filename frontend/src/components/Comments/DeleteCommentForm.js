@@ -6,7 +6,7 @@ function DeleteCommentForm({ comment , setDeleteModalShow}) {
 
     const handleDeleteButtonClick = (e) => {
         e.preventDefault();
-        dispatch(deleteComment(comment.id))
+        dispatch(deleteComment(comment._id))
         setDeleteModalShow(false);
     }
 
