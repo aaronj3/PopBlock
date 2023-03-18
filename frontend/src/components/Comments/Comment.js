@@ -10,7 +10,7 @@ function Comment({comment}){
             <section className="commenter-container">
                 <div className="commenter-avatar">??</div>
                 <p className="commenter-detail">{comment.author?.username}</p>
-                {sessionUser?._id!== comment.authorId ? <UpdateDeleteButtons comment={comment}/> : <></>}
+                {sessionUser?._id !== comment.author._id ? <UpdateDeleteButtons comment={comment}/> : <></>}
             </section>
             <section className="comment-body-container">
 
