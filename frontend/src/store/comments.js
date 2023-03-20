@@ -22,10 +22,10 @@ const receiveComment = (Comment) => (
     }
 );
 
-const removeComment = (payload) => (
+const removeComment = (comment) => (
     {
         type: REMOVE_COMMENT,
-        payload
+        comment
     }
 );
 
@@ -97,24 +97,26 @@ export const updateComment = (commentData) => async dispatch => {
     }
 }
 
-export const deleteComment = (commentId) => async dispatch => {
-    const response = await jwtFetch(`/api/comments/${commentId}`, {
+export const deleteComment = (comment) => async dispatch => {
+    const response = await jwtFetch(`/api/comments/${comment._id}`, {
         method: "DELETE"
     });
     if (response.ok) {
-        dispatch(removeComment(commentId))
+        dispatch(removeComment(comment))
     }
 }
+
 
 export default function commentsReducer(oldState = {}, action) {
     switch (action.type) {
         case RECEIVE_COMMENTS:
             return action.comments
         case RECEIVE_COMMENT:
+            console.log(action.comment._id)
             return {...oldState, [action.comment._id] : action.comment}
         case REMOVE_COMMENT:
             let newState = {...oldState}
-            delete newState[action.payload]
+            delete newState[action.comment._id]
             return newState
         default:
             return oldState;
@@ -122,7 +124,6 @@ export default function commentsReducer(oldState = {}, action) {
 }
 
 const nullErrors = null;
-
 
 export const commentErrorsReducer = (state = nullErrors, action) => {
     switch(action.type) {

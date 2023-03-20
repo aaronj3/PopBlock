@@ -18,6 +18,7 @@ function UpdateCommentForm({ comment , setUpdateShowModal}) {
                 ...comment,
                 body: body
             }
+            console.log(newComment)
             dispatch(updateComment(newComment))
             setUpdateShowModal(false);
         }

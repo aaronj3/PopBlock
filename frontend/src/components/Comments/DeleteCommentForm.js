@@ -1,13 +1,14 @@
 import { useDispatch } from "react-redux";
-import { deleteComment } from "../../store/comments";
+import { deleteComment, fetchComments } from "../../store/comments";
 
-function DeleteCommentForm({ comment , setDeleteModalShow}) {
+function DeleteCommentForm({ comment , setDeleteModalShow, postId}) {
     const dispatch = useDispatch();
 
     const handleDeleteButtonClick = (e) => {
         e.preventDefault();
-        dispatch(deleteComment(comment._id))
+        dispatch(deleteComment(comment))
         setDeleteModalShow(false);
+        dispatch(fetchComments(postId))
     }
 
     return (
