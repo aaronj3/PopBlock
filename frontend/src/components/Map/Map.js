@@ -56,6 +56,14 @@ export default function Map(){
                 promoteId: 'ncode'
             });
 
+            let fillColors = [];
+            for(let i =1; i<41; i++){
+                let regionData = maxLikes.find(l => l.area == i);
+                let nColor = regionData ? regionData.author.color : "black";
+                fillColors.push(nColor);
+            }
+            console.log("fillColors", fillColors)
+
             map.current.addLayer({
                 id: 'sf-boundaries-fill',
                 type: 'fill',
@@ -70,7 +78,7 @@ export default function Map(){
                     'fill-color':
                         ['match',
                             ['get', 'ncode'],
-                            1, 'green', 2, 'green', 3, 'green', 4, 'green', 5, 'green', 6, 'green', 7, 'green', 8, 'green', 9, 'green', 10, 'green', 11, 'red', 12, 'red', 13, 'red', 14, 'red', 15, 'red', 16, 'red', 17, 'red', 18, 'red', 19, 'red', 20, 'red', 21, 'blue', 22, 'blue', 23, 'blue', 24, 'blue', 25, 'blue', 26, 'blue', 27, 'blue', 28, 'blue', 29, 'blue', 30, 'blue', 31, 'yellow', 32, 'yellow', 33, 'yellow', 34, 'yellow', 35, 'yellow', 36, 'yellow', 37, 'yellow', 38, 'yellow', 39, 'yellow', 40, 'yellow', "red"
+                            1, fillColors[0], 2, fillColors[1], 3, fillColors[2], 4, fillColors[3], 5, fillColors[4], 6, fillColors[5], 7, fillColors[6], 8, fillColors[7], 9, fillColors[8], 10, fillColors[9], 11, fillColors[10], 12, fillColors[11], 13, fillColors[12], 14, fillColors[13], 15, fillColors[14], 16, fillColors[15], 17, fillColors[16], 18, fillColors[17], 19, fillColors[18], 20, fillColors[19], 21, fillColors[20], 22, fillColors[21], 23, fillColors[22], 24, fillColors[23], 25, fillColors[24], 26, fillColors[25], 27, fillColors[26], 28, fillColors[27], 29, fillColors[28], 30, fillColors[29], 31, fillColors[30], 32, fillColors[31], 33, fillColors[32], 34, fillColors[33], 35, fillColors[34], 36, fillColors[35], 37, fillColors[36], 38, fillColors[37], 39, fillColors[38], 40, fillColors[39], "red"
                         ]
                 }
             })
@@ -127,10 +135,6 @@ export default function Map(){
                     const {nhood} = selectedN.properties;
                     const {ncode} = selectedN.properties;
                     const areaId = parseInt(`${ncode}`);
-                    // const post = useSelector(getPostByArea(`${id}`))
-                    // dispatch(fetchPostByArea(`${id}`));
-                    // const name = post.user.name
-                    // const name = topPosts.areaID(selectedN.id).name
                     const regionData = maxLikes.find(l => l.area == areaId)
                     const description = `<strong>${regionData?regionData.author.username:areaId}</strong> is poppin in the <a href="/posts/area/${areaId}" >${nhood} neighborhood</a>`
                     new mapboxgl.Popup()
@@ -193,6 +197,13 @@ export default function Map(){
                     .setLngLat(data)
                     .addTo(map.current);
             })
+
+            const nav = new mapboxgl.NavigationControl({
+                visualizePitch: true,
+                showCompass: true,
+                showZoom: true
+                });
+            map.current.addControl(nav, 'top-right');
         })
     }, []);
 
