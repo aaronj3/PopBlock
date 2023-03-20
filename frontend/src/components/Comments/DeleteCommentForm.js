@@ -8,7 +8,7 @@ function DeleteCommentForm({ comment , setDeleteModalShow, postId}) {
         e.preventDefault();
         dispatch(deleteComment(comment))
         setDeleteModalShow(false);
-        dispatch(fetchComments(postId))
+        // dispatch(fetchComments(postId))
     }
 
     return (

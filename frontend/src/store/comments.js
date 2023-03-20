@@ -84,9 +84,8 @@ export const createComment = (commentData) => async dispatch => {
 
 export const updateComment = (commentData) => async dispatch =>
 {
-    console.log(commentData)
     try {
-        const res = await jwtFetch(`/api/comments/${commentData._id}`, {
+        const res = await jwtFetch(`/api/comments/${commentData.post}`, {
             method: 'PUT',
             body: JSON.stringify(commentData)
         });
@@ -104,7 +103,8 @@ export const deleteComment = (comment) => async dispatch => {
         method: "DELETE"
     });
     if (response.ok) {
-        dispatch(removeComment(comment))
+        // dispatch(removeComment(comment))
+        dispatch(fetchComments(comment.post_id))
     }
 }
 
