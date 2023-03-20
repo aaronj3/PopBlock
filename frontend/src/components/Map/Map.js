@@ -185,7 +185,7 @@ export default function Map(){
 
             lngLat.forEach((data, index) => {
                 const div = document.createElement('div'); // Bayview Hunters
-                const regionData = maxLikes.find(l => l.area == index)
+                const regionData = maxLikes.find(l => l.area == index + 1)
                 div.textContent = regionData ? regionData.author.username : index;
                 div.className = 'marker'
                 div.style.backgroundColor = regionData ? regionData.author.color : "black";
