@@ -13,8 +13,6 @@
 .content-container {
     padding-top: 200px;
 }
-<<<<<<< HEAD
-=======
 
 .post-index-item {
     border-radius: 10px;
@@ -46,4 +44,3 @@
 #pop-button.roll {
   animation: roll 1s ease-in-out;
 }
->>>>>>> mapbox
