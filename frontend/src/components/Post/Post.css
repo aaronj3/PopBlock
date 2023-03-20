@@ -13,3 +13,37 @@
 .content-container {
     padding-top: 200px;
 }
+<<<<<<< HEAD
+=======
+
+.post-index-item {
+    border-radius: 10px;
+    box-shadow: 0 0 15px #dddddd; 
+}
+
+#pop-button {
+  transition: transform 0.2s ease-out;
+  animation: roll 1s ease-in-out;
+}
+
+@keyframes roll {
+  0% {
+    transform: translateY(-5px) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-30px) rotate(180deg);
+  }
+  100% {
+    transform: translateY(0) rotate(360deg);
+  }
+}
+
+
+#pop-button:active {
+  transform: translateY(-10px);
+}
+
+#pop-button.roll {
+  animation: roll 1s ease-in-out;
+}
+>>>>>>> mapbox

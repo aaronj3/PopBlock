@@ -4,7 +4,7 @@ import "./MainPage.css"
 function MainPage() {
 return (
     <div className ='main-page-content-container'>
-        <p> 🔥🔥See what's poppin on your block BITCH🔥🔥 </p>
+        <h1> 🔥🔥See what's poppin on your block🔥🔥 </h1>
         <Map />
         <footer>
             Copyright &copy; 2023 PopBlock

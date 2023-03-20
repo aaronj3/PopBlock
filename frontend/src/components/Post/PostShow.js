@@ -6,6 +6,7 @@ import CreateCommentForm from "../Comments/CreateCommentForm";
 import {useParams} from "react-router-dom";
 import {showLoginModal} from "../../store/ui";
 import {fetchComments, getComments} from "../../store/comments";
+import {useState} from "react";
 import './Post.css'
 
 
@@ -14,6 +15,27 @@ function PostShow(){
     const { postId } = useParams();
     const post = useSelector(getPost(postId));
     const comments = useSelector(getComments);
+    const [clicked, setClicked] = useState(false);
+    const [animationStyle, setAnimationStyle] = useState({});
+
+
+
+    // const toggleAnimationClass = () => {
+    //     setAnimationClass(animationClass === '' ? 'roll' : '');
+    //   };
+      
+
+      const handlePopClick = () => {
+        setClicked(true);
+        setAnimationStyle({ animation: 'roll 1s ease-in-out' });
+        dispatch(likePost(post));
+      };
+      
+      const resetAnimation = () => {
+        setAnimationStyle({});
+      };
+      
+      
 
     const likes = useSelector(state => {
         return state.posts[postId]?.likes
@@ -46,21 +68,27 @@ function PostShow(){
             <>
                 <div className="showpage">
                     <div className='content-container'>
+                    <h1>{post.content} by {post.author.username}</h1>
                         {imgFlag ? (
                             <img src={post.url} height='500px' width='500px' alt=''/>
                         ) : (
                             <video src={post.url} controls width="500px"/>
                         )}
                     </div>
-                    <div>{post.body}</div>
                     <div>
                         <br/>
                         <div>
                             Pops: {likes.length} &nbsp;&nbsp;
                             {(sessionUser) ?
-                            <button onClick={addLike}>
-                            {likes.includes(sessionUser._id)?'UNPOP':'POP'}
-                            </button>
+                           <button
+                           id="pop-button"
+                           style={animationStyle}
+                           onClick={handlePopClick}
+                           onAnimationEnd={resetAnimation}
+                         >
+                           {likes.includes(sessionUser._id) ? "UNPOP" : "POP"}
+                         </button>
+                         
                             : ""}
                         </div>
                         <br/>

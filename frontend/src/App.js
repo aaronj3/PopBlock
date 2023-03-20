@@ -26,6 +26,7 @@ function App() {
   
   return loaded && (
     <>
+      <div className="background">
       <NavBar/>
       <Switch>
         <Route exact path="/" component={MainPage} />
@@ -41,6 +42,7 @@ function App() {
         {/* <AuthRoute exact path="/login" component={LoginForm} /> */}
         {/* <AuthRoute exact path="/signup" component={SignupForm} /> */}
       </Switch>
+      </div>
     </>
   );
 }

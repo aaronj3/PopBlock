@@ -9,10 +9,11 @@ h1 {
     font-size:20px;
     font-weight: bold;
     text-decoration: underline;
-    padding-bottom: 20px;
-    margin-top: 20px;
+    /* padding-bottom: 20px; */
+    /* margin-top: 20px; */
+    margin: 5px;
 }
 
 .showpage {
-    padding-top: 10px !important;
+    padding-top: 10px !important;   
 }

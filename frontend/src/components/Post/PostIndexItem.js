@@ -27,13 +27,13 @@ function PostIndexItem ({post, index}) {
             <Link to={`/posts/${post._id}`}>
             <div className="showpage">
                 <div className="postContentContainer">
+                    <h1>#{rank} post by {post.author.username}</h1>
                     {imgFlag ? (
                         <img src={post.url} height='500px' width='500px' alt=''/>
                     ) : (
                         <video src={post.url} controls width="500px"/>
                     )}
-                    <div>#{rank} post by {post.author.username}</div>
-                    <div>{post.content}</div>
+                    <h2>{post.content}</h2>
                     {sessionUser === post.author ? <PostUpdateDeleteButtons post={post}/> : <></>}
                 </div>
 
