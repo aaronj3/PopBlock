@@ -1,4 +1,5 @@
 import jwtFetch from "./jwt";
+import {logoutUser} from "./session";
 
 export const RECEIVE_COMMENTS = "COMMENTS/RECEIVE"
 export const RECEIVE_COMMENT = "COMMENT/RECEIVE"
@@ -71,6 +72,9 @@ export const createComment = (commentData) => async dispatch => {
         });
         dispatch(fetchComments(commentData.post_id))
     } catch(err) {
+        if (err.status == 401) {
+            dispatch(logoutUser());
+        }
         const resBody = await err.json();
         if (resBody.statusCode === 400) {
             return dispatch(receiveErrors(resBody.errors));
@@ -107,7 +111,7 @@ export default function commentsReducer(oldState = {}, action) {
         case RECEIVE_COMMENTS:
             return action.comments
         case RECEIVE_COMMENT:
-            return {...oldState, [action.comment.id] : action.comment}
+            return {...oldState, [action.comment._id] : action.comment}
         case REMOVE_COMMENT:
             let newState = {...oldState}
             delete newState[action.payload]

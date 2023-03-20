@@ -56,7 +56,7 @@ router.get('/:id', async (req, res, next) => {
 // GET comments that belongs to a specific post.
 router.get('/post/:postId', async (req, res) => {
   try {
-    const comments = await Comment.find({ post: req.params.postId }).populate("author").populate("post").sort({ createdAt: -1 });
+    const comments = await Comment.find({ post: req.params.postId }).populate("author").populate("post", "_id").sort({ createdAt: -1 });
     return res.json(comments);
   }
   catch(err) {
@@ -103,14 +103,14 @@ router.put('/:id', requireUser, async (req, res, next) => {
     const updatedComment = await comment.save();
     
     // Find the post that the comment belongs to
-    const post = await Post.findById(comment.post);
+    // const post = await Post.findById(comment.post);
     
     // Return the updated comment with the post data included
     return res.json({
       _id: updatedComment._id,
       author: updatedComment.author,
       body: updatedComment.body,
-      post: post._id
+      post: updatedComment.post._id
     });
 
   }
@@ -122,10 +122,10 @@ router.put('/:id', requireUser, async (req, res, next) => {
 // DELETE comment.
 router.delete("/:id", requireUser, async (req, res, next) => {
   try {
-    const comments = await Comment.findById(req.params.id);
+    const comment = await Comment.findById(req.params.id);
 
-    if (comments && comments.author._id.toString() === req.user._id) {
-      comments.deleteOne();
+    if (comment && comment.author._id.toString() === req.user._id) {
+      comment.deleteOne();
       return res.json({ result: true });
     } else {
       console.log("No permissions")

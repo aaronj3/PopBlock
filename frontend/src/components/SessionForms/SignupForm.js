@@ -3,6 +3,8 @@ import {useDispatch, useSelector} from "react-redux";
 import {Redirect} from "react-router-dom";
 import {showLoginModal} from "../../store/ui";
 import * as sessionActions from "../../store/session";
+import sessionImg from '../../assets/images/popblockmap.png'
+import logo from '../../assets/images/logo.png'
 import "./SessionForms.css"
 
 //need to import sessionActions from store/session
@@ -41,13 +43,22 @@ function SignupForm() {
 
     return (
             <>
+            <div className="modal-container">
+            <div className="left-container">
+                <div className="pb-logo-container"><img className="logo1" src={logo}/></div>
+                <div className='under-logo-text'>Take over your city!</div>
+            <img src={sessionImg} className="sessionImg" alt="img"/>
+            </div>
+            <div className="right-container">
         <form onSubmit={handleSubmit}>
             <ul>
                 {errors.map(error=> <li key={error}>{error}</li>)}
             </ul>
 
-            <h2 className="modal-CTA-header">Make an account</h2>
-
+            <h2 className="modal-CTA-header">Welcome to PopBlock</h2>
+            <p className="modal-CTA-subtext">
+                            Create an account.
+                        </p>
             <br/>
 
             <label>
@@ -90,7 +101,9 @@ function SignupForm() {
         <div id="alternate-button-container">
             <button className="alternate-button" onClick={()=> dispatch(showLoginModal())}>Log In</button>
         </div>
-
+        </div>
+        </div>
+        
         </>
     );
     }

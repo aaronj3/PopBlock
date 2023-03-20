@@ -7,7 +7,7 @@ function DeletePostForm({ post , setDeleteModalShow}) {
 
     const handleDeleteButtonClick = (e) => {
         e.preventDefault();
-        dispatch(deletePost(post.id))
+        dispatch(deletePost(post._id))
         setDeleteModalShow(false);
     }
 

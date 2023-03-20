@@ -11,7 +11,7 @@ function UpdateDeleteButtons ({comment}) {
     const [deleteModalShow, setDeleteModalShow] = useState(false);
     const [updateModalShow, setUpdateShowModal] = useState(false);
     if (!sessionUser) return
-    if (comment.authorId !== sessionUser.id) return
+    if (comment.author._id !== sessionUser._id) return
 
 
     return (

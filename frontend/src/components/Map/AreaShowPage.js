@@ -51,9 +51,8 @@ function AreaShowPage() {
             {(sessionUser) ? <button className='uploadButton' onClick={handleUpload}>Upload</button> : <button className='requireLoginButton' onClick={()=>dispatch(showLoginModal())}>Log in to upload</button> }
         </div>
 
-
         <div className = "postsIndexContainer">
-            {posts.map((post)=> <PostIndexItem post={post} key={post.id}/>)}
+            {posts.sort((a, b) => b.likes.length - a.likes.length).map((post, index)=> <PostIndexItem index={index} post={post} key={post._id}/>)}
         </div>
 
         {uploadModal && (

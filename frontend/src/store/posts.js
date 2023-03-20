@@ -124,7 +124,7 @@ export const createPost = data => async dispatch => {
 
 export const updatePost = post => async dispatch => {
     try {
-        const res = await jwtFetch(`/api/posts/${post.id}`, {
+        const res = await jwtFetch(`/api/posts/${post._id}`, {
             method: 'PUT',
             body: JSON.stringify(post)
         });

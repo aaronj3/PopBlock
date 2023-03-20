@@ -12,7 +12,7 @@ function PostUpdateDeleteButtons ({post}) {
     const [deleteModalShow, setDeleteModalShow] = useState(false);
     const [updateModalShow, setUpdateShowModal] = useState(false);
     if (!sessionUser) return
-    if (post.author !== sessionUser.id) return
+    if (post.author !== sessionUser._id) return
 
     return (
         <div>

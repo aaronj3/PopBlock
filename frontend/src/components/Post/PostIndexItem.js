@@ -1,9 +1,10 @@
 import { Link  } from "react-router-dom";
 import React from "react";
+import { useSelector } from "react-redux";
 import PostUpdateDeleteButtons from "./PostUpdateDeleteButtons";
 import './Post.css'
 
-function PostIndexItem ({post}) {
+function PostIndexItem ({post, index}) {
     console.log('post in index item', post);
 
     const isImage = (filename) =>{
@@ -13,14 +14,16 @@ function PostIndexItem ({post}) {
         }
         return false;
     }
+    const sessionUser = useSelector(state => state.session.user);
+    const rank = index+1;
 
-// Styling idea - make the background color of the post container the color associated with that user
+    // Styling idea - make the background color of the post container the color associated with that user
     if(!post){
         return null
     }else{
         const imgFlag = isImage(post.url);
     return (
-        <>
+        <div className="post-index-item">
             <Link to={`/posts/${post._id}`}>
             <div className="showpage">
                 <div className="postContentContainer">
@@ -29,12 +32,14 @@ function PostIndexItem ({post}) {
                     ) : (
                         <video src={post.url} controls width="500px"/>
                     )}
+                    <div>#{rank} post by {post.author.username}</div>
                     <div>{post.content}</div>
+                    {sessionUser === post.author ? <PostUpdateDeleteButtons post={post}/> : <></>}
                 </div>
 
             </div>
             </Link>
-        </>
+        </div>
         )
     }
 

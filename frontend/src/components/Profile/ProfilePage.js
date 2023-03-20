@@ -27,7 +27,7 @@ function ProfilePage() {
                 <h1>Your posts</h1>
                 <br/>
                 {posts.length > 0 && (
-                    posts.map((post)=> <PostIndexItem post={post[0]} key={post.id}/>)
+                    posts.map((post)=> <PostIndexItem post={post} key={post._id}/>)
                 )}
                 {!loaded && (
                     <img src="http://webcreatorbox.com/sample/images/loading.gif"/>
