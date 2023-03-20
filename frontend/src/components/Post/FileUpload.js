@@ -1,5 +1,7 @@
 import {useState} from "react";
 import jwtFetch from "../../store/jwt";
+import logo from '../../assets/images/logo.png'
+import './FileUpload.css'
 
 function FileUpload({area, onCancel}) {
     const [selectedFile, setSelectedFile] = useState(null);
@@ -42,20 +44,28 @@ function FileUpload({area, onCancel}) {
         onCancel();
         setLoadingFlag(true);
     };
-  
+
     return (
-        <form onSubmit={handleFormSubmit} encType="multipart/form-data">
+        <form onSubmit={handleFormSubmit} encType="multipart/form-data" id="uploadForm">
             <div>
-                <input type={"file"} name="image" onChange={handleFileChange}/>
+                <h1>Upload your file here</h1>
                 <br/><br/>
+
+                <input id="upFile" type={"file"} name="image" onChange={handleFileChange}/>
+                <br/><br/>
+                <h2>Add a description:</h2>
+                <br></br>   
                 <input type="text" id="content" value={content} onChange={handleContentChange}/>
                 <br/><br/>
                 {!loadingFlag && (
-                <button type="submit">upload</button>
+                <button type="submit">Upload</button>
                 )}
                 {loadingFlag && (
                     <img src="http://webcreatorbox.com/sample/images/loading.gif"/>
                 )}
+            </div>
+            <div>
+            <img className="logo" src={logo}/>
             </div>
         </form>
     );

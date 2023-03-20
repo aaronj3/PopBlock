@@ -227,7 +227,7 @@ export default function Map(){
     }, []);
     
     return (
-    <div>
+    <div className="map-div">
         <div ref={mapContainer} className="map-container" />
     </div>
     );

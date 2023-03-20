@@ -40,14 +40,14 @@ function AreaShowPage() {
         e.preventDefault();
         setUploadModal(true);
     }
-    console.log('posts in show page', posts)
+    // console.log('posts in show page', posts)
     if (!posts){
         return null
     }else {
     return (
     <>
         <div id="areaShowPageHeader">
-            <h1>WHAT'S POPPIN IN {areaName}?</h1>
+            <h1>WHAT'S POPPIN IN  <span id="areaName">{areaName}</span>?</h1>
             {(sessionUser) ? <button className='uploadButton' onClick={handleUpload}>Upload</button> : <button className='requireLoginButton' onClick={()=>dispatch(showLoginModal())}>Log in to upload</button> }
         </div>
 
