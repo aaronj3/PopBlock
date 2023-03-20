@@ -5,6 +5,7 @@ import {useSelector} from "react-redux";
 
 function Comment({comment, postId}){
     const sessionUser = useSelector(state => state.session.user)
+    // console.log(postId)
     return (
         <li className="comment-container">
             <section className="commenter-container">

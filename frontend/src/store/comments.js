@@ -103,8 +103,8 @@ export const deleteComment = (comment) => async dispatch => {
         method: "DELETE"
     });
     if (response.ok) {
-        // dispatch(removeComment(comment))
-        dispatch(fetchComments(comment.post_id))
+        dispatch(removeComment(comment))
+        // dispatch(fetchComments(comment.post_id))
     }
 }
 

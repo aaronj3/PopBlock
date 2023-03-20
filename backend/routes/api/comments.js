@@ -13,7 +13,7 @@ router.get('/', async (req, res) => {
   }
   catch(err) {
     return res.json([{ message: "Error retrieving comments" }]);
-  }  
+  }
 });
 
 
@@ -61,7 +61,7 @@ router.get('/post/:postId', async (req, res) => {
   }
   catch(err) {
     return res.json([{ message: "Error retrieving comments" }]);
-  }  
+  }
 });
 
 // POST (create) comment that belongs to a specific post.
@@ -70,7 +70,7 @@ router.post('/:postId', requireUser, async (req, res, next) => {
     author: req.user._id,
     post: req.params.postId,
     body: req.body.body
-  })  
+  })
 
 
   let comments = await newComment.save()
@@ -81,30 +81,30 @@ router.post('/:postId', requireUser, async (req, res, next) => {
 router.put('/:id', requireUser, async (req, res, next) => {
   const { body } = req.body;
   const { id } = req.params;
-  
+
   try {
     const comment = await Comment.findById(id).populate("author").populate("post");
-    
+
     if (!comment) {
       const err = new Error('Comment not found');
       err.statusCode = 404;
       err.errors = { message: "No comment found with that id" };
       return next(err);
     }
-    
-    if (comment.author._id.toString() !== req.user._id) {
+
+    if (comment.author._id.toString() !== req.user._id.toString()) {
       const err = new Error('Unauthorized');
       err.statusCode = 401;
       err.errors = { message: "You are not authorized to update this comment" };
       return next(err);
     }
-    
+
     comment.body = body;
     const updatedComment = await comment.save();
-    
+
     // Find the post that the comment belongs to
     // const post = await Post.findById(comment.post);
-    
+
     // Return the updated comment with the post data included
     return res.json({
       _id: updatedComment._id,
@@ -123,8 +123,13 @@ router.put('/:id', requireUser, async (req, res, next) => {
 router.delete("/:id", requireUser, async (req, res, next) => {
   try {
     const comment = await Comment.findById(req.params.id);
+    console.log(comment)
+    // console.log(`COMMENT AUTHOR: ${comment.author._id}`)
+    // console.log(`REQ USER ID: ${req.user._id} `)
+    // console.log(`TESTING: ${comment.author._id.toString() === req.user._id.toString()}`)
 
-    if (comment && comment.author._id.toString() === req.user._id) {
+    if (comment && comment.author._id.toString() === req.user._id.toString()) {
+      console.log("Delete successful")
       comment.deleteOne();
       return res.json({ result: true });
     } else {
