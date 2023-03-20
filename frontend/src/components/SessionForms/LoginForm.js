@@ -3,6 +3,9 @@ import { useDispatch } from "react-redux";
 import DemoLogin from "./DemoLogin.js";
 import { showSignupModal } from "../../store/ui";
 import * as sessionActions from "../../store/session";
+import sessionImg from '../../assets/images/popblockmap.png'
+import logo from '../../assets/images/logo.png'
+
 import './SessionForms.css'
 
 
@@ -34,13 +37,20 @@ function LoginForm() {
 
     return (
         <>
+        <div className="modal-container">
+            <div className="left-container">
+                <div className="pb-logo-container"><img className="logo1" src={logo}/></div>
+                <div className='under-logo-text'>Take over your city!</div>
+            <img src={sessionImg} className="sessionImg" alt="img"/>
+            </div>
+            <div className="right-container">
             <form onSubmit={handleSubmit}>
                 <ul>
                     {errors.map(error => <li key={error} className="error-messages">{error}</li>)}
                 </ul>
                 <div className="form-container">
                     <div className="form-body-container" >
-                        <h2 className="modal-CTA-header">Enter your username and password</h2>
+                        <h2 className="modal-CTA-header">Welcome back!</h2>
                         <p className="modal-CTA-subtext">
                             Enter the login credentials associated with your PopBlock account.
                         </p>
@@ -83,6 +93,8 @@ function LoginForm() {
 
             <div id="alternate-button-container">
                 <button className="alternate-button" onClick={()=>dispatch(showSignupModal())}>Sign Up</button>
+            </div>
+            </div>
             </div>
         </>
     );

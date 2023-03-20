@@ -11,6 +11,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    z-index: 10;
 }
 
 #modal-background {
@@ -20,14 +21,16 @@
     left: 0;
     bottom: 0;
     background-color: rgba(0, 0, 0, 0.7);
+    
 }
 
 #modal-content {
     position: absolute;
-    background-color:white;
+    background-color: white;
     padding: 72px 32px 48px 32px;
-    width: 396px;
-    height: 673px;
+    width: 800px;
+    height: 400px;
+    
 }
 
 .alternate-button {
@@ -47,4 +50,41 @@
 #alternate-button-container {
     text-align: center;
     margin-top: 16px;
+}
+
+.modal-container {
+    display: flex;
+    justify-content: space-around;
+    background-color: white;
+    margin-top: -20px;
+    border-radius: 20px;
+    padding: 10px;
+
+
+}
+.sessionImg {
+    height: 300px;
+    border-radius: 10px;
+    margin-top: 10px;
+}
+
+.right-container {
+    width: 300px;
+    padding: 0;
+}
+.left-container {
+    border-right: solid grey 1px;
+    padding-right: 30px;
+    margin-right: 20px;
+}
+
+.logo1 {
+
+    width: 300px;
+    height: 90px;
+}
+
+.under-logo-text {
+    text-align: center;
+    font-weight: bolder;
 }

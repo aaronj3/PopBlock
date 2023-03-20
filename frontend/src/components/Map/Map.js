@@ -145,7 +145,7 @@ export default function Map(){
                     } else {
                         classN = "blue"
                     }
-                    const description = `<strong>${regionData?regionData.author.username:areaId}</strong> <h4>is</h4>  <h3>POPPIN</h3> <h4> in the</h4><h4> <a href="/posts/area/${areaId}" >${nhood} neighborhood</a></h4>`
+                    const description = `<strong>${regionData?regionData.author.username:areaId}</strong> <h4>is poppin in the</h4><h4> <a href="/posts/area/${areaId}" >${nhood} neighborhood</a></h4>`
                     new mapboxgl.Popup({className: classN})
                         .setLngLat(e.lngLat)
                         .setHTML(description)
