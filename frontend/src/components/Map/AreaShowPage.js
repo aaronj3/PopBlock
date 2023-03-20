@@ -52,7 +52,7 @@ function AreaShowPage() {
         </div>
 
         <div className = "postsIndexContainer">
-            {posts.sort((a, b) => b.likes.length - a.likes.length).map((post)=> <PostIndexItem post={post} key={post._id}/>)}
+            {posts.sort((a, b) => b.likes.length - a.likes.length).map((post, index)=> <PostIndexItem index={index} post={post} key={post._id}/>)}
         </div>
 
         {uploadModal && (
