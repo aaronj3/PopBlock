@@ -1,14 +1,20 @@
 .postContentContainer {
-    margin-bottom: 80px;
+    margin-bottom: 10px;
 
 }
 
 .showpage {
     padding-top: 200px; 
     padding-left: 60px;
-    padding-bottom: 200px;
+    padding-right: 60px;
+    padding-bottom: 100px;
 }
 
 .content-container {
     padding-top: 200px;
+}
+
+.post-index-item {
+    border-radius: 10px;
+    box-shadow: 0 0 15px #dddddd; 
 }
