@@ -123,7 +123,7 @@ router.put('/:id', requireUser, async (req, res, next) => {
 router.delete("/:id", requireUser, async (req, res, next) => {
   try {
     const comment = await Comment.findById(req.params.id);
-    console.log(comment)
+    // console.log(comment)
     // console.log(`COMMENT AUTHOR: ${comment.author._id}`)
     // console.log(`REQ USER ID: ${req.user._id} `)
     // console.log(`TESTING: ${comment.author._id.toString() === req.user._id.toString()}`)

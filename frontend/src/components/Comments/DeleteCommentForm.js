@@ -3,7 +3,7 @@ import { deleteComment, fetchComments } from "../../store/comments";
 
 function DeleteCommentForm({ comment, setDeleteModalShow, postId}) {
     const dispatch = useDispatch();
-    console.log(postId)
+    // console.log(postId)
 
 
     const handleDeleteButtonClick = (e) => {

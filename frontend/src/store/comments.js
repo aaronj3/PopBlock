@@ -114,7 +114,7 @@ export default function commentsReducer(oldState = {}, action) {
         case RECEIVE_COMMENTS:
             return action.comments
         case RECEIVE_COMMENT:
-            console.log(action.comment._id)
+            // console.log(action.comment._id)
             return {...oldState, [action.comment._id] : action.comment}
         case REMOVE_COMMENT:
             let newState = {...oldState}

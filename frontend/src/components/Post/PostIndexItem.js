@@ -5,7 +5,7 @@ import PostUpdateDeleteButtons from "./PostUpdateDeleteButtons";
 import './Post.css'
 
 function PostIndexItem ({post, index}) {
-    console.log('post in index item', post);
+    // console.log('post in index item', post);
 
     const isImage = (filename) =>{
         var ext = filename?.split('.').pop().toLowerCase();
