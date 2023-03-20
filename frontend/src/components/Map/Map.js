@@ -62,7 +62,6 @@ export default function Map(){
                 let nColor = regionData ? regionData.author.color : "black";
                 fillColors.push(nColor);
             }
-            console.log("fillColors", fillColors)
 
             map.current.addLayer({
                 id: 'sf-boundaries-fill',
@@ -136,8 +135,18 @@ export default function Map(){
                     const {ncode} = selectedN.properties;
                     const areaId = parseInt(`${ncode}`);
                     const regionData = maxLikes.find(l => l.area == areaId)
-                    const description = `<strong>${regionData?regionData.author.username:areaId}</strong> is poppin in the <a href="/posts/area/${areaId}" >${nhood} neighborhood</a>`
-                    new mapboxgl.Popup()
+                    let classN = "green"
+                    if (regionData.author.color === "#F39C12"){
+                        classN = "orange"
+                    } else if(regionData.author.color === "#1ABC9C"){
+                        classN = "green"
+                    } else if (regionData.author.color === "#E74C3C") {
+                        classN = "red"
+                    } else {
+                        classN = "blue"
+                    }
+                    const description = `<strong>${regionData?regionData.author.username:areaId}</strong> <h4>is</h4>  <h3>POPPIN</h3> <h4> in the</h4><h4> <a href="/posts/area/${areaId}" >${nhood} neighborhood</a></h4>`
+                    new mapboxgl.Popup({className: classN})
                         .setLngLat(e.lngLat)
                         .setHTML(description)
                         .addTo(map.current);
@@ -147,7 +156,7 @@ export default function Map(){
             const lngLat = [
                 [-122.430420, 37.780713],
                 [-122.459853, 37.736381],
-                [-122.408208, 37.710768],
+                [-122.413208, 37.710768],
                 [-122.450358, 37.751458],
                 [-122.404476, 37.778542],
                 [-122.452269, 37.786009],
@@ -178,9 +187,9 @@ export default function Map(){
                 [-122.443236, 37.768976],
                 [-122.481362, 37.769060],
                 [-122.465290, 37.780804],
-                [-122.434959, 37.735655],
+                [-122.434959, 37.738900],
                 [-122.398942, 37.786973],
-                [-122.432141, 37.717058],
+                [-122.433141, 37.717058],//-122.432141
                 [-122.406955, 37.795075],
                 [-122.434738, 37.760814],
                 [-122.414239, 37.740596],
