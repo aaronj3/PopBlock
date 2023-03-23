@@ -14,7 +14,7 @@ function Comments({comments}) {
 
     useEffect(()=> {
         // console.log(comments.length)
-        console.log(postId)
+        // console.log(postId)
         dispatch(fetchComments(postId))
     }, [dispatch, postId, comments.length])
 
