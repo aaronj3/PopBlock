@@ -16,7 +16,7 @@ function PostIndexItem ({post, index}) {
     }
     const sessionUser = useSelector(state => state.session.user);
     const rank = index+1;
-
+    // console.log(index, "index");
     // Styling idea - make the background color of the post container the color associated with that user
     if(!post){
         return null

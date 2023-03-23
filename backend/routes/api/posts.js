@@ -141,10 +141,33 @@ router.get('/:id', async (req, res, next) => {
 
 
 // GET posts that belongs to a specific area.
+// router.get('/area/:areaId', async (req, res, next) => {
+//   try {
+//     const posts = await Post.find({ area: req.params.areaId}).populate("author").sort({ "likes.length": -1 });
+//     return res.json(posts);
+//   }
+//   catch(err) {
+//     const error = new Error('Post not found');
+//     error.statusCode = 404;
+//     error.errors = { message: "No post found with that id" };
+//     return next(error);
+//   }
+// })
 router.get('/area/:areaId', async (req, res, next) => {
   try {
-    const post = await Post.find({ area: req.params.areaId}).populate("author");
-    return res.json(post);
+    const posts = await Post.find({ area: req.params.areaId })
+      .populate("author")
+      .lean()
+      .exec();
+
+    const postsWithLikesCount = posts.map(post => ({
+      ...post,
+      likes_count: post.likes ? post.likes.length : 0
+    }));
+
+    const sortedPosts = postsWithLikesCount.sort((a, b) => b.likes_count - a.likes_count);
+
+    return res.json(sortedPosts);
   }
   catch(err) {
     const error = new Error('Post not found');
@@ -152,7 +175,8 @@ router.get('/area/:areaId', async (req, res, next) => {
     error.errors = { message: "No post found with that id" };
     return next(error);
   }
-})
+});
+
 
 
 
@@ -200,7 +224,7 @@ router.post('/:id/likes', requireUser, async (req, res, next) => {
 
 // Update post.
 router.put('/:id', requireUser, validatePostInput, async (req, res, next) => {
-  const { area, content } = req.body;
+  const content = req.body.content;
   const { id } = req.params;
 
   try {
@@ -213,18 +237,26 @@ router.put('/:id', requireUser, validatePostInput, async (req, res, next) => {
       return next(err);
     }
 
-    if (post.author._id.toString() !== req.user._id) {
+    if (post.author._id.toString() !== req.user._id.toString()) {
       const err = new Error('Unauthorized');
       err.statusCode = 401;
       err.errors = { message: "You are not authorized to update this post" };
       return next(err);
     }
 
-    post.area = area;
+    // post.area = area;
     post.content = content;
 
     const updatedPost = await post.save();
-    return res.json(updatedPost);
+    // return res.json(updatedPost);
+    return res.json({
+      _id: updatedPost._id,
+      author: updatedPost.author,
+      url: updatedPost.url,
+      likes: updatedPost.likes,
+      area: updatedPost.area,
+      content: updatedPost.content
+    });
   }
   catch(err) {
     next(err);
@@ -234,7 +266,8 @@ router.put('/:id', requireUser, validatePostInput, async (req, res, next) => {
 // DELETE post.
 router.delete('/:id', requireUser, async (req, res, next) => {
   const post = await Post.findById(req.params.id)
-  if (post && post.author._id.toString() === req.user._id ) {
+  if (post && post.author._id.toString() === req.user._id.toString()) {
+    console.log("Delete successful");
     post.deleteOne();
   } else {
     console.log("No permissions")

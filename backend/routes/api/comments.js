@@ -129,7 +129,7 @@ router.delete("/:id", requireUser, async (req, res, next) => {
     // console.log(`TESTING: ${comment.author._id.toString() === req.user._id.toString()}`)
 
     if (comment && comment.author._id.toString() === req.user._id.toString()) {
-      console.log("Delete successful")
+      console.log("Delete successful");
       comment.deleteOne();
       return res.json({ result: true });
     } else {

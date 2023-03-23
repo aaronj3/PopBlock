@@ -7,6 +7,7 @@ import {useParams} from "react-router-dom";
 import {showLoginModal} from "../../store/ui";
 import {fetchComments, getComments} from "../../store/comments";
 import {useState} from "react";
+import PostUpdateDeleteButtons from "./PostUpdateDeleteButtons";
 import './Post.css'
 
 
@@ -78,6 +79,7 @@ function PostShow(){
                     <div>
                         <br/>
                         <div>
+                            <PostUpdateDeleteButtons post={post}/>
                             Pops: {likes.length} &nbsp;&nbsp;
                             {(sessionUser) ?
                            <button

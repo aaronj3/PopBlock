@@ -9,6 +9,9 @@ function DeleteCommentForm({ comment, setDeleteModalShow, postId}) {
     const handleDeleteButtonClick = (e) => {
         e.preventDefault();
         dispatch(deleteComment(comment))
+        // console.log(comment.postId)
+        // console.log(comment.post._id)
+        // dispatch(fetchComments(postId))
         setDeleteModalShow(false);
         // dispatch(fetchComments(postId))
     }

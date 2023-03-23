@@ -13,8 +13,10 @@ function Comments({comments}) {
 
 
     useEffect(()=> {
+        // console.log(comments.length)
+        console.log(postId)
         dispatch(fetchComments(postId))
-    }, [dispatch, postId])
+    }, [dispatch, postId, comments.length])
 
     if (comments.length == 0) {
         return null

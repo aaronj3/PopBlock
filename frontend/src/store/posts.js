@@ -122,14 +122,14 @@ export const createPost = data => async dispatch => {
     }
 };
 
-export const updatePost = post => async dispatch => {
+export const updatePost = oldpost => async dispatch => {
     try {
-        const res = await jwtFetch(`/api/posts/${post._id}`, {
+        const res = await jwtFetch(`/api/posts/${oldpost._id}`, {
             method: 'PUT',
-            body: JSON.stringify(post)
+            body: JSON.stringify(oldpost)
         });
-        const post = await res.json();
-        dispatch(receivePost(post));
+        const updatedPost = await res.json();
+        dispatch(receivePost(updatedPost));
     } catch(err) {
         const resBody = await err.json();
         if (resBody.statusCode === 400) {

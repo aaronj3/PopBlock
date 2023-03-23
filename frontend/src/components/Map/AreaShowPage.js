@@ -8,8 +8,6 @@ import { showLoginModal } from "../../store/ui";
 import { Modal } from "../../context/Modal";
 import './Map.css';
 
-
-
 function AreaShowPage() {
     const { areaId } = useParams();
     const dispatch = useDispatch();

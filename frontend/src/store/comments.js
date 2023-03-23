@@ -52,7 +52,9 @@ export const getComment = (commentId) => (state) => (
 
 export const fetchComments = (postId) => async dispatch => {
     try {
+        console.log(postId)
         const url = postId ? `/api/comments/post/${postId}` : `/api/comments/user`
+        // const url =  `/api/comments/post/${postId}` 
         const res = await jwtFetch(url);
         const comments = await res.json();
         dispatch(receiveComments(comments));
@@ -85,10 +87,11 @@ export const createComment = (commentData) => async dispatch => {
 export const updateComment = (commentData) => async dispatch =>
 {
     try {
-        const res = await jwtFetch(`/api/comments/${commentData.post}`, {
+        const res = await jwtFetch(`/api/comments/${commentData._id}`, {
             method: 'PUT',
             body: JSON.stringify(commentData)
         });
+        console.log(commentData.post_id)
         dispatch(fetchComments(commentData.post_id))
     } catch(err) {
         const resBody = await err.json();
@@ -118,6 +121,7 @@ export default function commentsReducer(oldState = {}, action) {
             return {...oldState, [action.comment._id] : action.comment}
         case REMOVE_COMMENT:
             let newState = {...oldState}
+            console.log(action.comment._id)
             delete newState[action.comment._id]
             return newState
         default:

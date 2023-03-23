@@ -5,21 +5,23 @@ import { updatePost } from "../../store/posts";
 
 function UpdatePostForm({ post , setUpdateShowModal}) {
     const dispatch = useDispatch();
-    const [body, setBody] = useState(post.body);
+    const [content, setContent] = useState(post.content);
     const [errors, setErrors] = useState([]);
 
 
     const handleUpdateSubmit = (e) => {
         console.log("handle update being logged")
         e.preventDefault();
-        if (!body) {
+        if (!content) {
+            console.log("error??")
             setErrors(["Must fill out all fields"]);
         } else {
+            console.log("found the post!!")
             let newPost = {
                 ...post,
-                body: body
+                content: content
             }
-            dispatch(updatePost(post))
+            dispatch(updatePost(newPost))
             setUpdateShowModal(false);
         }
     }
@@ -30,8 +32,8 @@ function UpdatePostForm({ post , setUpdateShowModal}) {
                 <ul>
                     {errors.map(error => <li key={error} className="error-messages">{error}</li>)}
                 </ul>
-                <label>Body
-                    <input type="textarea" value={body} onChange={(e) => {setBody(e.target.value)}} ></input>
+                <label>Description
+                    <input type="textarea" value={content} onChange={(e) => {setContent(e.target.value)}} ></input>
                 </label>
 
                 <button>Submit</button>

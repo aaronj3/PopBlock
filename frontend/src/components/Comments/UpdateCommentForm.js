@@ -1,6 +1,7 @@
 import { useDispatch } from "react-redux";
 import { updateComment } from "../../store/comments";
 import { useState } from "react";
+import { fetchComments } from "../../store/comments";
 
 function UpdateCommentForm({ comment , setUpdateShowModal}) {
     const dispatch = useDispatch();
@@ -19,6 +20,7 @@ function UpdateCommentForm({ comment , setUpdateShowModal}) {
                 body: body
             }
             dispatch(updateComment(newComment))
+            // dispatch(fetchComments(comment.post._id))
             setUpdateShowModal(false);
         }
     }
