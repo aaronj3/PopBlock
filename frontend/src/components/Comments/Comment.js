@@ -5,11 +5,11 @@ import {useSelector} from "react-redux";
 
 function Comment({comment, postId}){
     const sessionUser = useSelector(state => state.session.user)
-    // console.log(postId)
+
     return (
         <li className="comment-container">
             <section className="commenter-container">
-                <div className="commenter-avatar">??</div>
+                <div className="commenter-avatar">{comment.author.username[0]}</div>
                 <p className="commenter-detail">{comment.author?.username}</p>
                 {sessionUser?._id === comment.author._id ? <UpdateDeleteButtons comment={comment} postId={postId}/> : <></>}
             </section>
