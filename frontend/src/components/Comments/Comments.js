@@ -34,9 +34,6 @@ function Comments({comments}) {
                 </header>
             </header>
 
-            {/*<CreateCommentForm/>
-
-            <br></br>*/}
 
             <ol className="comments-list" id="restProfilecommentsContent">
                 {comments.map(comment=><Comment key={comment._id} comment={comment} postId={postId}/>)}
