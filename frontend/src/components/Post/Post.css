@@ -79,6 +79,11 @@
   height: 40vh;
 }
 
+.comments-list {
+  overflow-y: scroll;
+  height: 40vh;
+}
+
 .media-container {
     padding-top: 200px;
 }
