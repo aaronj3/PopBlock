@@ -9,7 +9,7 @@ function Comment({comment, postId}){
     return (
         <li className="comment-container">
             <section className="commenter-container">
-                <div className="commenter-avatar">{comment.author.username[0]}</div>
+                <div className="commenter-avatar" style={{background: comment.author.color}}>{comment.author.username[0].toUpperCase()}</div>
                 <p className="commenter-detail">{comment.author?.username}</p>
                 {sessionUser?._id === comment.author._id ? <UpdateDeleteButtons comment={comment} postId={postId}/> : <></>}
             </section>
