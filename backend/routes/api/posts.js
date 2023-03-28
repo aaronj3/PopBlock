@@ -46,9 +46,65 @@ router.get('/', async (req, res) => {
   }
 });
 
+// router.get('/likes',async (req, res, next) => {
+//   try {
+//     const post = await Post.aggregate([
+//       // Select the `area` and `likes` fields, and populate the `author` field.
+//       {
+//         $project: {
+//           area: 1,
+//           likes: 1,
+//           author: 1,
+//         },
+//       },
+//       {
+//         $lookup: {
+//           from: 'users',
+//           localField: 'author',
+//           foreignField: '_id',
+//           as: 'author',
+//         },
+//       },
+//       {
+//         $unwind: '$author',
+//       },
+//       // Group by `area`.
+//       {
+//         $group: {
+//           _id: '$area',
+//           // Sort the `likes` field in descending order.
+//           max_likes: {
+//             $max: '$likes',
+//           },
+//           // Select the first document in each group.
+//           doc: {
+//             $first: '$$ROOT',
+//           },
+//         },
+//       },
+//       // Select the `author` field from the selected document.
+//       {
+//         $project: {
+//           _id: 0,
+//           area: '$_id',
+//           author: '$doc.author',
+//         },
+//       },
+//     ]);
+
+//     return res.json(post);
+//   }
+//   catch(err) {
+//     const error = new Error('Post not found');
+//     error.statusCode = 404;
+//     error.errors = { message: "No post found with that id" };
+//     return next(error);
+//   }
+// });
+
 router.get('/likes',async (req, res, next) => {
   try {
-    const post = await Post.aggregate([
+    const posts = await Post.aggregate([
       // Select the `area` and `likes` fields, and populate the `author` field.
       {
         $project: {
@@ -72,27 +128,23 @@ router.get('/likes',async (req, res, next) => {
       {
         $group: {
           _id: '$area',
-          // Sort the `likes` field in descending order.
-          max_likes: {
-            $max: '$likes',
-          },
-          // Select the first document in each group.
-          doc: {
-            $first: '$$ROOT',
-          },
-        },
+          // Get the maximum `likes` array field length in each group.
+          max_likes: { $max: { $size: '$likes' } },
+          // Sort the documents within each group by the `likes` array field length in descending order.
+          docs: { $push: { doc: '$$ROOT', likesCount: { $size: '$likes' } } },
+        }
       },
-      // Select the `author` field from the selected document.
       {
         $project: {
           _id: 0,
           area: '$_id',
-          author: '$doc.author',
-        },
+          // Get the first document in the sorted list of documents in each group.
+          author: { $arrayElemAt: ['$docs.doc.author', { $indexOfArray: ['$docs.likesCount', '$max_likes'] }] }
+        }
       },
     ]);
 
-    return res.json(post);
+    return res.json(posts);
   }
   catch(err) {
     const error = new Error('Post not found');
@@ -101,7 +153,6 @@ router.get('/likes',async (req, res, next) => {
     return next(error);
   }
 });
-
 
 // GET posts that belongs to a specific user.
 router.get('/user', requireUser, async (req, res, next) => {
