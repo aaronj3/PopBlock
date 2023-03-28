@@ -102,6 +102,15 @@
   overflow: hidden;
 }
 
+.media-container {
+    padding-top: 200px;
+}
+
+.content-info-container {
+  padding-top: 200px;
+  margin-left: 40px;
+}
+
 @media screen and (max-width: 992px) {
   .postContentContainer {
     padding: 20px;
