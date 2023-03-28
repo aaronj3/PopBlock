@@ -8,15 +8,22 @@
     padding-left: 60px;
     padding-right: 60px;
     padding-bottom: 100px;
+    display: flex;
+    flex-direction: row;
 }
 
-.content-container {
+.media-container {
     padding-top: 200px;
+}
+
+.content-info-container {
+  padding-top: 200px;
+  margin-left: 40px;
 }
 
 .post-index-item {
     border-radius: 10px;
-    box-shadow: 0 0 15px #dddddd; 
+    box-shadow: 0 0 15px #dddddd;
 }
 
 #pop-button {
