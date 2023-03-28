@@ -27,7 +27,9 @@ function Comments({comments}) {
             <header className="profile-section-container">
                 <header className="section-header">
                     <div className="comment-header">
-                        <h2 className="header-text">What {comments.length} people are saying</h2>
+                        {comments.length === 1 ?
+                        (<h2 className="header-text">What {comments.length} person is saying</h2>
+                        ) : (<h2 className="header-text">What {comments.length} people are saying</h2>)}
                     </div>
                 </header>
             </header>
