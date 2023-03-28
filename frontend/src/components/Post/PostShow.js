@@ -94,14 +94,14 @@ function PostShow(){
                                         {likes.includes(sessionUser._id) ? "UNPOP" : "POP"}
                                     </button>
                                 : ""}
+                            <div className="comments-div">
+                                <Comments comments={comments}/>
+                                {(sessionUser) ? <CreateCommentForm postId={postId}/> : <button className='requireLoginButton' onClick={()=>dispatch(showLoginModal())}>Log in to comment</button> }
+                            </div>
                         </div>
                         <br/>
                         <br/>
                     </div>
-                </div>
-                <div>
-                    <Comments comments={comments}/>
-                    {(sessionUser) ? <CreateCommentForm postId={postId}/> : <button className='requireLoginButton' onClick={()=>dispatch(showLoginModal())}>Log in to comment</button> }
                 </div>
             </>
         );

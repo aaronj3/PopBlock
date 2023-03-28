@@ -8,8 +8,14 @@
     padding-left: 60px;
     padding-right: 60px;
     padding-bottom: 100px;
+    height: 80vh;
     display: flex;
     flex-direction: row;
+}
+
+.comments-list {
+  overflow-y: scroll;
+  height: 40vh;
 }
 
 .media-container {
