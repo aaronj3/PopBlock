@@ -316,16 +316,29 @@ router.put('/:id', requireUser, validatePostInput, async (req, res, next) => {
 
 // DELETE post.
 router.delete('/:id', requireUser, async (req, res, next) => {
-  const post = await Post.findById(req.params.id)
-  if (post && post.author._id.toString() === req.user._id.toString()) {
-    console.log("Delete successful");
-    post.deleteOne();
-  } else {
-    console.log("No permissions")
-    return res.json({result:false});
+  try {
+    const post = await Post.findById(req.params.id);
+
+    if (post && post.author._id.toString() === req.user._id.toString()) {
+      console.log("Delete successful");
+      post.deleteOne();
+      return res.json({ result: true });
+    } else {
+      console.log("No permissions")
+      const error = new Error('Unauthorized');
+      error.statusCode = 401;
+      error.errors = { message: "You are not authorized to delete this post" };
+      return next(error);
+    }
+  } catch (err) {
+    console.error(err);
+    const error = new Error('Server error');
+    error.statusCode = 500;
+    error.errors = { message: "There was a problem deleting the post" };
+    return next(error);
   }
-  return res.json({result:true});
 });
+
 
 
 module.exports = router;
