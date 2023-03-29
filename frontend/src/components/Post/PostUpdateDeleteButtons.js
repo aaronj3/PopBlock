@@ -6,6 +6,7 @@ import DeletePostForm from "./DeletePostForm"
 import UpdatePostForm from "./UpdatePostForm"
 
 
+
 function PostUpdateDeleteButtons ({post}) {
     const dispatch = useDispatch();
     const sessionUser = useSelector(state => state.session.user)
@@ -16,21 +17,22 @@ function PostUpdateDeleteButtons ({post}) {
 
     return (
         <div>
-            <button onClick={() => setDeleteModalShow(true)}>Delete</button>
+            <button onClick={() => setDeleteModalShow(true)}>
+                Delete
+            </button>
             {deleteModalShow && (
                 <Modal onClose={() => setDeleteModalShow(false)}>
                     <DeletePostForm post={post} setDeleteModalShow={setDeleteModalShow}/>
                 </Modal>
                 )}
 
-            <button onClick={() => setUpdateShowModal(true)}>Update</button>
+            <button onClick={() => setUpdateShowModal(true)}>Fuck</button>
             {updateModalShow && (
                 <Modal onClose={() => setUpdateShowModal(false)}>
                     <UpdatePostForm post={post} setUpdateShowModal={setUpdateShowModal}/>
                 </Modal>
                 )}
         </div>
-
         )
 }
 

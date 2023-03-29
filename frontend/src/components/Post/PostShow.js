@@ -30,8 +30,6 @@ function PostShow(){
         setAnimationStyle({});
       };
 
-
-
     const likes = useSelector(state => {
         return state.posts[postId]?.likes
     });
@@ -73,17 +71,16 @@ function PostShow(){
                     </div>
 
                     <div className='content-info-container'>
+                        <div className="likes-container">
+                            <img src="https://s.pinimg.com/webapp/love-c31e0b8d.svg"/>
+                            <h2>{likes.length}</h2>
+                        </div>
                         <br/>
                         <h1>{post.content}</h1>
                         <h2>{post.author.username}</h2>
-                        <img src="https://s.pinimg.com/webapp/love-c31e0b8d.svg"/>
-                        {/* <img src="https://s.pinimg.com/webapp/goodIdea-b770896d.svg"/> */}
-                        {/* <img src="https://s.pinimg.com/webapp/wow-3cb697ef.svg"/> */}
-                        <h2>{likes.length}</h2>
 
                         <div>
                             <PostUpdateDeleteButtons post={post}/>
-                                Pops: {likes.length} &nbsp;&nbsp;
                                 {(sessionUser) ?
                                     <button
                                     id="pop-button"

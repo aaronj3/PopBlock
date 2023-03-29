@@ -5,12 +5,20 @@
 
 .showpage {
     padding-top: 200px;
-    padding-left: 60px;
-    padding-right: 60px;
+    /* padding-left: 60px; */
+    /* padding-right: 60px; */
     padding-bottom: 100px;
     height: 80vh;
     display: flex;
     flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.likes-container {
+  display: flex;
+  flex-direction: row;
+
 }
 
 .comments-list {
@@ -35,6 +43,12 @@
 #pop-button {
   transition: transform 0.2s ease-out;
   animation: roll 1s ease-in-out;
+  border: none;
+}
+
+#pop-button:hover {
+  cursor: pointer;
+
 }
 
 @keyframes roll {
