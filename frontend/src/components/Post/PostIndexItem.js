@@ -25,7 +25,7 @@ function PostIndexItem ({post, index}) {
                 <Link to={`/posts/${post._id}`}>
                     <div className="showpage">
                         <div className="postContentContainer">
-                            <h1 className="username">#{rank} {post.author.username}</h1>
+                            <h1 className="username">#{rank} by {post.author.username}</h1>
                             {imgFlag ? (
                                 <img src={post.url} alt='' className="post-media" />
                             ) : (
