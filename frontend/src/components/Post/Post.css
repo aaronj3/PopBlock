@@ -1,7 +1,4 @@
 
-
-
-
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap');
 
 .post-index-item {
@@ -44,7 +41,7 @@
   font-family: 'Open Sans', sans-serif;
 }
 
-.postContentContainer h1 {
+/* .postContentContainer h1 {
   font-size: 24px;
   font-weight: bold;
   margin-bottom: 10px;
@@ -67,11 +64,36 @@
   margin-top: 10px;
   text-align: left;
   margin-left: 10px;
+} */
+.postContentContainer h1 {
+  font-size: 1.5vw;
+  font-weight: bold;
+  margin-bottom: 1.5vw;
+  text-align: left;
+  margin-left: 2vw;
 }
+
+.postContentContainer h2 {
+  font-size: 1.2vw;
+  font-weight: bold;
+  margin-bottom: 1vw;
+  text-align: right;
+  margin-right: 2vw;
+}
+
+.postContentContainer p {
+  font-size: 1.2vw;
+  font-weight: normal;
+  color: #555555;
+  margin-top: 1vw;
+  text-align: left;
+  margin-left: 2vw;
+}
+
 
 .postContentContainer h1,
 .postContentContainer h2 {
-  overflow: hidden;
+  /* overflow: hidden; */
   text-overflow: ellipsis;
   white-space: nowrap;
 }
@@ -93,6 +115,7 @@
   object-fit: cover;
   display: block;
   margin: 5vb;
+  overflow: hidden;
 }
 
 .postContentContainer video {
@@ -101,6 +124,7 @@
   object-fit: cover;
   display: block;
   margin: 5vb;
+  overflow: hidden;
 }
 
 @media screen and (max-width: 992px) {
@@ -109,7 +133,7 @@
   }
 }
 
-@media screen and (max-width: 768px) {
+/* @media screen and (max-width: 768px) {
   .postContentContainer h1 {
     font-size: 20px;
     margin-left: 0;
@@ -137,7 +161,7 @@
   height: auto;
   max-width: 100%;
   }
-}
+} */
 
 #pop-button {
   transition: transform 0.2s ease-out;
