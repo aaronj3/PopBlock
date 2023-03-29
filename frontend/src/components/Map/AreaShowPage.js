@@ -23,7 +23,7 @@ function AreaShowPage() {
 
     useEffect(()=>{
         dispatch(fetchPosts(areaId))
-    }, [dispatch, areaId, posts])
+    }, [dispatch, areaId])
 
     const handleCancelUpload = () => {
         setUploadModal(false);
