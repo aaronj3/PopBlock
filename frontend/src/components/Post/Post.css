@@ -1,23 +1,167 @@
-.postContentContainer {
-    margin-bottom: 80px;
 
-}
-
-.showpage {
-    padding-top: 200px;
-    padding-left: 60px;
-    padding-right: 60px;
-    padding-bottom: 100px;
-}
-
-.content-container {
-    padding-top: 200px;
-}
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap');
 
 .post-index-item {
-    border-radius: 10px;
-    box-shadow: 0 0 15px #dddddd; 
+  position: relative;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  width: 100%;
+  max-width: 500px;
 }
+
+.post-index-item::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  opacity: 0.5;
+  z-index: -1;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 0 15px #dddddd;
+}
+
+.post-index-item:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 15px #aaaaaa;
+  transition: all 0.3s ease;
+}
+
+.postContentContainer {
+  height: 500px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 30px;
+  background-color: white;
+  border-radius: 10px;
+  padding: 10px;
+  font-family: 'Open Sans', sans-serif;
+}
+
+/* .postContentContainer h1 {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  text-align: left;
+  margin-left: 10px;
+}
+
+.postContentContainer h2 {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 5px;
+  text-align: right;
+  margin-right: 10px;
+}
+
+.postContentContainer p {
+  font-size: 14px;
+  font-weight: normal;
+  color: #555555;
+  margin-top: 10px;
+  text-align: left;
+  margin-left: 10px;
+} */
+.postContentContainer h1 {
+  font-size: 1.5vw;
+  font-weight: bold;
+  margin-bottom: 1.5vw;
+  text-align: left;
+  margin-left: 2vw;
+}
+
+.postContentContainer h2 {
+  font-size: 1.2vw;
+  font-weight: bold;
+  margin-bottom: 1vw;
+  text-align: right;
+  margin-right: 2vw;
+}
+
+.postContentContainer p {
+  font-size: 1.2vw;
+  font-weight: normal;
+  color: #555555;
+  margin-top: 1vw;
+  text-align: left;
+  margin-left: 2vw;
+}
+
+
+.postContentContainer h1,
+.postContentContainer h2 {
+  /* overflow: hidden; */
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.postContentContainer a {
+  text-decoration: none;
+  color: black;
+  font-weight: bold;
+}
+
+.postContentContainer a:hover {
+  text-decoration: underline;
+  color: #cccccc;
+}
+
+.postContentContainer img {
+  max-width: 100%;
+  height: auto;
+  object-fit: cover;
+  display: block;
+  margin: 5vb;
+  overflow: hidden;
+}
+
+.postContentContainer video {
+  max-width: 100%;
+  height: auto;
+  object-fit: cover;
+  display: block;
+  margin: 5vb;
+  overflow: hidden;
+}
+
+@media screen and (max-width: 992px) {
+  .postContentContainer {
+    padding: 20px;
+  }
+}
+
+/* @media screen and (max-width: 768px) {
+  .postContentContainer h1 {
+    font-size: 20px;
+    margin-left: 0;
+    margin-bottom: 5px;
+    text-align: center;
+  }
+  .postContentContainer h2 {
+    font-size: 16px;
+    margin-right: 0;
+    margin-bottom: 10px;
+    text-align: center;
+  }
+  .postContentContainer p {
+    font-size: 14px;
+    margin-top: 5px;
+    margin-left: 0;
+    text-align: center;
+  }
+  .postContentContainer img {
+    height: auto;
+    max-width: 100%;
+    }
+    
+  .postContentContainer video {
+  height: auto;
+  max-width: 100%;
+  }
+} */
 
 #pop-button {
   transition: transform 0.2s ease-out;
@@ -35,7 +179,6 @@
     transform: translateY(0) rotate(360deg);
   }
 }
-
 
 #pop-button:active {
   transform: translateY(-10px);
