@@ -31,6 +31,7 @@
     margin: 1px;
     box-shadow: #000000 0px 0px 10px;
     background-color: rgb(235, 233, 233);
+    z-index: 5;
 }
 
 #areaShowPageHeader h1 {

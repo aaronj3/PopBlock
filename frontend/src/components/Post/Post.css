@@ -41,30 +41,6 @@
   font-family: 'Open Sans', sans-serif;
 }
 
-/* .postContentContainer h1 {
-  font-size: 24px;
-  font-weight: bold;
-  margin-bottom: 10px;
-  text-align: left;
-  margin-left: 10px;
-}
-
-.postContentContainer h2 {
-  font-size: 18px;
-  font-weight: bold;
-  margin-bottom: 5px;
-  text-align: right;
-  margin-right: 10px;
-}
-
-.postContentContainer p {
-  font-size: 14px;
-  font-weight: normal;
-  color: #555555;
-  margin-top: 10px;
-  text-align: left;
-  margin-left: 10px;
-} */
 .postContentContainer h1 {
   font-size: 1.7vw;
   font-weight: bold;
@@ -93,7 +69,6 @@
 
 .postContentContainer h1,
 .postContentContainer h2 {
-  /* overflow: hidden; */
   text-overflow: ellipsis;
   white-space: nowrap;
 }
@@ -130,38 +105,9 @@
 @media screen and (max-width: 992px) {
   .postContentContainer {
     padding: 20px;
+    z-index: 1;
   }
 }
-
-/* @media screen and (max-width: 768px) {
-  .postContentContainer h1 {
-    font-size: 20px;
-    margin-left: 0;
-    margin-bottom: 5px;
-    text-align: center;
-  }
-  .postContentContainer h2 {
-    font-size: 16px;
-    margin-right: 0;
-    margin-bottom: 10px;
-    text-align: center;
-  }
-  .postContentContainer p {
-    font-size: 14px;
-    margin-top: 5px;
-    margin-left: 0;
-    text-align: center;
-  }
-  .postContentContainer img {
-    height: auto;
-    max-width: 100%;
-    }
-    
-  .postContentContainer video {
-  height: auto;
-  max-width: 100%;
-  }
-} */
 
 #pop-button {
   transition: transform 0.2s ease-out;
