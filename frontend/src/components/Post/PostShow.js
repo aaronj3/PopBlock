@@ -21,6 +21,10 @@ function PostShow(){
 
 
       const handlePopClick = () => {
+        if(!sessionUser) {
+            dispatch(showLoginModal())
+            return
+        }
         setClicked(true);
         setAnimationStyle({ animation: 'roll 1s ease-in-out' });
         dispatch(likePost(post));
@@ -71,16 +75,29 @@ function PostShow(){
                     </div>
 
                     <div className='content-info-container'>
-                        <div className="likes-container">
-                            <img src="https://s.pinimg.com/webapp/love-c31e0b8d.svg"/>
-                            <h2>{likes.length}</h2>
-                        </div>
+                        <button id="pop-button"
+                        style={animationStyle}
+                        onClick={handlePopClick}
+                        onAnimationEnd={resetAnimation}>
+                            {(sessionUser) ?
+                            <div className="likes-container">
+                                {likes.includes(sessionUser._id) ?
+                                <img src="https://s.pinimg.com/webapp/love-c31e0b8d.svg"/>:
+                                <img src="https://s.pinimg.com/webapp/heartOutline-1f1b1ac2.svg"/>
+                                }
+                                <h2>{likes.length}</h2>
+                            </div>
+                            : <div className="likes-container">
+                                <img src="https://s.pinimg.com/webapp/heartOutline-1f1b1ac2.svg"/>
+                                <h2>{likes.length}</h2>
+                            </div>}
+                        </button>
                         <br/>
                         <h1>{post.content}</h1>
                         <h2>{post.author.username}</h2>
 
                         <div>
-                            <PostUpdateDeleteButtons post={post}/>
+                            {/* <PostUpdateDeleteButtons post={post}/>
                                 {(sessionUser) ?
                                     <button
                                     id="pop-button"
@@ -90,7 +107,7 @@ function PostShow(){
                                         <img src="https://s.pinimg.com/webapp/heartOutline-1f1b1ac2.svg"/>
                                         {likes.includes(sessionUser._id) ? "UNPOP" : "POP"}
                                     </button>
-                                : ""}
+                                : ""} */}
                             <div className="comments-div">
                                 <Comments comments={comments}/>
                                 {(sessionUser) ? <CreateCommentForm postId={postId}/> : <button className='requireLoginButton' onClick={()=>dispatch(showLoginModal())}>Log in to comment</button> }
