@@ -5,8 +5,12 @@
   position: relative;
   border-radius: 10px;
   margin-bottom: 10px;
-  width: 100%;
-  max-width: 500px;
+  width: 35vw;
+  max-width: 35vw;
+  height: 70vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: end;
 }
 
 .post-index-item::before {
@@ -30,14 +34,15 @@
 }
 
 .postContentContainer {
-  height: 500px;
+  height: 58vh;
+  /* width: 35vw; */
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   padding: 30px;
   background-color: white;
   border-radius: 10px;
-  padding: 10px;
+  /* padding: 10px; */
   font-family: 'Open Sans', sans-serif;
 }
 

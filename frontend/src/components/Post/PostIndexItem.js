@@ -23,7 +23,7 @@ function PostIndexItem ({post, index}) {
         return (
             <div className="post-index-item" style={{ backgroundColor: post.author.color }}>
                 <Link to={`/posts/${post._id}`}>
-                    <div className="showpage">
+                    <div className="listshowpage">
                         <div className="postContentContainer">
                             <h1 className="username">#{rank} by {post.author.username}</h1>
                             {imgFlag ? (
