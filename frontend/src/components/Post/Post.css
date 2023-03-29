@@ -48,7 +48,9 @@
   text-align: left;
   margin-left: 2vw;
 }
-=======
+
+/*  */
+
 .showpage {
     padding-top: 200px;
     /* padding-left: 60px; */
@@ -84,7 +86,10 @@
 .post-index-item {
     border-radius: 10px;
     box-shadow: 0 0 15px #dddddd;
-=======
+}
+
+/*  */
+
 .postContentContainer h2 {
   font-size: 1.2vw;
   font-weight: bold;
@@ -101,7 +106,6 @@
   text-align: left;
   margin-left: 2vw;
 }
-
 
 .postContentContainer h1,
 .postContentContainer h2 {
@@ -144,7 +148,9 @@
     z-index: 1;
   }
 }
-=======
+
+/*  */
+
 #pop-button {
   transition: transform 0.2s ease-out;
   animation: roll 1s ease-in-out;
