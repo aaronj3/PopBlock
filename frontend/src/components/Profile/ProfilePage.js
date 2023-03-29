@@ -43,7 +43,13 @@ function ProfilePage() {
                 <br/>
                 {comments.length > 0 && (
                     <ul>
-                        {comments.map((comment) => <li> <Link to={`/posts/${comment.post._id}`}>{comment.body}</Link></li>)}
+                        {comments.map((comment) => {
+                            if (comment.post) {
+                            return <li> <Link to={`/posts/${comment.post._id}`}>{comment.body}</Link></li>
+                            } else {
+                            return null;
+                            }
+                        })}
                     </ul>
                 )}
                 {!loaded && (

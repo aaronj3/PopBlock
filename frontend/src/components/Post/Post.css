@@ -1,8 +1,54 @@
-.postContentContainer {
-    margin-bottom: 80px;
 
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap');
+
+.post-index-item {
+  position: relative;
+  border-radius: 10px;
+  margin-bottom: 10px;
+  width: 100%;
+  max-width: 500px;
 }
 
+.post-index-item::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  opacity: 0.5;
+  z-index: -1;
+  background-color: white;
+  border-radius: 10px;
+  box-shadow: 0 0 15px #dddddd;
+}
+
+.post-index-item:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 15px #aaaaaa;
+  transition: all 0.3s ease;
+}
+
+.postContentContainer {
+  height: 500px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 30px;
+  background-color: white;
+  border-radius: 10px;
+  padding: 10px;
+  font-family: 'Open Sans', sans-serif;
+}
+
+.postContentContainer h1 {
+  font-size: 1.7vw;
+  font-weight: bold;
+  margin-bottom: 1.5vw;
+  text-align: left;
+  margin-left: 2vw;
+}
+=======
 .showpage {
     padding-top: 200px;
     /* padding-left: 60px; */
@@ -38,8 +84,67 @@
 .post-index-item {
     border-radius: 10px;
     box-shadow: 0 0 15px #dddddd;
+=======
+.postContentContainer h2 {
+  font-size: 1.2vw;
+  font-weight: bold;
+  margin-bottom: 1vw;
+  text-align: right;
+  margin-right: 2vw;
 }
 
+.postContentContainer p {
+  font-size: 1.2vw;
+  font-weight: normal;
+  color: #555555;
+  margin-top: 1vw;
+  text-align: left;
+  margin-left: 2vw;
+}
+
+
+.postContentContainer h1,
+.postContentContainer h2 {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.postContentContainer a {
+  text-decoration: none;
+  color: black;
+  font-weight: bold;
+}
+
+.postContentContainer a:hover {
+  text-decoration: underline;
+  color: #cccccc;
+}
+
+.postContentContainer img {
+  max-width: 100%;
+  height: auto;
+  object-fit: cover;
+  display: block;
+  margin: 5vb;
+  overflow: hidden;
+}
+
+.postContentContainer video {
+  max-width: 100%;
+  height: auto;
+  object-fit: cover;
+  display: block;
+  margin: 5vb;
+  overflow: hidden;
+}
+
+@media screen and (max-width: 992px) {
+  .postContentContainer {
+    padding: 20px;
+    z-index: 1;
+  }
+}
+=======
 #pop-button {
   transition: transform 0.2s ease-out;
   animation: roll 1s ease-in-out;
@@ -62,7 +167,6 @@
     transform: translateY(0) rotate(360deg);
   }
 }
-
 
 #pop-button:active {
   transform: translateY(-10px);

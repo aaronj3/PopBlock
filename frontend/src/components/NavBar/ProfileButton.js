@@ -48,11 +48,11 @@ function ProfileButton({ user }) {
 
     {showMenu && (
         <div className="profile-dropdown-container">
-            <span>👋🏼 Hello, {user.username}!</span>
-            <span>
+            <span>Hello, {user.username}!</span>
+            {/* <span>
                 <span style={{ backgroundColor: user.color, padding: '0.2rem 0.5rem', borderRadius: '0.3rem', color: '#fff' }}>Pop your color</span>
-            </span>
-            <Link to={'/profile'} className="link-container">👤Profile</Link>
+            </span> */}
+            <Link to={'/profile'} className="link-container">Profile</Link>
             {/* <Link to={'/posts/new'} className="link-container">Make post</Link> */}
             <button onClick={logout}>Sign Out</button>
         </div>
