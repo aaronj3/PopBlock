@@ -24,8 +24,12 @@ function ProfilePage() {
     return (
         <div className={'profile'}>
             <div>
-                <h1>Your posts</h1>
+                <h1 class="profile-heading">Your posts</h1>
                 <br/>
+            </div>
+            <div>
+
+            </div>
                 {posts.length > 0 && (
                     posts.map((post, index)=> <PostIndexItem post={post} index={index} key={post._id}/>)
                 )}
@@ -36,9 +40,8 @@ function ProfilePage() {
                 {loaded == true && posts.length == 0 && (
                     <span>No Post</span>
                 )}
-            </div>
             <br/><br/>
-            <div className={'comment'}>
+            {/* <div className={'comment'}>
                 <h1>Your comments</h1>
                 <br/>
                 {comments.length > 0 && (
@@ -58,7 +61,7 @@ function ProfilePage() {
                 {loaded == true && comments.length == 0 && (
                     <span>No Comment</span>
                 )}
-            </div>
+            </div> */}
         </div>
     )
 }
