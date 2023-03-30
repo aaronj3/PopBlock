@@ -18,19 +18,17 @@ function LoginForm() {
     const handleSubmit = (e) => {
         e.preventDefault();
         setErrors([]);
-        return dispatch(sessionActions.login({ username, password }))
-            .catch(async (res) => {
-            let data;
-            try {
-                // .clone() essentially allows you to read the response body twice
-                data = await res.clone().json();
-            } catch {
-                data = await res.text(); // Will hit this case if the server is down
-            }
-            if (data?.errors) setErrors(data.errors);
-            else if (data) setErrors([data]);
-            else setErrors([res.statusText]);
-        });
+        try {
+            const data = dispatch(sessionActions.login({ username, password }));
+            console.log("data", data);
+            console.log("data errors", data.errors);
+            setErrors(Object.values(data.errors));
+            console.log("Errors", errors);
+            return data;
+          } catch (err) {
+            // console.log("Error", err);
+            return setErrors(["Invalid credentials"]);
+          }
     };
 
     return (
@@ -43,16 +41,18 @@ function LoginForm() {
             </div>
             <div className="right-container">
                 <form onSubmit={handleSubmit}>
-                    <ul>
-                        {errors.map(error => <li key={error} className="error-messages">{error}</li>)}
-                    </ul>
                     <div className="form-container">
                         <div className="form-body-container" >
                             <h2 className="modal-CTA-header">Welcome back!</h2>
                             <p className="modal-CTA-subtext">
                                 Enter the login credentials associated with your PopBlock account.
                             </p>
-
+                            {errors.length > 0 && (
+                                <ul className="error-messages">
+                                    {errors.map(error => <li key={error}>{error}</li>)}
+                                </ul>
+                                )}
+                            <br/>
                             <label>
                                 <input className="form-field"
                                     placeholder='Username'

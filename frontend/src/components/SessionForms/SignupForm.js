@@ -20,26 +20,24 @@ function SignupForm() {
 
     if (sessionUser) return <Redirect to="/" />;
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         if (password === confirmPassword) {
-        setErrors([]);
-        return dispatch(sessionActions.signup({ username, password }))
-            .catch(async (res) => {
-            let data;
-            try {
-                data = await res.clone().json();
-            } catch {
-                data = await res.text();
-            }
-            if (data?.errors) setErrors(data.errors);
-            else if (data) setErrors([data]);
-            else setErrors([res.statusText]);
-        });
+          setErrors([]);
+          try {
+            const data = await dispatch(sessionActions.signup({ username, password }));
+            // console.log("data", data);
+            // console.log("data errors", data.errors);
+            setErrors(Object.values(data.errors));
+            // console.log("Errors", errors);
+            return data;
+          } catch (err) {
+            // console.log("Error", err);
+            return setErrors(["An error occurred while signing up"]);
+          }
         }
-        return setErrors(['Confirm Password field must be the same as the Password field']);
-    };
-
+        return setErrors(["Confirm Password field must be the same as the Password field"]);
+      };      
 
     return (
         <>
@@ -54,15 +52,17 @@ function SignupForm() {
 
                     <h2 className="modal-CTA-header">Welcome to PopBlock</h2>
                     <p className="modal-CTA-subtext">Create an account.</p>
-                    <ul className="error-messages">
-                        {errors.map(error=> <li key={error}>{error}</li>)}
-                    </ul>
+                    {errors.length > 0 && (
+                        <ul className="error-messages">
+                            {errors.map(error => <li key={error}>{error}</li>)}
+                        </ul>
+                        )}
 
                     <br/>
 
                     <label>
                         <input className="form-field"
-                        placeholder='username'
+                        placeholder='Username'
                         type='username'
                         value={username}
                         onChange={(e) => setUsername(e.target.value)}
