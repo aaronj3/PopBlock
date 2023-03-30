@@ -5,7 +5,6 @@ import { showSignupModal } from "../../store/ui";
 import * as sessionActions from "../../store/session";
 import sessionImg from '../../assets/images/popblockmap.png'
 import logo from '../../assets/images/logo.png'
-
 import './SessionForms.css'
 
 
@@ -17,23 +16,22 @@ function LoginForm() {
     const [errors, setErrors] = useState([]);
 
     const handleSubmit = (e) => {
-    e.preventDefault();
-    setErrors([]);
-    return dispatch(sessionActions.login({ username, password }))
-        .catch(async (res) => {
-        let data;
-        try {
-            // .clone() essentially allows you to read the response body twice
-            data = await res.clone().json();
-        } catch {
-            data = await res.text(); // Will hit this case if the server is down
-        }
-        if (data?.errors) setErrors(data.errors);
-        else if (data) setErrors([data]);
-        else setErrors([res.statusText]);
+        e.preventDefault();
+        setErrors([]);
+        return dispatch(sessionActions.login({ username, password }))
+            .catch(async (res) => {
+            let data;
+            try {
+                // .clone() essentially allows you to read the response body twice
+                data = await res.clone().json();
+            } catch {
+                data = await res.text(); // Will hit this case if the server is down
+            }
+            if (data?.errors) setErrors(data.errors);
+            else if (data) setErrors([data]);
+            else setErrors([res.statusText]);
         });
     };
-
 
     return (
         <>
@@ -41,7 +39,7 @@ function LoginForm() {
             <div className="left-container">
                 <div className="pb-logo-container"><img className="logo1" src={logo}/></div>
                 <div className='under-logo-text'>Take over your city!</div>
-            <img src={sessionImg} className="sessionImg" alt="img"/>
+                <img src={sessionImg} className="sessionImg" alt="img"/>
             </div>
             <div className="right-container">
                 <form onSubmit={handleSubmit}>

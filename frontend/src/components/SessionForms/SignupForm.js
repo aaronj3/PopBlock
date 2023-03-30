@@ -51,12 +51,12 @@ function SignupForm() {
             </div>
             <div className="right-container">
                 <form onSubmit={handleSubmit}>
-                    <ul>
-                        {errors.map(error=> <li key={error}>{error}</li>)}
-                    </ul>
 
                     <h2 className="modal-CTA-header">Welcome to PopBlock</h2>
                     <p className="modal-CTA-subtext">Create an account.</p>
+                    <ul className="error-messages">
+                        {errors.map(error=> <li key={error}>{error}</li>)}
+                    </ul>
 
                     <br/>
 
