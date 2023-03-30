@@ -1,0 +1,101 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap');
+
+.profile-button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+.profile-button-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+}
+
+.profile-dropdown-container {
+    position: absolute;
+    top: 3rem;
+    right: 0;
+    background-color: #f4f4f4;
+    border-radius: 0.3rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    padding: 1rem;
+    font-family: 'Lato', sans-serif;
+    text-align: left;
+    width: 10rem;
+  }
+  
+  .greeting {
+    font-weight: bold;
+    margin-bottom: 1rem;
+    font-size: 1.2rem;
+  }
+  
+  .links-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  
+  .link {
+    width: 100%;
+    box-sizing: border-box;
+    display: block;
+    color: #333;
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+    padding: 0.5rem;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+    background-color: transparent;
+  }
+  
+  .link:hover {
+    background-color: #e50914;
+    color: #fff;
+  }
+  
+  .link:last-child {
+    margin-bottom: 0;
+  }
+  
+  .logout-button {
+    width: 100%;
+    box-sizing: border-box;
+    background-color: transparent;
+    color: #333;
+    border: none;
+    border-radius: 0.3rem;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: bold;
+    padding: 0.5rem;
+    transition: background-color 0.3s ease;
+  }
+  
+  .logout-button:hover {
+    background-color: #e50914;
+    color: #fff;
+  }
+  
+  .logout-button:active {
+    background-color: #b2070c;
+    outline: none;
+  }
+  
+  .logout-button:focus {
+    outline: none;
+  }
+  
+  .logout-button svg {
+    display: inline-block;
+    margin-right: 0.5rem;
+    width: 1.2rem;
+    height: 1.2rem;
+    fill: #333;
+    vertical-align: middle;
+  }
+  

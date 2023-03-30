@@ -6,16 +6,18 @@
     display: flex;
     justify-content: center;
   }
-
-h1 {
-    font-size:20px;
+  
+  .profile-heading {
+    font-size: 30px;
     font-weight: bold;
-    text-decoration: underline;
-    /* padding-bottom: 20px; */
-    /* margin-top: 20px; */
-    margin: 5px;
-}
-
+    text-decoration: none;
+    margin: 10px 0;
+    color: #111;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+  }
+  
 .showpage {
     padding-top: 10px !important;   
 }
+
