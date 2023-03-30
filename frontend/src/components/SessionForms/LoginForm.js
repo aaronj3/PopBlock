@@ -44,58 +44,58 @@ function LoginForm() {
             <img src={sessionImg} className="sessionImg" alt="img"/>
             </div>
             <div className="right-container">
-            <form onSubmit={handleSubmit}>
-                <ul>
-                    {errors.map(error => <li key={error} className="error-messages">{error}</li>)}
-                </ul>
-                <div className="form-container">
-                    <div className="form-body-container" >
-                        <h2 className="modal-CTA-header">Welcome back!</h2>
-                        <p className="modal-CTA-subtext">
-                            Enter the login credentials associated with your PopBlock account.
-                        </p>
+                <form onSubmit={handleSubmit}>
+                    <ul>
+                        {errors.map(error => <li key={error} className="error-messages">{error}</li>)}
+                    </ul>
+                    <div className="form-container">
+                        <div className="form-body-container" >
+                            <h2 className="modal-CTA-header">Welcome back!</h2>
+                            <p className="modal-CTA-subtext">
+                                Enter the login credentials associated with your PopBlock account.
+                            </p>
 
-                        <label>
-                        <input className="form-field"
-                            placeholder='Username'
-                            type="username"
-                            value={username}
-                            onChange={(e) => setUsername(e.target.value)}
-                            required
-                        />
-                        </label>
+                            <label>
+                                <input className="form-field"
+                                    placeholder='Username'
+                                    type="text"
+                                    value={username}
+                                    onChange={(e) => setUsername(e.target.value)}
+                                    required
+                                />
+                            </label>
 
-                        <br/>
+                            <br/>
 
-                        <label>
-                        <input className="form-field"
-                            placeholder='Password'
-                            type="password"
-                            value={password}
-                            onChange={(e) => setPassword(e.target.value)}
-                            required
-                        />
-                        </label>
+                            <label>
+                                <input className="form-field"
+                                    placeholder='Password'
+                                    type="password"
+                                    value={password}
+                                    onChange={(e) => setPassword(e.target.value)}
+                                    required
+                                />
+                            </label>
 
-                    <br/>
+                            <br/>
 
-                        <button className="modal-button" type="submit">Log In</button>
+                            <button className="modal-button" type="submit">Log In</button>
 
+                        </div>
                     </div>
+                </form>
+
+                <br></br>
+
+                <DemoLogin/>
+
+                <br></br>
+
+                <div id="alternate-button-container">
+                    <button className="alternate-button" onClick={()=>dispatch(showSignupModal())}>Sign Up</button>
                 </div>
-            </form>
-
-            <br></br>
-
-            <DemoLogin/>
-
-            <br></br>
-
-            <div id="alternate-button-container">
-                <button className="alternate-button" onClick={()=>dispatch(showSignupModal())}>Sign Up</button>
             </div>
-            </div>
-            </div>
+        </div>
         </>
     );
     }
