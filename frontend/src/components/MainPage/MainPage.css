@@ -1,13 +1,13 @@
 .main-page-content-container {
     /* position: fixed; */
-    padding-top: 200px;
+    padding-top: 110px;
     display: flex;
     flex-direction: column;
     align-items: center;
     /* background-color: rgb(195, 188, 188); */
     box-shadow: 10 20 20px rgba(0, 0, 0, 0.5);
     height: 100vh;
-    overflow-y: hidden;
+    overflow: hidden;
     scrollbar-width: none;
     -ms-overflow-style: none;
 }
@@ -20,6 +20,99 @@
 }
 
 .main-page-content-container footer {
-    margin: 15px;
-    margin-top: 100px ;
+    /* margin: 15px; */
+    margin-bottom: 10px ; 
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    width: 50%;
+    /* border: solid red; */
+}
+
+.footer {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    padding: 7px;
+    /* margin-left: 00px; */
+    width: 100%;
+    /* background: #F39C12; */
+    z-index: 2;
+    /* border: solid red; */
+
+}
+
+.mp-container {
+    display: flex;
+    flex-direction: row;
+    height: 90vh;
+    width: 100%;
+    background-image: linear-gradient(344deg, #E74C3C 0%, #F39C12 40%, #f3ce12 91%);
+}
+.leftdiv {
+    /* background-color:#2980B9; */
+    font-size: 80px;
+    font-weight: bolder;
+    /* border: solid red; */
+    line-height: 1.3;
+    margin-top: 106px;
+    width: 60vw;
+    /* font-family:__Plus_Jakarta_Sans_Fallback_c750e3; */
+    padding: 35px;
+
+
+}
+.rightdiv {
+    /* background-color: #1ABC9C; */
+    font-size: 80px;
+    font-weight: bolder;
+    padding: 35px;
+    /* border: solid red; */
+    line-height: 1.3;
+    margin-top: 106px;
+    width: 40vw;
+}
+
+
+.botdiv{
+    width: 100%;
+    /* height: 182px; */
+    /* background-color: #F39C12; */
+    font-size: 20px;
+    font-style: italic;
+    /* padding:6px; */
+    line-height: 1.5;
+    text-align: left;
+    z-index: 1;
+    /* border: solid red */
+}
+
+.about-links{
+    text-decoration: none;
+}
+.about-links:visited{
+    text-decoration: none;
+    color: black;
+}
+
+.mapbutton{
+    width: 242px;
+    height: 48px;
+    border-radius: 5px;
+    align-items: center;
+    margin: 0 auto;
+    cursor: pointer;
+    background-color:#2980B9 ;
+    color: aliceblue;
+    border: none;
+    font-size: 18px;
+}
+
+.mapbutton:hover{
+    background-color: #1ABC9C;
+}
+
+.splashImg {
+    border-radius: 10px;
+    height: 600px;
 }
