@@ -42,68 +42,64 @@ function SignupForm() {
 
 
     return (
-            <>
-            <div className="modal-container">
+        <>
+        <div className="modal-container">
             <div className="left-container">
                 <div className="pb-logo-container"><img className="logo1" src={logo}/></div>
                 <div className='under-logo-text'>Take over your city!</div>
-            <img src={sessionImg} className="sessionImg" alt="img"/>
+                <img src={sessionImg} className="sessionImg" alt="img"/>
             </div>
             <div className="right-container">
-        <form onSubmit={handleSubmit}>
-            <ul>
-                {errors.map(error=> <li key={error}>{error}</li>)}
-            </ul>
+                <form onSubmit={handleSubmit}>
+                    <ul>
+                        {errors.map(error=> <li key={error}>{error}</li>)}
+                    </ul>
 
-            <h2 className="modal-CTA-header">Welcome to PopBlock</h2>
-            <p className="modal-CTA-subtext">
-                            Create an account.
-                        </p>
-            <br/>
+                    <h2 className="modal-CTA-header">Welcome to PopBlock</h2>
+                    <p className="modal-CTA-subtext">Create an account.</p>
 
-            <label>
-                <input className="form-field"
-                placeholder='username'
-                type='username'
-                value={username}
-                onChange={(e) => setUsername(e.target.value)}
-                required/>
-            </label>
+                    <br/>
 
-            <br/>
+                    <label>
+                        <input className="form-field"
+                        placeholder='username'
+                        type='username'
+                        value={username}
+                        onChange={(e) => setUsername(e.target.value)}
+                        required/>
+                    </label>
 
-            <label>
-                <input className="form-field"
-                placeholder='Password'
-                type='password'
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-                required/>
-            </label>
+                    <br/>
 
-            <br/>
+                    <label>
+                        <input className="form-field"
+                            placeholder='Password'
+                            type='password'
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
+                            required/>
+                    </label>
 
-            <label>
-            <input className="form-field"
-                placeholder='Confirm password'
-                type="password"
-                value={confirmPassword}
-                onChange={(e) => setConfirmPassword(e.target.value)}
-                required/>
-            </label>
+                    <br/>
 
-            <br/>
+                    <label>
+                        <input className="form-field"
+                            placeholder='Confirm password'
+                            type="password"
+                            value={confirmPassword}
+                            onChange={(e) => setConfirmPassword(e.target.value)}
+                            required/>
+                    </label>
 
-            <button className="modal-button" type='submit'>Sign up</button>
-        </form>
+                    <br/>
 
-
-        <div id="alternate-button-container">
-            <button className="alternate-button" onClick={()=> dispatch(showLoginModal())}>Log In</button>
+                    <button className="modal-button" type='submit'>Sign up</button>
+                </form>
+                <div id="alternate-button-container">
+                    <button className="alternate-button" onClick={()=> dispatch(showLoginModal())}>Log In</button>
+                </div>
+            </div>
         </div>
-        </div>
-        </div>
-        
         </>
     );
     }
