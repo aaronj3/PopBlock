@@ -6,39 +6,57 @@
     position: relative;
 }
 
+.update-delete-buttons-container{
+    display: flex;
+    flex-direction: row;
+}
+
+.update-delete-buttons {
+    border:none;
+    height: 2.4rem;
+    width: 2.4rem;
+    background-color:#F2F2F2;
+}
+
+.icon {
+    height: 100%;
+    width: 100%;
+}
+
 .commenter-container {
     align-items: center;
     display: flex;
     flex: none;
     flex-direction: column;
     flex-wrap: wrap;
-    margin: 0 16px;
+    margin: 0 8px;
     position: relative;
     text-align: center;
-    width: 6rem;
+    width: 3.5rem;
 }
 
 .commenter-detail {
     margin: 0 0 4px;
     width: 100%;
+    font-weight: bold;
 }
 
 .comment-body-container {
     flex-grow: 1;
 }
 
+
 .commenter-avatar {
     align-items: center;
     border-radius: 50%;
     color: white;
-    background-color: blueviolet;
     display: flex;
     flex-shrink: 0;
     font-weight: 500;
-    height: 3rem;
+    height: 2.4rem;
     justify-content: center;
     margin: 0 8px 8px;
-    width: 3rem;
+    width: 2.4rem;
 }
 
 .comment-score-category {
