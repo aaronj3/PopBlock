@@ -47,6 +47,7 @@ router.post('/register', validateRegisterInput, async (req, res, next) => {
       errors.username = "A user has already registered with this username";
     }
     err.errors = errors;
+    console.log(err, "err_showing");
     return next(err);
   }
 
@@ -82,9 +83,11 @@ router.post('/login', validateLoginInput, async (req, res, next) => {
       const err = new Error('Invalid credentials');
       err.statusCode = 400;
       err.errors = { username: "Invalid credentials" };
+      console.log(err, "err");
       return next(err);
     }
     // Generate the JWT
+    console.log(user, "user");
     return res.json(await loginUser(user));
   })(req, res, next);
 });
