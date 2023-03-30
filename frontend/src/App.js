@@ -7,6 +7,7 @@ import { AuthRoute, ProtectedRoute } from './components/routes/Routes';
 
 import MainPage from './components/MainPage/MainPage';
 import ProfilePage from './components/Profile/ProfilePage';
+import Map from './components/Map/Map';
 
 import { Route } from 'react-router-dom';
 
@@ -30,6 +31,7 @@ function App() {
       <NavBar/>
       <Switch>
         <Route exact path="/" component={MainPage} />
+        <Route exact path="/map" component={Map} />
         <Route exact path="/posts/area/:areaId" component={AreaShowPage} />
         <Route exact path="/profile" component={ProfilePage} />
         <Route exact path="/posts/new" component={MainPage} />
