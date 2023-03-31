@@ -120,7 +120,7 @@ function ProfileButton({ user }) {
                 <div className="links-container">
                     <Link to={'/profile'} className="link">Profile</Link>
                 </div>
-                <button className="link" onClick={logout}>Sign Out</button>
+                <div className="logout-button" onClick={logout}>Sign Out</div>
             </div>
         )}
     </>
