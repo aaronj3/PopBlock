@@ -23,14 +23,16 @@ return (
         <div className="mp-container">
             <div className="leftdiv">
                 See what's poppin on your block!
-                <p className="botdiv">
+                <br/>
+                <div className="botdiv">
                     Discover the pulse of San Francisco with our interactive map, showcasing the most popular post in each block. 
                     <br/> <br/> Be a part of the action by sharing your own content and see if you can become the featured post in your own neighborhood. 
                     <br/> <br/>Join our community and explore the city like never before!
-                </p>
+                </div>
                 <button className="mapbutton" onClick={toMap}>Checkout the map here</button>
             </div>
             <div className="rightdiv">
+                {/* <br/> */}
                 <img src={sessionImg} className="splashImg" alt="img"/>
             </div>
         </div>
