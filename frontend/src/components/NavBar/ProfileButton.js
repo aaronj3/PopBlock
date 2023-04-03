@@ -91,10 +91,17 @@ function ProfileButton({ user }) {
         return () => document.removeEventListener("click", closeMenu);}
         , [showMenu]);
 
+    const profileButton = (e) => {
+        e.preventDefault();
+        history.push('/profile');
+        // window.location.reload();
+    }
+
     const logout = (e) => {
         e.preventDefault();
         dispatch(sessionActions.logout());
         history.push('/');
+        window.location.reload();
     };
 
     return (
@@ -118,7 +125,7 @@ function ProfileButton({ user }) {
                 {user.username}
                 </div>
                 <div className="links-container">
-                    <Link to={'/profile'} className="link">Profile</Link>
+                    <div className="link" onClick={profileButton}>Profile</div>
                 </div>
                 <div className="logout-button" onClick={logout}>Sign Out</div>
             </div>

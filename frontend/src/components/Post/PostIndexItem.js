@@ -21,17 +21,18 @@ function PostIndexItem ({post, index}) {
     } else{
         const imgFlag = isImage(post.url);
         return (
-            <div className="post-index-item" style={{ backgroundColor: post.author.color }}>
+            <div className="post-index-item" style={{ backgroundColor: post.author?.color }}>
                 <Link to={`/posts/${post._id}`}>
                     <div className="listshowpage">
                         <div className="postContentContainer">
-                            <h1 className="username">#{rank} by {post.author.username}</h1>
+                            <h1 className="username">#{rank} by {post.author?.username || 'Unknown'}</h1>
                             {imgFlag ? (
                                 <img src={post.url} alt='' className="post-media" />
                             ) : (
                                 <video src={post.url} controls className="post-media" />
                             )}
-                            <h2 className="post-likes">{post.likes.length} POPS</h2>
+                            <h2 className="post-likes">{post.likes && post.likes.length} POPS</h2>
+
                             <h2 className="post-content">{post.content}</h2>
                         </div>
                     </div>
