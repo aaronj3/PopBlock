@@ -77,7 +77,7 @@ router.post('/register', validateRegisterInput, async (req, res, next) => {
 
 // Attach validateLoginInput as a middleware before the route handler
 router.post('/login', validateLoginInput, async (req, res, next) => {
-  passport.authenticate('local', async function(err, user) {
+  await passport.authenticate('local', async function(err, user) {
     if (err) return next(err);
     if (!user) {
       const err = new Error('Invalid credentials');

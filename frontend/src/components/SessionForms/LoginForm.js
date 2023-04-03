@@ -15,11 +15,11 @@ function LoginForm() {
     const [password, setPassword] = useState("");
     const [errors, setErrors] = useState([]);
 
-    const handleSubmit = (e) => {
+    const handleSubmit = async (e) => {
         e.preventDefault();
         setErrors([]);
         try {
-            const data = dispatch(sessionActions.login({ username, password }));
+            const data = await dispatch(sessionActions.login({ username, password }));
             console.log("data", data);
             console.log("data errors", data.errors);
             setErrors(Object.values(data.errors));
@@ -27,7 +27,7 @@ function LoginForm() {
             return data;
           } catch (err) {
             // console.log("Error", err);
-            return setErrors(["Invalid credentials"]);
+            return setErrors(["Invalid credentials!!!"]);
           }
     };
 
