@@ -139,3 +139,9 @@
         display: none;
     }
 }
+
+@media screen and (max-height: 730px) {
+    .botdiv {
+        display: none;
+    }
+}
