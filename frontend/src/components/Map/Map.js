@@ -14,11 +14,7 @@ import {getPosts} from '../../store/posts';
 import jwtFetch from "../../store/jwt";
 
 
-// mapboxgl.accessToken = process.env.REACT_APP_MAPBOX_ACCESS_TOKEN;
-
-mapboxgl.accessToken = "pk.eyJ1IjoiZGFjYWJ1IiwiYSI6ImNsZjljZGYzMzE5ejMzcXBvbDFuMW5hMmEifQ.qFJCBw1xmv4j-rjefmAkoA";
-// mapboxgl.accessToken = process.env.MAP_TOKEN;
-
+mapboxgl.accessToken = process.env.REACT_APP_MAPBOX_ACCESS_TOKEN;
 
 export default function Map(){
     const mapContainer = useRef(null);
