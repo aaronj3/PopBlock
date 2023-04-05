@@ -29,7 +29,6 @@ function ProfilePage() {
             </div>
             <div>
 
-            </div>
                 {posts.length > 0 && (
                     posts.map((post, index)=> <PostIndexItem post={post} index={index} key={post._id}/>)
                 )}
@@ -40,6 +39,7 @@ function ProfilePage() {
                 {loaded == true && posts.length == 0 && (
                     <span>No Post</span>
                 )}
+            </div>
             <br/><br/>
             {/* <div className={'comment'}>
                 <h1>Your comments</h1>

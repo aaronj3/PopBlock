@@ -21,10 +21,10 @@ function PostIndexItem ({post, index}) {
     } else{
         const imgFlag = isImage(post.url);
         return (
-            <div className="post-index-item" style={{ backgroundColor: post.author?.color }}>
+            <div className="post-index-item" >
                 <Link to={`/posts/${post._id}`}>
                     <div className="listshowpage">
-                        <div className="postContentContainer">
+                        <div className="postContentContainer" style={{ backgroundColor: post.author?.color }}>
                             <h1 className="username">#{rank} by {post.author?.username || 'Unknown'}</h1>
                             {imgFlag ? (
                                 <img src={post.url} alt='' className="post-media" />
