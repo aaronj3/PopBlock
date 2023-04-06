@@ -17,11 +17,11 @@ function AboutUsPage() {
                     <img className="about-us-pic" src={aaron}/>
                     <h1 className="about-us-name">Aaron Jung</h1>
                     <div className="about-us-icons">
-                        <a href="https://www.linkedin.com/in/aaron-jung-ba0182129/">
+                        <a href="https://www.linkedin.com/in/aaron-jung-ba0182129/" target="_blank">
                             <img className="about-us-icon"  src={linkedInLogo}/>
                         </a>
 
-                        <a href="https://github.com/aaronj3">
+                        <a href="https://github.com/aaronj3" target="_blank">
                             <img className="about-us-icon" src={githubLogo}/>
                         </a>
 
@@ -38,11 +38,11 @@ function AboutUsPage() {
                     <img className="about-us-pic" src={david}/>
                     <h1 className="about-us-name">David Cabuay</h1>
                     <div className="about-us-icons">
-                        <a href="https://www.linkedin.com/in/david-cabuay-48a83172/">
+                        <a href="https://www.linkedin.com/in/david-cabuay-48a83172/" target="_blank">
                             <img className="about-us-icon" src={linkedInLogo}/>
                         </a>
 
-                        <a href="https://github.com/davidcabuay">
+                        <a href="https://github.com/davidcabuay" target="_blank">
                             <img className="about-us-icon" src={githubLogo}/>
                         </a>
 
@@ -57,11 +57,11 @@ function AboutUsPage() {
                     <img className="about-us-pic" src={kristin}/>
                     <h1 className="about-us-name">Kristin Lee</h1>
                     <div className="about-us-icons">
-                        <a href="https://www.linkedin.com/in/kristin-lee-9a8666265/">
+                        <a href="https://www.linkedin.com/in/kristin-lee-9a8666265/" target="_blank">
                             <img className="about-us-icon" src={linkedInLogo}/>
                         </a>
 
-                        <a href="https://github.com/totorasora">
+                        <a href="https://github.com/totorasora" target="_blank">
                             <img className="about-us-icon" src={githubLogo}/>
                         </a>
 

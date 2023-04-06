@@ -42,25 +42,6 @@ return (
                 <img src={sessionImg} className="splashImg" alt="img"/>
             </div>
         </div>
-        <footer className="footer">
-            <div>
-                Copyright &copy; 2023 PopBlock
-            </div>
-            <div>
-            <a className="about-links"href="https://github.com/aaronj3/PopBlock" target="_blank">Github</a>
-            </div>
-            <div>
-                <button className="meet-the-team" onClick={()=>setShowAboutUs(true)}>
-                    Meet the team
-                </button>
-                {showAboutUs && (
-                <Modal id="meet-the-team-modal" size="medium" onClose={()=> setShowAboutUs(false)}>
-                    <AboutUsPage/>
-                </Modal>
-                    )}
-            </div>
-
-        </footer>
     </div>
 )};
 

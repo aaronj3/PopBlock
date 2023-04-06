@@ -107,5 +107,8 @@
 
 .comment-form-header{
     margin-bottom: 20px;
+}
 
+#restProfilecommentsContent {
+    height: 250px;
 }
