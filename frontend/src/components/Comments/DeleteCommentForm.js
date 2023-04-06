@@ -1,5 +1,6 @@
 import { useDispatch } from "react-redux";
 import { deleteComment, fetchComments } from "../../store/comments";
+import "./Comments.css"
 
 function DeleteCommentForm({ comment, setDeleteModalShow, postId}) {
     const dispatch = useDispatch();
@@ -17,9 +18,12 @@ function DeleteCommentForm({ comment, setDeleteModalShow, postId}) {
     }
 
     return (
-        <div>
-            <button onClick={() => {setDeleteModalShow(false)}}>Nevermind</button>
-            <button onClick={(handleDeleteButtonClick)}>Delete</button>
+        <div className="comment-CRUD-form">
+            <h1 className="comment-form-header">Delete this comment?</h1>
+            <div className="options-container">
+                <button className="modal-button" onClick={(handleDeleteButtonClick)}>Delete</button>
+                <button className="alternate-button" onClick={() => {setDeleteModalShow(false)}}>Nevermind</button>
+            </div>
         </div>
         )
 }

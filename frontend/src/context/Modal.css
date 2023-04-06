@@ -50,3 +50,11 @@
     width: 100px;
     height: 150px;
 }
+
+#modal-content-update-delete {
+    position: absolute;
+    background-color:white;
+    padding: 72px 32px 48px 32px;
+    width: 300px;
+    height: 150px;
+}

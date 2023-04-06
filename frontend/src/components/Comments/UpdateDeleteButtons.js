@@ -22,7 +22,7 @@ function UpdateDeleteButtons ({comment, postId}) {
                 <img className="icon" src={TrashButton}/>
             </button>
             {deleteModalShow && (
-                <Modal onClose={() => setDeleteModalShow(false)} size="small">
+                <Modal onClose={() => setDeleteModalShow(false)} size="update-delete">
                     <DeleteCommentForm comment={comment} setDeleteModalShow={setDeleteModalShow} postId={postId}/>
                 </Modal>
                 )}
@@ -31,7 +31,7 @@ function UpdateDeleteButtons ({comment, postId}) {
                 <img className="icon" src={EditButton}/>
             </button>
             {updateModalShow && (
-                <Modal onClose={() => setUpdateShowModal(false)} size="small">
+                <Modal onClose={() => setUpdateShowModal(false)} size="update-delete">
                     <UpdateCommentForm comment={comment} setUpdateShowModal={setUpdateShowModal} postId={postId}/>
                 </Modal>
                 )}

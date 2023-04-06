@@ -76,3 +76,36 @@
     content: "\B7";
     padding: 0 4px;
 }
+
+.comment-CRUD-form{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.options-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#nevermind {
+    background: none;
+	color: inherit;
+	border: none;
+	padding: 0;
+	font: inherit;
+	outline: inherit;
+    cursor: pointer;
+}
+
+#nevermind:hover {
+    text-decoration: underline;
+}
+
+.comment-form-header{
+    margin-bottom: 20px;
+
+}
