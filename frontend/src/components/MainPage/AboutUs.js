@@ -2,6 +2,7 @@ import githubLogo from "../../assets/images/github-mark.png"
 import linkedInLogo from "../../assets/images/linkedinlogo.png"
 import userIcon from "../../assets/images/user-icon.png"
 import aaron from "../../assets/images/aaron.jpeg"
+import david from "../../assets/images/david.jpeg"
 import kristin from "../../assets/images/kristin.jpeg"
 
 
@@ -34,7 +35,7 @@ function AboutUsPage() {
             </div>
             <div className="profile-section">
                 <div className="profile-container">
-                    <img className="about-us-pic" src={kristin}/>
+                    <img className="about-us-pic" src={david}/>
                     <h1 className="about-us-name">David Cabuay</h1>
                     <div className="about-us-icons">
                         <a href="https://www.linkedin.com/in/david-cabuay-48a83172/">
