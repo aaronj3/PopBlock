@@ -97,8 +97,8 @@ function PostShow(){
                         <h2>{post.author.username}</h2>
 
                         <div>
-                            {/* <PostUpdateDeleteButtons post={post}/>
-                                {(sessionUser) ?
+                            <PostUpdateDeleteButtons post={post}/>
+                                {/* {(sessionUser) ?
                                     <button
                                     id="pop-button"
                                     style={animationStyle}
