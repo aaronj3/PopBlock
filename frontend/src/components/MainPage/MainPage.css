@@ -21,7 +21,7 @@
 
 .main-page-content-container footer {
     /* margin: 15px; */
-    margin-bottom: 10px ; 
+    margin-bottom: 10px ;
     display: flex;
     flex-direction: row;
     justify-content: space-around;
@@ -144,4 +144,80 @@
     .botdiv {
         display: none;
     }
+}
+
+.about-us-section {
+    margin-top: 10px;
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: space-evenly;
+    align-items: center;
+    /* justify-content: center; */
+    /* position: absolute;   */
+}
+
+.about-us-name{
+    font-size: larger;
+    margin-top: 40px;
+    margin-bottom: 40px;
+}
+
+.profile-section{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: 25%;
+    border: none;
+    border-radius: 8px;
+    background-color: #D7DDE6;
+}
+
+.profile-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.meet-the-team {
+    border: none;
+    font-size: medium;
+}
+
+.meet-the-team:hover {
+    cursor: pointer;
+}
+
+.about-us-icons{
+    width: 100%;
+    /* display: flex;
+    flex-direction: row;
+    justify-content: space-between; */
+}
+
+.about-us-icon{
+    width: 48px;
+    height: 48px;
+    transition: 0.4s;
+    padding-left: 6px;
+}
+
+.about-us-icon:hover{
+    opacity: 20%;
+}
+
+.about-us-icons{
+    display: flex;
+    justify-content: center;
+    margin-bottom: 40px;
+    /* justify-content: space-around; */
+    /* align-items: center; */
+}
+
+.about-us-pic{
+    border-radius: 50%;
+    height: 9.6rem;
+    width: 9.6rem;
+    margin-top: 40px;
 }

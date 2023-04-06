@@ -25,3 +25,28 @@
     width: 396px;
     height: 673px;
 }
+
+
+#modal-content-large {
+    position: absolute;
+    background-color:white;
+    padding: 144px 32px 48px 32px;
+    width: 1200px;
+    height: 800px;
+}
+
+#modal-content-medium {
+    position: absolute;
+    background-color:white;
+    padding: 72px 32px 48px 32px;
+    width: 800px;
+    height: 440px;
+}
+
+#modal-content-small {
+    position: absolute;
+    background-color:white;
+    padding: 72px 32px 48px 32px;
+    width: 100px;
+    height: 150px;
+}

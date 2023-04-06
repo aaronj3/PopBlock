@@ -15,6 +15,7 @@ import NavBar from './components/NavBar/NavBar';
 import './index.css'
 import AreaShowPage from './components/Map/AreaShowPage';
 import PostShow from './components/Post/PostShow';
+import AboutUsPage from './components/MainPage/AboutUs';
 
 function App() {
 
@@ -24,7 +25,7 @@ function App() {
     dispatch(getCurrentUser()).then(() => setLoaded(true));
   }, [dispatch]);
 
-  
+
   return loaded && (
     <>
       <div className="background">

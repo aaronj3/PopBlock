@@ -9,7 +9,7 @@ function LoginFormModal() {
     const dispatch = useDispatch();
 
     return (
-        <Modal onClose={() => dispatch(hideModal())}>
+        <Modal onClose={() => dispatch(hideModal())} size="medium">
             <LoginForm className="auth-form"/>
         </Modal>
     )

@@ -9,7 +9,7 @@ function SignupFormModal() {
 
 
     return (
-        <Modal onClose={() => dispatch(hideModal())}>
+        <Modal onClose={() => dispatch(hideModal())} size="medium">
             <SignupForm className="auth-form"/>
         </Modal>
     )

@@ -21,14 +21,14 @@ function PostUpdateDeleteButtons ({post}) {
                 Delete
             </button>
             {deleteModalShow && (
-                <Modal onClose={() => setDeleteModalShow(false)}>
+                <Modal onClose={() => setDeleteModalShow(false)} size="small">
                     <DeletePostForm post={post} setDeleteModalShow={setDeleteModalShow}/>
                 </Modal>
                 )}
 
-            <button onClick={() => setUpdateShowModal(true)}>Fuck</button>
+            <button onClick={() => setUpdateShowModal(true)}>Update</button>
             {updateModalShow && (
-                <Modal onClose={() => setUpdateShowModal(false)}>
+                <Modal onClose={() => setUpdateShowModal(false)} size="small">
                     <UpdatePostForm post={post} setUpdateShowModal={setUpdateShowModal}/>
                 </Modal>
                 )}

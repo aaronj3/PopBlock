@@ -54,7 +54,7 @@ function AreaShowPage() {
         </div>
 
         {uploadModal && (
-            <Modal onClose={()=>setUploadModal(false)}>
+            <Modal onClose={()=>setUploadModal(false)} size="medium">
                 <FileUpload area={areaId} onCancel={handleCancelUpload}/>
             </Modal>
         )}
