@@ -35,7 +35,7 @@ function UpdateCommentForm({ comment , setUpdateShowModal}) {
                 <label>
                     <input type="textarea" value={body} onChange={(e) => {setBody(e.target.value)}} ></input>
                 </label>
-
+                <br></br>
                 <button className="modal-button" >Submit</button>
             </form>
 

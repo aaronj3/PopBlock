@@ -4,6 +4,8 @@ import { Modal } from "../../context/Modal";
 import { useState } from "react";
 import DeletePostForm from "./DeletePostForm"
 import UpdatePostForm from "./UpdatePostForm"
+import TrashButton from "../../assets/images/trash2.svg"
+import EditButton from "../../assets/images/edit2.svg"
 
 
 
@@ -16,19 +18,21 @@ function PostUpdateDeleteButtons ({post}) {
     if (post.author._id !== sessionUser._id) return
 
     return (
-        <div>
-            <button onClick={() => setDeleteModalShow(true)}>
-                Delete
+        <div className="update-delete-buttons-container">
+            <button className="update-delete-buttons" onClick={() => setDeleteModalShow(true)}>
+                <img className="icon" src={TrashButton}/>
             </button>
             {deleteModalShow && (
-                <Modal onClose={() => setDeleteModalShow(false)} size="small">
+                <Modal onClose={() => setDeleteModalShow(false)} size="update-delete">
                     <DeletePostForm post={post} setDeleteModalShow={setDeleteModalShow}/>
                 </Modal>
                 )}
 
-            <button onClick={() => setUpdateShowModal(true)}>Update</button>
+            <button className="update-delete-buttons" onClick={() => setUpdateShowModal(true)}>
+                <img className="icon" src={EditButton}/>
+            </button>
             {updateModalShow && (
-                <Modal onClose={() => setUpdateShowModal(false)} size="small">
+                <Modal onClose={() => setUpdateShowModal(false)} size="update-delete">
                     <UpdatePostForm post={post} setUpdateShowModal={setUpdateShowModal}/>
                 </Modal>
                 )}

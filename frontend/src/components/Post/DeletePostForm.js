@@ -4,7 +4,7 @@ import { useHistory } from "react-router-dom";
 
 
 
-function DeletePostForm({ post , setDeleteModalShow}) {
+function DeletePostForm({post , setDeleteModalShow}) {
     const dispatch = useDispatch();
     const history = useHistory();
 
@@ -16,9 +16,10 @@ function DeletePostForm({ post , setDeleteModalShow}) {
     }
 
     return (
-        <div>
-            <button onClick={() => {setDeleteModalShow(false)}}>Nevermind</button>
-            <button onClick={(handleDeleteButtonClick)}>Delete Post</button>
+        <div className="comment-CRUD-form">
+            <button className="modal-button" onClick={(handleDeleteButtonClick)}>Delete Post</button>
+            <br></br>
+            <button className="alternate-button" onClick={() => {setDeleteModalShow(false)}}>Nevermind</button>
         </div>
         )
 }

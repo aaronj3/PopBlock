@@ -27,16 +27,19 @@ function UpdatePostForm({ post , setUpdateShowModal}) {
     }
 
     return (
-        <div>
-            <form onSubmit={handleUpdateSubmit}>
+        <div className="comment-CRUD-form">
+            <form className="comment-CRUD-form" onSubmit={handleUpdateSubmit}>
+                <h2>Caption:</h2>
                 <ul>
                     {errors.map(error => <li key={error} className="error-messages">{error}</li>)}
                 </ul>
-                <label>Description
+                <br></br>
+                <label>
                     <input type="textarea" value={content} onChange={(e) => {setContent(e.target.value)}} ></input>
                 </label>
+                <br></br>
 
-                <button>Submit</button>
+                <button className="modal-button">Submit</button>
             </form>
 
         </div>

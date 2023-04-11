@@ -22,6 +22,7 @@ function DeleteCommentForm({ comment, setDeleteModalShow, postId}) {
             <h1 className="comment-form-header">Delete this comment?</h1>
             <div className="options-container">
                 <button className="modal-button" onClick={(handleDeleteButtonClick)}>Delete</button>
+                <br></br>
                 <button className="alternate-button" onClick={() => {setDeleteModalShow(false)}}>Nevermind</button>
             </div>
         </div>
