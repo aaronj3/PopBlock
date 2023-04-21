@@ -45,7 +45,7 @@
 .mp-container {
     display: flex;
     flex-direction: column;
-    height: 90vh;
+    height: 95vh;
     width: 100%;
     background-image: linear-gradient(344deg, #E74C3C 0%, #F39C12 40%, #f3ce12 91%);
     overflow-y: hidden;
