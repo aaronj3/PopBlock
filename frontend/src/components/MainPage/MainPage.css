@@ -35,7 +35,7 @@
     justify-content: space-around;
     padding: 7px;
     /* margin-left: 00px; */
-    width: 100%;
+    width: 100vw;
     /* background: #F39C12; */
     z-index: 2;
     /* border: solid red; */
@@ -46,7 +46,7 @@
     display: flex;
     flex-direction: column;
     height: 95vh;
-    width: 100%;
+    width: 100vw;
     background-image: linear-gradient(344deg, #E74C3C 0%, #F39C12 40%, #f3ce12 91%);
     overflow-y: hidden;
     /* white-space: nowrap; */
@@ -120,9 +120,10 @@
 }
 
 .splashImg {
+    position: relative;
     border-radius: 10px;
     max-height: 35vw;
-    margin: 30px;
+    /* margin: 30px; */
 }
 
 @media screen and (max-width: 800px) {
